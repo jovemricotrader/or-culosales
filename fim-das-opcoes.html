@@ -3,466 +3,672 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FIM DAS OPÇÕES BINÁRIAS — JR ORÁCULO</title>
-<meta name="description" content="A sala de sinais te torna dependente. O M1 te faz perder. Conheça o JR ORÁCULO — IA que analisa seu gráfico em 3 segundos. Live 15/04 às 21h.">
-<meta property="og:title" content="FIM DAS OPÇÕES BINÁRIAS — JR ORÁCULO">
-<meta property="og:description" content="IA que analisa seu gráfico em 3 segundos. Live gratuita 15/04 às 21h BRT.">
+<title>FIM DAS OPÇÕES BINÁRIAS — Evento Ao Vivo · 15 Abril 2026</title>
+<meta name="description" content="Um evento ao vivo que vai mudar como você opera para sempre. 15 de Abril, 21h. Gratuito.">
+<meta property="og:title" content="FIM DAS OPÇÕES BINÁRIAS — Evento Ao Vivo">
+<meta property="og:description" content="Não é curso. Não é sinal. É o fim do jeito antigo de operar. 15/04 · 21h · Gratuito.">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#04060E">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,700&family=Barlow:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<meta property="og:image" content="https://drive.google.com/uc?export=view&id=1mSk3pEUBeXZyiopbguqd5qobI4la41-4">
+<meta name="theme-color" content="#02030A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,600&family=Barlow:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#04060E;--bg2:#080B16;--bg3:#0C1020;
-  --blue:#1E90FF;--blue2:#00B4FF;--blue3:rgba(30,144,255,.12);
-  --cyan:#00E5FF;--cyanl:rgba(0,229,255,.1);
-  --t:#F0F4FF;--t2:#8A9BC0;--t3:#3A4660;
-  --gold:#F2A61A;--red:#FF2D55;--gr:#22C55E;
-  --r:10px;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:    #02030A;
+  --bg2:   #05060F;
+  --bg3:   #080A18;
+  --card:  #0A0C1C;
+  --b:     rgba(255,255,255,.05);
+  --b2:    rgba(255,255,255,.09);
+  --t:     #EEF0FF;
+  --t2:    #7880A8;
+  --t3:    #3A3F60;
+  --blue:  #1D6FFF;
+  --blue2: #0AF;
+  --cyan:  #00E5FF;
+  --gold:  #F2A61A;
+  --red:   #FF2552;
+  --gr:    #00D48A;
+  --mono:  'Share Tech Mono', monospace;
+  --cond:  'Barlow Condensed', sans-serif;
+  --disp:  'Bebas Neue', sans-serif;
+  --body:  'Barlow', sans-serif;
 }
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--t);font-family:'Barlow',sans-serif;overflow-x:hidden;cursor:none}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--t);
+  font-family: var(--body);
+  overflow-x: hidden;
+  cursor: none;
+}
 
-/* CURSOR */
-#cur{position:fixed;width:10px;height:10px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .12s,height .12s;mix-blend-mode:screen}
-#cur2{position:fixed;width:28px;height:28px;border:1px solid rgba(0,229,255,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .1s ease,top .1s ease}
+/* ── CURSOR ── */
+#cur  { position:fixed;width:6px;height:6px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:.06s }
+#cur2 { position:fixed;width:24px;height:24px;border:1px solid rgba(0,229,255,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s,top .12s }
 
-/* NOISE */
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5}
+/* ── NOISE ── */
+body::before {
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;
+}
 
-/* ANIMS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(0,229,255,.2)}50%{box-shadow:0 0 40px rgba(0,229,255,.5)}}
-@keyframes scanH{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-@keyframes revealLine{from{width:0}to{width:100%}}
-@keyframes typewriter{from{width:0}to{width:100%}}
-@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
-@keyframes countDown{from{transform:scale(1.3);opacity:0}to{transform:scale(1);opacity:1}}
-@keyframes glitch{0%,89%,100%{transform:none;clip-path:none}90%{transform:translate(-3px,2px);clip-path:polygon(0 20%,100% 20%,100% 40%,0 40%)}93%{transform:translate(3px,-2px);clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%)}96%{transform:none;clip-path:none}}
-@keyframes borderAnim{0%,100%{border-color:rgba(30,144,255,.2)}50%{border-color:rgba(0,229,255,.6)}}
-@keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes ripple{0%{transform:scale(0);opacity:.6}100%{transform:scale(4);opacity:0}}
+/* ── SCANLINE ── */
+@keyframes scan { from{transform:translateY(-100vh)} to{transform:translateY(100vh)} }
+.scanline { position:fixed;top:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,rgba(0,229,255,.015),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1 }
 
-/* SCAN LINE */
-.scanline{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(0,229,255,.2),transparent);animation:scanH 4s linear infinite;z-index:1;pointer-events:none}
+/* ── ANIMS ── */
+@keyframes fadeUp    { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn    { from{opacity:0} to{opacity:1} }
+@keyframes glow      { 0%,100%{opacity:.7}50%{opacity:1} }
+@keyframes pulse     { 0%,100%{opacity:1}50%{opacity:.2} }
+@keyframes float     { 0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)} }
+@keyframes glitch1   { 0%,94%,100%{clip-path:none;transform:none}95%{clip-path:polygon(0 15%,100% 15%,100% 30%,0 30%);transform:translateX(-4px)}97%{clip-path:polygon(0 65%,100% 65%,100% 80%,0 80%);transform:translateX(4px)} }
+@keyframes revealBar { from{width:0} to{width:100%} }
+@keyframes ticker    { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes countPop  { from{opacity:0;transform:scale(1.4)} to{opacity:1;transform:scale(1)} }
+@keyframes borderPulse { 0%,100%{border-color:rgba(29,111,255,.15)}50%{border-color:rgba(0,229,255,.5)} }
+@keyframes ripple    { from{transform:scale(0);opacity:.5} to{transform:scale(3);opacity:0} }
+@keyframes drawLine  { from{stroke-dashoffset:1000} to{stroke-dashoffset:0} }
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(4,6,14,.7);backdrop-filter:blur(20px);border-bottom:1px solid rgba(30,144,255,.08)}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.08em}
-.nav-logo span{color:var(--blue)}
-.nav-cta{padding:9px 22px;background:var(--blue3);border:1px solid rgba(30,144,255,.3);border-radius:6px;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--cyan);cursor:pointer;transition:all .2s;font-family:'Barlow Condensed',sans-serif}
-.nav-cta:hover{background:rgba(0,229,255,.15);border-color:var(--cyan)}
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:14px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(2,3,10,.8);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+.nav-logo { font-family:var(--disp);font-size:20px;letter-spacing:.08em }
+.nav-logo span { color:var(--blue) }
+.nav-live { display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;color:var(--t2);letter-spacing:.2em }
+.nav-dot  { width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 1.2s ease infinite }
+.nav-btn  {
+  padding:9px 24px;background:transparent;
+  border:1px solid rgba(29,111,255,.35);border-radius:4px;
+  font-family:var(--cond);font-size:13px;font-weight:700;letter-spacing:.1em;
+  color:var(--blue2);cursor:pointer;transition:all .2s;
+}
+.nav-btn:hover { background:rgba(29,111,255,.1);border-color:var(--blue2);color:var(--cyan) }
+
+/* ── TICKER ── */
+.ticker-wrap { background:var(--bg3);border-top:1px solid var(--b);border-bottom:1px solid var(--b);padding:10px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:2 }
+.ticker-inner { display:inline-block;animation:ticker 30s linear infinite }
+.ticker-item  { display:inline-block;padding:0 40px;font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.2em }
+.ticker-item .hi { color:var(--cyan) }
 
 /* ── HERO ── */
-#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 24px 80px;text-align:center}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(30,144,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(30,144,255,.04) 1px,transparent 1px);background-size:48px 48px}
-.hero-radial{position:absolute;width:800px;height:800px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(ellipse,rgba(0,180,255,.08) 0%,transparent 70%);pointer-events:none}
-.hero-tag{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:.4em;color:var(--blue2);text-transform:uppercase;margin-bottom:24px;animation:fadeUp .6s ease .2s both;opacity:0}
-.hero-event{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,130px);line-height:.88;margin-bottom:16px;position:relative;z-index:2;animation:fadeUp .6s ease .4s both;opacity:0}
-.hero-event .fim{color:var(--t);display:inline-block;animation:glitch 5s ease infinite 2s}
-.hero-event .das{color:var(--blue);display:block}
-.hero-event .ob{color:var(--t);display:block;-webkit-text-stroke:1px var(--blue)}
-.hero-reveal{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,52px);color:var(--cyan);margin-bottom:32px;animation:fadeUp .6s ease .6s both;opacity:0;letter-spacing:.04em}
-.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--t2);max-width:560px;line-height:1.75;margin-bottom:40px;animation:fadeUp .6s ease .8s both;opacity:0}
-.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp .6s ease 1s both;opacity:0}
-.btn-primary{padding:16px 40px;background:linear-gradient(135deg,var(--blue),var(--blue2));border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;color:#fff;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
-.btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1),transparent);opacity:0;transition:opacity .2s}
-.btn-primary:hover::after{opacity:1}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(30,144,255,.4)}
-.btn-secondary{padding:16px 40px;background:transparent;border:1px solid rgba(30,144,255,.3);border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;color:var(--blue2);cursor:pointer;transition:all .2s}
-.btn-secondary:hover{border-color:var(--cyan);color:var(--cyan)}
+#hero {
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  padding:120px 24px 80px;text-align:center;
+}
+.hero-grid {
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(29,111,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(29,111,255,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-vignette {
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 50%,transparent 30%,var(--bg) 100%);
+}
+.hero-glow {
+  position:absolute;width:600px;height:600px;
+  top:50%;left:50%;transform:translate(-50%,-60%);
+  background:radial-gradient(ellipse,rgba(29,111,255,.07) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-eyebrow {
+  font-family:var(--mono);font-size:10px;letter-spacing:.5em;
+  color:var(--blue2);text-transform:uppercase;
+  margin-bottom:28px;
+  animation:fadeUp .5s ease .2s both;
+  display:flex;align-items:center;gap:12px;justify-content:center;
+}
+.hero-eyebrow::before,.hero-eyebrow::after { content:'';flex:0 0 32px;height:1px;background:rgba(10,170,255,.3) }
+.hero-title {
+  font-family:var(--disp);
+  font-size:clamp(64px,12vw,160px);
+  line-height:.85;
+  margin-bottom:12px;
+  position:relative;z-index:2;
+  letter-spacing:.01em;
+}
+.hero-title .l1 { display:block;color:var(--t);animation:fadeUp .5s ease .35s both,glitch1 8s ease infinite 3s;opacity:0 }
+.hero-title .l2 { display:block;color:var(--blue);animation:fadeUp .5s ease .5s both;opacity:0 }
+.hero-title .l3 { display:block;color:transparent;-webkit-text-stroke:1px var(--t3);animation:fadeUp .5s ease .65s both;opacity:0 }
+.hero-dash {
+  width:60px;height:2px;background:var(--blue);margin:24px auto;
+  animation:revealBar .8s ease .8s both;transform-origin:left;
+}
+.hero-sub {
+  font-family:var(--cond);font-size:clamp(18px,2.5vw,26px);font-weight:300;
+  letter-spacing:.08em;color:var(--t2);
+  max-width:600px;line-height:1.6;
+  margin-bottom:48px;
+  animation:fadeUp .5s ease .85s both;opacity:0;
+}
+.hero-sub strong { color:var(--t);font-weight:600 }
+.hero-date-badge {
+  display:inline-flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;
+  background:rgba(29,111,255,.06);border:1px solid rgba(29,111,255,.2);
+  border-radius:6px;padding:16px 32px;margin-bottom:40px;
+  animation:fadeUp .5s ease 1s both;opacity:0;
+}
+.hdb-item { text-align:center }
+.hdb-val  { font-family:var(--disp);font-size:28px;letter-spacing:.05em;color:var(--t) }
+.hdb-lbl  { font-family:var(--mono);font-size:8px;letter-spacing:.3em;color:var(--t3);margin-top:2px }
+.hdb-sep  { width:1px;height:36px;background:var(--b2) }
+.hero-cta { animation:fadeUp .5s ease 1.1s both;opacity:0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap }
+.btn-main {
+  padding:18px 48px;
+  background:var(--blue);
+  border:none;border-radius:4px;
+  font-family:var(--disp);font-size:22px;letter-spacing:.06em;
+  color:#fff;cursor:pointer;
+  transition:all .2s;position:relative;overflow:hidden;
+}
+.btn-main::after { content:'';position:absolute;inset:0;background:rgba(255,255,255,.1);opacity:0;transition:.2s }
+.btn-main:hover::after { opacity:1 }
+.btn-main:hover { box-shadow:0 0 40px rgba(29,111,255,.5);transform:translateY(-2px) }
+.btn-ghost {
+  padding:18px 40px;background:transparent;
+  border:1px solid var(--b2);border-radius:4px;
+  font-family:var(--disp);font-size:22px;letter-spacing:.06em;
+  color:var(--t2);cursor:pointer;transition:all .2s;
+}
+.btn-ghost:hover { border-color:var(--t2);color:var(--t) }
 
 /* ── COUNTDOWN ── */
-#countdown-section{background:var(--bg2);border-top:1px solid rgba(30,144,255,.1);border-bottom:1px solid rgba(30,144,255,.1);padding:40px 24px;text-align:center}
-.cd-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.5em;color:var(--t3);text-transform:uppercase;margin-bottom:20px}
-.cd-grid{display:flex;gap:8px;justify-content:center;align-items:center}
-.cd-unit{text-align:center;min-width:70px}
-.cd-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,8vw,80px);line-height:1;color:var(--cyan);animation:countDown .3s ease}
-.cd-sep{font-family:'Bebas Neue',sans-serif;font-size:60px;color:var(--t3);line-height:1;animation:pulse 1s ease infinite}
-.cd-sub{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.3em;color:var(--t3);margin-top:4px}
-.cd-event{margin-top:16px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:600;color:var(--t2);letter-spacing:.08em}
-.cd-event span{color:var(--gold)}
+#cd {
+  background:var(--bg2);
+  border-top:1px solid var(--b);border-bottom:1px solid var(--b);
+  padding:48px 24px;text-align:center;position:relative;overflow:hidden;
+}
+.cd-label { font-family:var(--mono);font-size:9px;letter-spacing:.5em;color:var(--t3);margin-bottom:24px;text-transform:uppercase }
+.cd-row   { display:flex;gap:0;justify-content:center;align-items:center }
+.cd-unit  { width:clamp(80px,14vw,140px);text-align:center }
+.cd-num   { font-family:var(--disp);font-size:clamp(52px,10vw,100px);line-height:1;color:var(--t);animation:countPop .3s ease }
+.cd-sub   { font-family:var(--mono);font-size:8px;letter-spacing:.35em;color:var(--t3);margin-top:4px }
+.cd-col   { font-family:var(--disp);font-size:clamp(40px,8vw,80px);color:var(--t3);padding:0 4px;line-height:1;animation:pulse 1s ease infinite }
+.cd-free  { margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--t2) }
+.cd-free span { color:var(--cyan) }
 
-/* ── ABOUT ── */
-#about{padding:100px 24px;max-width:1100px;margin:0 auto}
-.section-tag{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.5em;color:var(--blue2);text-transform:uppercase;margin-bottom:16px}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);line-height:.95;margin-bottom:24px}
-.section-title .accent{color:var(--blue)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:60px}
-.about-visual{position:relative}
-.screen-mock{background:var(--bg3);border:1px solid rgba(30,144,255,.2);border-radius:12px;padding:20px;animation:borderAnim 3s ease infinite;overflow:hidden}
-.screen-bar{display:flex;gap:6px;margin-bottom:16px}
-.screen-dot{width:10px;height:10px;border-radius:50%}
-.chart-area{background:var(--bg2);border-radius:8px;height:160px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:12px 8px 8px;gap:3px}
-.chart-bar{border-radius:2px 2px 0 0;flex:1;transition:height .5s ease}
-.ai-badge{position:absolute;top:8px;right:8px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.25);border-radius:6px;padding:6px 10px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--cyan);letter-spacing:.1em;animation:float 3s ease infinite}
-.screen-analysis{margin-top:12px;background:var(--bg2);border-radius:8px;padding:12px}
-.analysis-line{height:8px;border-radius:4px;background:linear-gradient(to right,rgba(30,144,255,.4),rgba(0,229,255,.2));margin-bottom:6px;animation:fadeIn 1s ease both}
-.analysis-line:nth-child(2){width:80%;animation-delay:.2s}
-.analysis-line:nth-child(3){width:60%;animation-delay:.4s}
-.about-text{}
-.about-text p{color:var(--t2);font-size:16px;line-height:1.85;margin-bottom:20px}
-.about-text strong{color:var(--t)}
-.feature-list{list-style:none;margin-top:32px;display:flex;flex-direction:column;gap:12px}
-.feature-list li{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--t2)}
-.feature-list li::before{content:'→';color:var(--cyan);font-family:'Share Tech Mono',monospace;flex-shrink:0;margin-top:2px}
+/* ── AGENDA ── */
+#agenda { padding:100px 24px;max-width:900px;margin:0 auto }
+.sec-tag { font-family:var(--mono);font-size:9px;letter-spacing:.5em;color:var(--blue2);text-transform:uppercase;margin-bottom:16px }
+.sec-title { font-family:var(--disp);font-size:clamp(44px,7vw,80px);line-height:.9;margin-bottom:8px }
+.sec-title .acc { color:var(--blue) }
+.sec-sub { font-family:var(--cond);font-size:18px;font-weight:300;color:var(--t2);letter-spacing:.04em;margin-bottom:56px }
+.acts { display:flex;flex-direction:column;gap:0;position:relative }
+.acts::before { content:'';position:absolute;left:28px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--b2) 10%,var(--b2) 90%,transparent) }
+.act {
+  display:grid;grid-template-columns:56px 1fr;gap:24px;
+  padding:32px 0;border-bottom:1px solid var(--b);
+  position:relative;opacity:0;transform:translateX(-20px);
+  transition:all .5s ease;
+}
+.act.visible { opacity:1;transform:translateX(0) }
+.act:last-child { border-bottom:none }
+.act-num {
+  width:56px;height:56px;border-radius:50%;
+  background:var(--bg3);border:1px solid var(--b2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--disp);font-size:20px;color:var(--t3);
+  position:relative;z-index:1;flex-shrink:0;
+  transition:all .3s;
+}
+.act:hover .act-num { border-color:var(--blue);color:var(--blue);box-shadow:0 0 20px rgba(29,111,255,.2) }
+.act-body {}
+.act-time { font-family:var(--mono);font-size:9px;letter-spacing:.3em;color:var(--t3);margin-bottom:8px }
+.act-title { font-family:var(--cond);font-size:clamp(22px,3vw,30px);font-weight:700;margin-bottom:8px;letter-spacing:.02em }
+.act-desc  { font-size:15px;color:var(--t2);line-height:1.75;max-width:560px }
+.act-tag   {
+  display:inline-block;margin-top:10px;
+  padding:3px 10px;border-radius:3px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.2em;
+}
+.tag-blue  { background:rgba(29,111,255,.1);border:1px solid rgba(29,111,255,.25);color:var(--blue2) }
+.tag-cyan  { background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2);color:var(--cyan) }
+.tag-gold  { background:rgba(242,166,26,.1);border:1px solid rgba(242,166,26,.2);color:var(--gold) }
 
-/* ── HOW IT WORKS ── */
-#how{padding:80px 24px;background:var(--bg2);border-top:1px solid rgba(30,144,255,.06)}
-.how-inner{max-width:900px;margin:0 auto;text-align:center}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
-.step{background:var(--bg);border:1px solid rgba(30,144,255,.1);border-radius:12px;padding:32px 24px;position:relative;transition:all .3s;cursor:default}
-.step:hover{border-color:rgba(0,229,255,.3);transform:translateY(-4px)}
-.step-num{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--t3);letter-spacing:.3em;margin-bottom:12px}
-.step-icon{font-size:36px;margin-bottom:16px;display:block;animation:float 3s ease infinite}
-.step:nth-child(2) .step-icon{animation-delay:1s}
-.step:nth-child(3) .step-icon{animation-delay:2s}
-.step-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;margin-bottom:8px}
-.step-body{font-size:13px;color:var(--t2);line-height:1.7}
-.step-arrow{position:absolute;right:-16px;top:50%;transform:translateY(-50%);color:var(--blue2);font-size:20px;z-index:1}
+/* ── SOBRE ── */
+#sobre { padding:80px 24px;background:var(--bg2);border-top:1px solid var(--b) }
+.sobre-inner { max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center }
+.sobre-photo {
+  position:relative;
+}
+.photo-frame {
+  width:100%;aspect-ratio:3/4;
+  background:var(--bg3);
+  border:1px solid var(--b2);
+  border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.photo-frame img { width:100%;height:100%;object-fit:cover;object-position:top }
+.photo-placeholder {
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.2em;
+}
+.photo-frame::after {
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 60%,var(--bg3) 100%);
+}
+.photo-tag {
+  position:absolute;bottom:20px;left:20px;z-index:1;
+  background:rgba(2,3,10,.9);border:1px solid var(--b2);
+  padding:10px 16px;border-radius:4px;
+}
+.photo-tag .name  { font-family:var(--cond);font-size:18px;font-weight:700;letter-spacing:.04em }
+.photo-tag .role  { font-family:var(--mono);font-size:8px;color:var(--t3);letter-spacing:.2em;margin-top:2px }
+.photo-accent { position:absolute;top:-16px;right:-16px;width:64px;height:64px;border:1px solid rgba(29,111,255,.3);border-radius:50%;animation:float 4s ease infinite }
+.sobre-text {}
+.sobre-text p { font-size:16px;color:var(--t2);line-height:1.85;margin-bottom:20px }
+.sobre-text strong { color:var(--t) }
+.stats-row { display:flex;gap:32px;margin-top:32px;flex-wrap:wrap }
+.stat { }
+.stat-val { font-family:var(--disp);font-size:36px;color:var(--t) }
+.stat-lbl { font-family:var(--mono);font-size:8px;color:var(--t3);letter-spacing:.2em;margin-top:2px }
+
+/* ── ORÁCULO TEASER ── */
+#oraculo-teaser { padding:100px 24px;text-align:center;position:relative;overflow:hidden }
+.ot-bg { position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(29,111,255,.06) 0%,transparent 70%) }
+.ot-inner { max-width:700px;margin:0 auto;position:relative;z-index:2 }
+.ot-tag { font-family:var(--mono);font-size:9px;letter-spacing:.5em;color:var(--t3);margin-bottom:20px }
+.ot-title { font-family:var(--disp);font-size:clamp(40px,7vw,80px);line-height:.9;margin-bottom:24px }
+.ot-title .acc { color:var(--cyan) }
+.ot-agent {
+  background:var(--card);border:1px solid rgba(0,229,255,.15);
+  border-radius:8px;padding:28px;margin:32px auto;
+  text-align:left;max-width:500px;position:relative;
+  animation:borderPulse 4s ease infinite;
+}
+.ot-agent-header { display:flex;align-items:center;gap:10px;margin-bottom:16px }
+.ot-agent-icon  { width:36px;height:36px;border-radius:50%;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px }
+.ot-agent-name  { font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:.15em }
+.ot-agent-stat  { font-family:var(--mono);font-size:8px;color:var(--t3);letter-spacing:.15em;margin-top:2px }
+.ot-lines { display:flex;flex-direction:column;gap:8px }
+.ot-line  { height:8px;border-radius:2px;background:linear-gradient(to right,rgba(0,229,255,.3),rgba(29,111,255,.15));animation:glow 2s ease infinite }
+.ot-line:nth-child(2) { width:75%;animation-delay:.5s }
+.ot-line:nth-child(3) { width:55%;animation-delay:1s }
+.ot-result {
+  margin-top:16px;padding:10px 14px;
+  background:rgba(0,212,138,.05);border:1px solid rgba(0,212,138,.2);
+  border-radius:4px;
+  font-family:var(--mono);font-size:10px;color:var(--gr);letter-spacing:.1em;
+}
+.ot-desc { font-size:16px;color:var(--t2);line-height:1.85;max-width:560px;margin:0 auto }
+.ot-desc strong { color:var(--t) }
 
 /* ── PRICING ── */
-#pricing{padding:100px 24px;max-width:1000px;margin:0 auto;text-align:center}
-.pricing-intro{color:var(--t2);font-size:16px;max-width:500px;margin:16px auto 56px;line-height:1.8}
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
-.tier{background:var(--bg2);border:1px solid rgba(30,144,255,.12);border-radius:14px;padding:32px 24px;transition:all .3s;position:relative;overflow:hidden}
-.tier:hover{border-color:rgba(30,144,255,.3);transform:translateY(-4px)}
-.tier.featured{border-color:rgba(0,229,255,.4);background:linear-gradient(135deg,rgba(0,180,255,.06),rgba(0,229,255,.03));animation:borderAnim 3s ease infinite}
-.tier.featured::before{content:'MAIS POPULAR';position:absolute;top:16px;right:-28px;background:var(--cyan);color:#04060E;font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:.1em;padding:4px 40px;transform:rotate(45deg) translate(0,0);font-weight:900}
-.tier-tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.4em;color:var(--t3);text-transform:uppercase;margin-bottom:12px}
-.tier-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;margin-bottom:20px}
-.tier.featured .tier-name{color:var(--cyan)}
-.tier-price{margin-bottom:24px}
-.tier-price .val{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;color:var(--t)}
-.tier-price .cent{font-size:22px;vertical-align:top;margin-top:8px;display:inline-block;color:var(--t2)}
-.tier-price .label{font-size:12px;color:var(--t3);margin-top:4px}
-.tier-features{list-style:none;margin-bottom:28px;text-align:left;display:flex;flex-direction:column;gap:8px}
-.tier-features li{font-size:13px;color:var(--t2);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
-.tier-features li .ck{color:var(--gr);flex-shrink:0}
-.tier-features li .no{color:var(--t3);flex-shrink:0}
-.tier-btn{width:100%;padding:14px;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;cursor:pointer;transition:all .2s;border:none;position:relative;overflow:hidden}
-.tier-btn.basic{background:rgba(30,144,255,.1);border:1px solid rgba(30,144,255,.25);color:var(--blue2)}
-.tier-btn.basic:hover{background:rgba(30,144,255,.2)}
-.tier-btn.main{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff}
-.tier-btn.main:hover{box-shadow:0 6px 24px rgba(30,144,255,.4);transform:translateY(-1px)}
-.tier-btn.vip{background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.3);color:var(--cyan)}
-.tier-btn.vip:hover{background:rgba(0,229,255,.15)}
-.tier-btn .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.2);animation:ripple .6s linear}
-
-/* ── PROOF ── */
-#proof{padding:80px 24px;background:var(--bg2);border-top:1px solid rgba(30,144,255,.06)}
-.proof-inner{max-width:900px;margin:0 auto;text-align:center}
-.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
-.proof-card{background:var(--bg);border:1px solid rgba(30,144,255,.1);border-radius:10px;padding:24px;text-align:left;transition:all .3s}
-.proof-card:hover{border-color:rgba(30,144,255,.25)}
-.proof-stars{color:var(--gold);font-size:14px;margin-bottom:12px;letter-spacing:.1em}
-.proof-text{font-size:13px;color:var(--t2);line-height:1.75;margin-bottom:16px;font-style:italic}
-.proof-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--t)}
-.proof-sub{font-size:11px;color:var(--t3)}
+#pricing { padding:80px 24px;background:var(--bg2);border-top:1px solid var(--b) }
+.pricing-inner { max-width:800px;margin:0 auto;text-align:center }
+.pricing-intro { font-family:var(--cond);font-size:18px;font-weight:300;color:var(--t2);letter-spacing:.04em;margin:16px 0 48px }
+.tiers { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start }
+.tier {
+  background:var(--card);border:1px solid var(--b2);
+  border-radius:6px;padding:28px 20px;
+  transition:all .3s;position:relative;overflow:hidden;
+  text-align:left;
+}
+.tier:hover { transform:translateY(-4px);border-color:rgba(29,111,255,.3) }
+.tier.mid { border-color:rgba(0,229,255,.3);animation:borderPulse 3s ease infinite }
+.tier.mid::before {
+  content:'MAIS ESCOLHIDO';position:absolute;top:14px;right:-30px;
+  background:var(--cyan);color:#02030A;
+  font-family:var(--disp);font-size:10px;letter-spacing:.08em;
+  padding:3px 40px;transform:rotate(45deg);
+}
+.tier-tag   { font-family:var(--mono);font-size:8px;letter-spacing:.35em;color:var(--t3);margin-bottom:10px }
+.tier-name  { font-family:var(--disp);font-size:24px;letter-spacing:.04em;margin-bottom:16px }
+.tier.mid .tier-name { color:var(--cyan) }
+.tier-price { margin-bottom:20px }
+.tier-price .val { font-family:var(--disp);font-size:48px;color:var(--t);line-height:1 }
+.tier-price .sym { font-size:18px;color:var(--t2);vertical-align:top;margin-top:6px;display:inline-block }
+.tier-price .lbl { font-family:var(--mono);font-size:8px;color:var(--t3);letter-spacing:.2em;margin-top:4px }
+.tier-features { list-style:none;margin-bottom:22px;display:flex;flex-direction:column;gap:7px }
+.tier-features li { font-size:12px;color:var(--t2);display:flex;align-items:flex-start;gap:7px;line-height:1.5 }
+.tier-features li .on  { color:var(--gr);flex-shrink:0 }
+.tier-features li .off { color:var(--t3);flex-shrink:0 }
+.tier-btn {
+  width:100%;padding:13px;border-radius:4px;
+  font-family:var(--disp);font-size:16px;letter-spacing:.06em;
+  cursor:pointer;transition:all .2s;border:none;position:relative;overflow:hidden;
+}
+.tb-basic { background:rgba(255,255,255,.04);border:1px solid var(--b2);color:var(--t2) }
+.tb-basic:hover  { background:rgba(255,255,255,.08);color:var(--t) }
+.tb-mid   { background:var(--blue);color:#fff }
+.tb-mid:hover    { box-shadow:0 6px 30px rgba(29,111,255,.5) }
+.tb-vip   { background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.25);color:var(--cyan) }
+.tb-vip:hover    { background:rgba(0,229,255,.12) }
+.tier-btn .rpl   { position:absolute;border-radius:50%;background:rgba(255,255,255,.15);animation:ripple .5s linear }
 
 /* ── FAQ ── */
-#faq{padding:80px 24px;max-width:700px;margin:0 auto}
-.faq-list{margin-top:48px;display:flex;flex-direction:column;gap:8px}
-.faq-item{background:var(--bg2);border:1px solid rgba(30,144,255,.1);border-radius:10px;overflow:hidden;transition:border-color .2s}
-.faq-item.open{border-color:rgba(30,144,255,.25)}
-.faq-q{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:15px;gap:12px}
-.faq-q:hover{color:var(--blue2)}
-.faq-icon{color:var(--blue2);font-size:18px;flex-shrink:0;transition:transform .2s;font-family:'Barlow Condensed',sans-serif}
-.faq-item.open .faq-icon{transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.faq-item.open .faq-a{max-height:200px}
-.faq-a-inner{padding:0 20px 18px;font-size:14px;color:var(--t2);line-height:1.8}
+#faq { padding:80px 24px;max-width:680px;margin:0 auto }
+.faq-list { margin-top:48px;display:flex;flex-direction:column;gap:6px }
+.faq-item { border:1px solid var(--b);border-radius:4px;overflow:hidden;transition:border-color .2s }
+.faq-item.open { border-color:rgba(29,111,255,.25) }
+.faq-q  { padding:18px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:15px;font-weight:500;gap:12px }
+.faq-q:hover { color:var(--blue2) }
+.faq-ico { font-family:var(--disp);font-size:20px;color:var(--blue2);flex-shrink:0;transition:transform .25s }
+.faq-item.open .faq-ico { transform:rotate(45deg) }
+.faq-a { max-height:0;overflow:hidden;transition:max-height .3s ease }
+.faq-item.open .faq-a { max-height:240px }
+.faq-a-in { padding:0 20px 18px;font-size:14px;color:var(--t2);line-height:1.8 }
 
 /* ── FINAL CTA ── */
-#final-cta{padding:120px 24px;text-align:center;position:relative;overflow:hidden}
-.final-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(0,180,255,.1) 0%,transparent 70%)}
-.final-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,100px);line-height:.9;position:relative;z-index:2;margin-bottom:16px}
-.final-title .accent{color:var(--cyan);animation:glitch 6s ease infinite 1s}
-.final-sub{font-size:17px;color:var(--t2);max-width:480px;margin:0 auto 40px;line-height:1.8;position:relative;z-index:2}
-.final-btns{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:12px}
-.final-secure{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--t3);letter-spacing:.2em;margin-top:8px}
+#fcta { padding:120px 24px;text-align:center;position:relative;overflow:hidden }
+.fcta-bg { position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 80%,rgba(29,111,255,.08) 0%,transparent 70%) }
+.fcta-title { font-family:var(--disp);font-size:clamp(52px,9vw,110px);line-height:.88;margin-bottom:20px;position:relative;z-index:2 }
+.fcta-title .acc { color:var(--blue) }
+.fcta-sub { font-family:var(--cond);font-size:20px;font-weight:300;color:var(--t2);letter-spacing:.06em;max-width:480px;margin:0 auto 40px;position:relative;z-index:2 }
+.fcta-btns { position:relative;z-index:2;display:flex;gap:12px;justify-content:center;flex-wrap:wrap }
+.fcta-trust { font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.2em;margin-top:16px;position:relative;z-index:2 }
 
 /* ── EXIT POPUP ── */
-#exit-popup{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
-#exit-popup.show{display:flex}
-.ep-overlay{position:absolute;inset:0;background:rgba(4,6,14,.9);backdrop-filter:blur(8px)}
-.ep-card{position:relative;z-index:1;background:var(--bg2);border:1px solid rgba(0,229,255,.3);border-radius:16px;padding:48px 40px;max-width:480px;width:100%;text-align:center;animation:fadeUp .4s ease both}
-.ep-close{position:absolute;top:16px;right:16px;background:none;border:none;color:var(--t3);font-size:20px;cursor:pointer;line-height:1;transition:color .2s;font-family:'Barlow Condensed',sans-serif}
-.ep-close:hover{color:var(--t)}
-.ep-tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:.4em;color:var(--cyan);margin-bottom:12px}
-.ep-title{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:.95;margin-bottom:12px}
-.ep-title span{color:var(--red)}
-.ep-sub{font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:28px}
-.ep-offer{background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.2);border-radius:10px;padding:20px;margin-bottom:24px}
-.ep-offer-price{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--cyan);line-height:1}
-.ep-offer-desc{font-size:12px;color:var(--t2);margin-top:4px}
-.ep-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--blue),var(--blue2));border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;color:#fff;cursor:pointer;margin-bottom:12px;transition:all .2s}
-.ep-btn:hover{box-shadow:0 6px 24px rgba(30,144,255,.4)}
-.ep-skip{font-size:12px;color:var(--t3);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:inherit}
-.ep-skip:hover{color:var(--t2)}
+#xpop { position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;padding:20px }
+#xpop.show { display:flex }
+.xp-ov { position:absolute;inset:0;background:rgba(2,3,10,.92);backdrop-filter:blur(12px) }
+.xp-card {
+  position:relative;z-index:1;
+  background:var(--bg3);border:1px solid rgba(0,229,255,.25);
+  border-radius:8px;padding:48px 36px;
+  max-width:440px;width:100%;text-align:center;
+  animation:fadeUp .35s ease;
+}
+.xp-x { position:absolute;top:14px;right:16px;background:none;border:none;color:var(--t3);font-size:18px;cursor:pointer;font-family:var(--disp);transition:color .2s }
+.xp-x:hover { color:var(--t) }
+.xp-et  { font-family:var(--mono);font-size:8px;letter-spacing:.4em;color:var(--t3);margin-bottom:10px }
+.xp-t   { font-family:var(--disp);font-size:32px;line-height:.95;margin-bottom:12px }
+.xp-t span { color:var(--red) }
+.xp-d   { font-size:14px;color:var(--t2);line-height:1.75;margin-bottom:24px }
+.xp-box {
+  background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.2);
+  border-radius:6px;padding:20px;margin-bottom:20px;
+}
+.xp-box .v { font-family:var(--disp);font-size:44px;color:var(--cyan);line-height:1 }
+.xp-box .s { font-family:var(--mono);font-size:8px;color:var(--t2);letter-spacing:.2em;margin-top:4px }
+.xp-btn { width:100%;padding:14px;background:var(--blue);border:none;border-radius:4px;font-family:var(--disp);font-size:18px;letter-spacing:.05em;color:#fff;cursor:pointer;margin-bottom:10px;transition:all .2s }
+.xp-btn:hover { box-shadow:0 6px 24px rgba(29,111,255,.4) }
+.xp-skip { font-family:var(--mono);font-size:9px;color:var(--t3);background:none;border:none;cursor:pointer;letter-spacing:.1em;text-decoration:underline }
+.xp-skip:hover { color:var(--t2) }
 
 /* ── FOOTER ── */
-footer{padding:32px 40px;border-top:1px solid rgba(30,144,255,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.06em}
-.footer-logo span{color:var(--blue)}
-.footer-links{display:flex;gap:24px}
-.footer-links a{font-size:12px;color:var(--t3);text-decoration:none;letter-spacing:.05em;transition:color .2s}
-.footer-links a:hover{color:var(--t2)}
-.footer-copy{font-size:11px;color:var(--t3)}
+footer { padding:28px 40px;border-top:1px solid var(--b);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px }
+.ft-logo { font-family:var(--disp);font-size:16px;letter-spacing:.06em }
+.ft-logo span { color:var(--blue) }
+.ft-links { display:flex;gap:20px }
+.ft-links a { font-family:var(--mono);font-size:9px;color:var(--t3);text-decoration:none;letter-spacing:.15em;transition:color .2s }
+.ft-links a:hover { color:var(--t2) }
+.ft-c { font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.1em }
 
 /* ── MOBILE ── */
 @media(max-width:768px){
-  nav{padding:14px 20px}
-  .about-grid{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr}
-  .step-arrow{display:none}
-  .tiers{grid-template-columns:1fr}
-  .proof-grid{grid-template-columns:1fr}
-  .hero-btns{flex-direction:column;align-items:center}
-  .btn-primary,.btn-secondary{width:100%;max-width:320px}
-  footer{flex-direction:column;text-align:center}
-  .footer-links{justify-content:center}
-  .ep-card{padding:32px 24px}
-  input,select,textarea{font-size:16px!important}
-}
-@media(max-width:480px){
-  .cd-num{font-size:40px}
-  .cd-sep{font-size:40px}
-  .cd-unit{min-width:52px}
+  nav { padding:12px 20px }
+  .nav-live { display:none }
+  .sobre-inner { grid-template-columns:1fr }
+  .tiers { grid-template-columns:1fr }
+  .hero-cta,.fcta-btns { flex-direction:column;align-items:center }
+  .btn-main,.btn-ghost { width:100%;max-width:340px }
+  .acts::before { left:22px }
+  .act { grid-template-columns:44px 1fr;gap:16px }
+  .act-num { width:44px;height:44px;font-size:16px }
+  footer { flex-direction:column;text-align:center }
+  .ft-links { justify-content:center }
+  input,select,textarea { font-size:16px!important }
 }
 </style>
 </head>
 <body>
-
-<div id="cur"></div>
-<div id="cur2"></div>
+<div id="cur"></div><div id="cur2"></div>
 <div class="scanline"></div>
 
 <!-- EXIT POPUP -->
-<div id="exit-popup">
-  <div class="ep-overlay" onclick="closePopup()"></div>
-  <div class="ep-card">
-    <button class="ep-close" onclick="closePopup()">✕</button>
-    <div class="ep-tag">ESPERA — OFERTA ESPECIAL</div>
-    <div class="ep-title">ANTES DE IR <span>EMBORA...</span></div>
-    <div class="ep-sub">O JR ORÁCULO analisa seu gráfico em 3 segundos com IA. Entra na live e vê ao vivo como funciona — gratuito.</div>
-    <div class="ep-offer">
-      <div class="ep-offer-price">GRÁTIS</div>
-      <div class="ep-offer-desc">Live exclusiva · 15/04 às 21h · Demonstração ao vivo</div>
+<div id="xpop">
+  <div class="xp-ov" onclick="closeXP()"></div>
+  <div class="xp-card">
+    <button class="xp-x" onclick="closeXP()">✕</button>
+    <div class="xp-et">ANTES DE IR EMBORA</div>
+    <div class="xp-t">É <span>GRATUITO</span><br>APARECER</div>
+    <div class="xp-d">A live é pública e gratuita. Mas a oferta do JR ORÁCULO vai estar disponível só durante o evento — e a preço simbólico, só pra quem assistir ao vivo.</div>
+    <div class="xp-box">
+      <div class="v">GRÁTIS</div>
+      <div class="s">LIVE · 15 ABRIL · 21H · YOUTUBE</div>
     </div>
-    <button class="ep-btn" onclick="closePopup();document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">QUERO VER AO VIVO →</button>
-    <button class="ep-skip" onclick="closePopup()">Não quero melhorar meu trading</button>
+    <button class="xp-btn" onclick="closeXP();document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">GARANTIR MINHA VAGA →</button>
+    <button class="xp-skip" onclick="closeXP()">Não quero evoluir meu trading</button>
   </div>
 </div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">JR <span>ORÁCULO</span></div>
-  <button class="nav-cta" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">QUERO PARTICIPAR</button>
+  <div class="nav-logo" style="display:flex;align-items:center;gap:10px">
+    <img src="https://drive.google.com/uc?export=view&id=1mSk3pEUBeXZyiopbguqd5qobI4la41-4" alt="FIM DAS OPÇÕES BINÁRIAS" style="height:36px;width:auto;object-fit:contain" onerror="this.style.display='none'">
+  </div>
+  <div class="nav-live"><div class="nav-dot"></div>15 ABR · 21H</div>
+  <button class="nav-btn" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">GARANTIR VAGA</button>
 </nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap" style="margin-top:56px">
+  <div class="ticker-inner">
+    <span class="ticker-item">EVENTO AO VIVO &nbsp;<span class="hi">·</span>&nbsp; 15 ABRIL &nbsp;<span class="hi">·</span>&nbsp; 21H BRASÍLIA</span>
+    <span class="ticker-item">FIM DAS OPÇÕES BINÁRIAS &nbsp;<span class="hi">·</span>&nbsp; MÉTODO JR &nbsp;<span class="hi">·</span>&nbsp; VOLUME &nbsp;<span class="hi">&</span>&nbsp; PREÇO</span>
+    <span class="ticker-item">DEMONSTRAÇÃO AO VIVO &nbsp;<span class="hi">·</span>&nbsp; JR ORÁCULO &nbsp;<span class="hi">·</span>&nbsp; OFERTA EXCLUSIVA</span>
+    <span class="ticker-item">EVENTO AO VIVO &nbsp;<span class="hi">·</span>&nbsp; 15 ABRIL &nbsp;<span class="hi">·</span>&nbsp; 21H BRASÍLIA</span>
+    <span class="ticker-item">FIM DAS OPÇÕES BINÁRIAS &nbsp;<span class="hi">·</span>&nbsp; MÉTODO JR &nbsp;<span class="hi">·</span>&nbsp; VOLUME &nbsp;<span class="hi">&</span>&nbsp; PREÇO</span>
+    <span class="ticker-item">DEMONSTRAÇÃO AO VIVO &nbsp;<span class="hi">·</span>&nbsp; JR ORÁCULO &nbsp;<span class="hi">·</span>&nbsp; OFERTA EXCLUSIVA</span>
+  </div>
+</div>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-grid"></div>
-  <div class="hero-radial"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-glow"></div>
   <div style="position:relative;z-index:2">
-    <div class="hero-tag">15 de Abril · 21h · YouTube</div>
-    <h1 class="hero-event">
-      <span class="fim">FIM DAS</span>
-      <span class="das">OPÇÕES</span>
-      <span class="ob">BINÁRIAS</span>
+    <div style="margin-bottom:24px;animation:fadeIn .6s ease .1s both;opacity:0">
+      <img src="https://drive.google.com/uc?export=view&id=1mSk3pEUBeXZyiopbguqd5qobI4la41-4" alt="FIM DAS OPÇÕES BINÁRIAS" 
+           style="max-width:min(400px,80vw);height:auto;object-fit:contain"
+           onerror="this.style.display='none'">
+    </div>
+    <div class="hero-eyebrow">EVENTO AO VIVO · 15 DE ABRIL DE 2026</div>
+    <h1 class="hero-title">
+      <span class="l1">FIM DAS</span>
+      <span class="l2">OPÇÕES</span>
+      <span class="l3">BINÁRIAS</span>
     </h1>
-    <div class="hero-reveal">Apresentando o JR ORÁCULO</div>
-    <p class="hero-sub">A sala de sinais te torna dependente. O M1 te faz perder. A IA analisa seu gráfico e te diz o que o profissional vê — em 3 segundos.</p>
-    <div class="hero-btns">
-      <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">QUERO PARTICIPAR DA LIVE</button>
-      <button class="btn-secondary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">COMO FUNCIONA</button>
+    <div class="hero-dash"></div>
+    <p class="hero-sub">Sala de sinais, M1, copiar trade — <strong>esse modelo acabou.</strong><br>Uma noite. Uma virada. Ao vivo.</p>
+    <div class="hero-date-badge">
+      <div class="hdb-item"><div class="hdb-val">15</div><div class="hdb-lbl">ABRIL</div></div>
+      <div class="hdb-sep"></div>
+      <div class="hdb-item"><div class="hdb-val">21H</div><div class="hdb-lbl">BRASÍLIA</div></div>
+      <div class="hdb-sep"></div>
+      <div class="hdb-item"><div class="hdb-val">AO VIVO</div><div class="hdb-lbl">YOUTUBE</div></div>
+      <div class="hdb-sep"></div>
+      <div class="hdb-item"><div class="hdb-val">GRATUITO</div><div class="hdb-lbl">ACESSO</div></div>
+    </div>
+    <div class="hero-cta">
+      <button class="btn-main" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">QUERO PARTICIPAR →</button>
+      <button class="btn-ghost" onclick="document.getElementById('agenda').scrollIntoView({behavior:'smooth'})">VER PROGRAMAÇÃO</button>
     </div>
   </div>
 </section>
 
 <!-- COUNTDOWN -->
-<div id="countdown-section">
+<div id="cd">
   <div class="cd-label">A live começa em</div>
-  <div class="cd-grid">
+  <div class="cd-row">
     <div class="cd-unit"><div class="cd-num" id="cd-d">00</div><div class="cd-sub">DIAS</div></div>
-    <div class="cd-sep">:</div>
+    <div class="cd-col">:</div>
     <div class="cd-unit"><div class="cd-num" id="cd-h">00</div><div class="cd-sub">HORAS</div></div>
-    <div class="cd-sep">:</div>
+    <div class="cd-col">:</div>
     <div class="cd-unit"><div class="cd-num" id="cd-m">00</div><div class="cd-sub">MIN</div></div>
-    <div class="cd-sep">:</div>
+    <div class="cd-col">:</div>
     <div class="cd-unit"><div class="cd-num" id="cd-s">00</div><div class="cd-sub">SEG</div></div>
   </div>
-  <div class="cd-event">📅 15 de Abril · 21h BRT · <span>YouTube ao vivo</span></div>
+  <div class="cd-free">ENTRADA GRATUITA &nbsp;·&nbsp; <span>YouTube @JovemRicoTrader</span></div>
 </div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div style="max-width:1100px;margin:0 auto">
-    <div class="section-tag">O que é o JR ORÁCULO</div>
-    <h2 class="section-title">1 ANO CRIANDO<br>O <span class="accent">ORÁCULO</span></h2>
-    <div class="about-grid">
-      <div class="about-visual">
-        <div class="screen-mock">
-          <div class="screen-bar">
-            <div class="screen-dot" style="background:#FF5F57"></div>
-            <div class="screen-dot" style="background:#FEBC2E"></div>
-            <div class="screen-dot" style="background:#28C840"></div>
-            <div style="flex:1;height:10px;background:rgba(30,144,255,.08);border-radius:4px;margin-left:8px"></div>
-          </div>
-          <div class="chart-area" id="chart-area">
-          </div>
-          <div class="ai-badge">🤖 IA ANALISANDO</div>
-          <div class="screen-analysis">
-            <div class="analysis-line"></div>
-            <div class="analysis-line"></div>
-            <div class="analysis-line"></div>
-          </div>
-        </div>
+<!-- AGENDA -->
+<section id="agenda">
+  <div class="sec-tag">Programação do evento</div>
+  <h2 class="sec-title">O QUE<br>VAI <span class="acc">ACONTECER</span></h2>
+  <p class="sec-sub">Uma noite dividida em 4 momentos. Sem enrolação.</p>
+  <div class="acts">
+    <div class="act">
+      <div class="act-num">01</div>
+      <div class="act-body">
+        <div class="act-time">ABERTURA · ~21H00</div>
+        <div class="act-title">Por que o jeito antigo te faz perder dinheiro</div>
+        <div class="act-desc">Sala de sinais cria dependência. M1 é ruído. Copiar trade é loteria. Vamos destruir esses modelos com dados reais e mostrar onde o dinheiro está de fato se movendo.</div>
+        <span class="act-tag tag-blue">ANÁLISE · DADOS REAIS</span>
       </div>
-      <div class="about-text">
-        <p>O JR ORÁCULO é uma <strong>extensão do Chrome</strong> que captura a tela do seu gráfico e manda para o GPT-4 Vision analisar. Em 3 segundos você recebe a leitura de um profissional — direção, confluência, qualidade do setup.</p>
-        <p>Não é sinal. Não é robô. É <strong>inteligência artificial que lê o mesmo gráfico que você</strong> e explica o que está acontecendo em linguagem simples.</p>
-        <p>Funciona em qualquer corretora com TradingView: Quotex, Pocket Option, Vera Broker e todas as outras.</p>
-        <ul class="feature-list">
-          <li>Análise de qualquer par forex, OTC ou cripto</li>
-          <li>Funciona em M5, M15, H1 e qualquer timeframe</li>
-          <li>Detecta tendência, confluência e qualidade do setup</li>
-          <li>Resposta em português, em segundos</li>
-          <li>Sem dados pessoais, sem login extra</li>
-        </ul>
+    </div>
+    <div class="act">
+      <div class="act-num">02</div>
+      <div class="act-body">
+        <div class="act-time">MÉTODO · ~21H30</div>
+        <div class="act-title">Operar a favor do volume e do preço — Estratégia JR</div>
+        <div class="act-desc">A lógica que profissionais usam e nunca ensinam em grupo de sinal: ler o que o mercado está fazendo de verdade. Vou mostrar a estratégia completa ao vivo, no gráfico.</div>
+        <span class="act-tag tag-blue">AO VIVO · GRÁFICO REAL</span>
+      </div>
+    </div>
+    <div class="act">
+      <div class="act-num">03</div>
+      <div class="act-body">
+        <div class="act-time">REVELAÇÃO · ~22H00</div>
+        <div class="act-title">Apresentando o JR ORÁCULO — demonstração ao vivo</div>
+        <div class="act-desc">1 ano em desenvolvimento. Um agente de inteligência que lê o gráfico com você, identifica o contexto do mercado e entrega a análise em segundos — sem você precisar saber de nada técnico.</div>
+        <span class="act-tag tag-cyan">DEMO AO VIVO · JR ORÁCULO</span>
+      </div>
+    </div>
+    <div class="act">
+      <div class="act-num">04</div>
+      <div class="act-body">
+        <div class="act-time">OFERTA · ~22H30</div>
+        <div class="act-title">Acesso ao ORÁCULO — preço simbólico só durante a live</div>
+        <div class="act-desc">Quem assistir ao vivo vai ter acesso ao JR ORÁCULO por um preço que não vai se repetir. A oferta fecha quando a live terminar.</div>
+        <span class="act-tag tag-gold">OFERTA EXCLUSIVA · LIVE ONLY</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="how-inner">
-    <div class="section-tag">Como funciona</div>
-    <h2 class="section-title">3 PASSOS.<br>3 <span class="accent">SEGUNDOS.</span></h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <span class="step-icon">📸</span>
-        <div class="step-title">Captura o gráfico</div>
-        <div class="step-body">Clique no ícone da extensão. O ORÁCULO captura automaticamente a tela do seu gráfico.</div>
-        <div class="step-arrow">→</div>
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sobre-inner">
+    <div class="sobre-photo">
+      <div class="photo-frame">
+        <!-- COLOQUE A URL DA SUA FOTO AQUI -->
+        <img src="https://drive.google.com/uc?export=view&id=1DkTx0JJSwLyTc3eNJlPtj2ScJTwr6IHn" alt="André Luiz · JR Trader" style="width:100%;height:100%;object-fit:cover;object-position:top center">
       </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <span class="step-icon">🧠</span>
-        <div class="step-title">IA analisa</div>
-        <div class="step-body">GPT-4 Vision lê o gráfico como um profissional. Identifica tendência, padrão e contexto.</div>
-        <div class="step-arrow">→</div>
+      <div class="photo-tag">
+        <div class="name">ANDRÉ LUIZ</div>
+        <div class="role">@JOVEMRICOTRADER · TRADER · CRIADOR</div>
       </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <span class="step-icon">⚡</span>
-        <div class="step-title">Você decide</div>
-        <div class="step-body">Recebe a análise em português. Você usa como segunda opinião para tomar sua decisão.</div>
+      <div class="photo-accent"></div>
+    </div>
+    <div class="sobre-text">
+      <div class="sec-tag">Quem apresenta</div>
+      <h2 class="sec-title" style="font-size:clamp(36px,5vw,56px)">MAIS DE<br><span class="acc">3 ANOS</span><br>OPERANDO OB</h2>
+      <p style="margin-top:24px">Comecei do zero. Passei por sala de sinais, robô, indicador de repaint, copy trade — tudo que não funciona. <strong>Aprendi na prática o que realmente move o mercado.</strong></p>
+      <p>Hoje opero puro preço e volume, sem M1, sem Fibonacci, sem dependência. E criei ferramentas reais pra que outros traders façam o mesmo — de forma independente.</p>
+      <p>O <strong>JR ORÁCULO</strong> é o resultado de 1 ano de desenvolvimento. Nessa live, vou mostrar tudo ao vivo.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-val">+3</div><div class="stat-lbl">ANOS OPERANDO</div></div>
+        <div class="stat"><div class="stat-val">1</div><div class="stat-lbl">ANO DE DEV</div></div>
+        <div class="stat"><div class="stat-val">1</div><div class="stat-lbl">NOITE. TUDO MUDA.</div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORÁCULO TEASER -->
+<section id="oraculo-teaser">
+  <div class="ot-bg"></div>
+  <div class="ot-inner">
+    <div class="ot-tag">REVELADO NA LIVE · 15/04 · 22H</div>
+    <h2 class="ot-title">JR <span class="acc">ORÁCULO</span><br>— 1 ANO CRIANDO</h2>
+    <p class="ot-desc">Um agente de inteligência que <strong>observa o mesmo gráfico que você</strong>, lê o contexto do mercado e entrega a análise — em segundos. Funciona em qualquer corretora de OB autorizada.</p>
+    <div class="ot-agent">
+      <div class="ot-agent-header">
+        <div class="ot-agent-icon">⚡</div>
+        <div>
+          <div class="ot-agent-name">ORÁCULO · AGENTE ATIVO</div>
+          <div class="ot-agent-stat">ANALISANDO · APRENDENDO · ADAPTANDO</div>
+        </div>
+      </div>
+      <div class="ot-lines">
+        <div class="ot-line"></div>
+        <div class="ot-line"></div>
+        <div class="ot-line"></div>
+      </div>
+      <div class="ot-result">→ CONTEXTO IDENTIFICADO · ANÁLISE CONCLUÍDA EM 3s</div>
+    </div>
+    <p class="ot-desc" style="margin-top:16px;font-size:14px">Não é robô de sinal. Não é automação cega. É inteligência que <strong>aprende com o mercado</strong> e te ajuda a tomar decisões melhores — você ainda decide.</p>
+    <div style="margin-top:32px">
+      <button class="btn-main" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">VER A DEMONSTRAÇÃO AO VIVO →</button>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
 <section id="pricing">
-  <div class="section-tag">Escolha seu plano</div>
-  <h2 class="section-title">ENTRE NA LIVE.<br>ESCOLHA SEU <span class="accent">ACESSO.</span></h2>
-  <p class="pricing-intro">Na live do dia 15 você assiste de graça. Escolha como quer continuar depois.</p>
-  <div class="tiers">
-
-    <!-- BÁSICO -->
-    <div class="tier">
-      <div class="tier-tag">Para começar</div>
-      <div class="tier-name">BÁSICO</div>
-      <div class="tier-price">
-        <span class="cent">R$</span><span class="val">17</span>
-        <div class="label">acesso único · 30 dias</div>
+  <div class="pricing-inner">
+    <div class="sec-tag">Acesso ao evento</div>
+    <h2 class="sec-title">ESCOLHA COMO<br>VOCÊ <span class="acc">PARTICIPA</span></h2>
+    <p class="pricing-intro">A live é gratuita no YouTube. Escolha seu nível de acesso.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-tag">BÁSICO</div>
+        <div class="tier-name">GRATUITO</div>
+        <div class="tier-price"><span class="val">R$0</span><div class="lbl">ACESSO LIVRE</div></div>
+        <ul class="tier-features">
+          <li><span class="on">✓</span> Live completa no YouTube</li>
+          <li><span class="on">✓</span> Método JR ao vivo</li>
+          <li><span class="on">✓</span> Demo do ORÁCULO</li>
+          <li><span class="off">—</span> <span style="color:var(--t3)">Oferta exclusiva live</span></li>
+          <li><span class="off">—</span> <span style="color:var(--t3)">Grupo de acesso</span></li>
+        </ul>
+        <button class="tier-btn tb-basic" onclick="window.open('https://www.youtube.com/@JovemRicoTrader','_blank')">ACESSE O CANAL →</button>
       </div>
-      <ul class="tier-features">
-        <li><span class="ck">✓</span> Extensão JR ORÁCULO</li>
-        <li><span class="ck">✓</span> 30 análises por dia</li>
-        <li><span class="ck">✓</span> Todos os ativos OB</li>
-        <li><span class="ck">✓</span> Suporte básico</li>
-        <li><span class="no">—</span> <span style="color:var(--t3)">Grupo exclusivo</span></li>
-        <li><span class="no">—</span> <span style="color:var(--t3)">Conteúdo extra</span></li>
-      </ul>
-      <button class="tier-btn basic" onclick="handleTierClick(this,'basic')">QUERO O BÁSICO →</button>
+      <div class="tier mid">
+        <div class="tier-tag">MAIS ESCOLHIDO</div>
+        <div class="tier-name">ACESSO +</div>
+        <div class="tier-price"><span class="sym">R$</span><span class="val">27</span><div class="lbl">VOCÊ + UM AMIGO</div></div>
+        <ul class="tier-features">
+          <li><span class="on">✓</span> Live completa</li>
+          <li><span class="on">✓</span> <strong>2 acessos — presenteia alguém</strong></li>
+          <li><span class="on">✓</span> Oferta especial durante a live</li>
+          <li><span class="on">✓</span> Grupo de acesso exclusivo</li>
+          <li><span class="off">—</span> <span style="color:var(--t3)">VIP + conteúdo extra</span></li>
+        </ul>
+        <button class="tier-btn tb-mid" onclick="handleBuy(this,'plus')">GARANTIR ACESSO + →</button>
+      </div>
+      <div class="tier">
+        <div class="tier-tag">VIP</div>
+        <div class="tier-name">VIP</div>
+        <div class="tier-price"><span class="sym">R$</span><span class="val">47</span><div class="lbl">ACESSO COMPLETO</div></div>
+        <ul class="tier-features">
+          <li><span class="on">✓</span> Live completa</li>
+          <li><span class="on">✓</span> Oferta especial durante a live</li>
+          <li><span class="on">✓</span> <strong>Grupo VIP fechado</strong></li>
+          <li><span class="on">✓</span> <strong>Conteúdo exclusivo JR</strong></li>
+          <li><span class="on">✓</span> Acesso antecipado a novidades</li>
+        </ul>
+        <button class="tier-btn tb-vip" onclick="handleBuy(this,'vip')">QUERO O VIP →</button>
+      </div>
     </div>
-
-    <!-- DUPLO -->
-    <div class="tier featured">
-      <div class="tier-tag">Mais popular</div>
-      <div class="tier-name">DUPLO</div>
-      <div class="tier-price">
-        <span class="cent">R$</span><span class="val">27</span>
-        <div class="label">você + um amigo · acesso único</div>
-      </div>
-      <ul class="tier-features">
-        <li><span class="ck">✓</span> Extensão JR ORÁCULO</li>
-        <li><span class="ck">✓</span> Análises ilimitadas</li>
-        <li><span class="ck">✓</span> Todos os ativos OB</li>
-        <li><span class="ck">✓</span> <strong>2 acessos — presenteia um amigo</strong></li>
-        <li><span class="ck">✓</span> Suporte prioritário</li>
-        <li><span class="no">—</span> <span style="color:var(--t3)">Grupo VIP</span></li>
-      </ul>
-      <button class="tier-btn main" onclick="handleTierClick(this,'duplo')">QUERO O DUPLO →</button>
-    </div>
-
-    <!-- VIP -->
-    <div class="tier">
-      <div class="tier-tag">Acesso total</div>
-      <div class="tier-name">VIP</div>
-      <div class="tier-price">
-        <span class="cent">R$</span><span class="val">47</span>
-        <div class="label">acesso completo · vitalício</div>
-      </div>
-      <ul class="tier-features">
-        <li><span class="ck">✓</span> Extensão JR ORÁCULO</li>
-        <li><span class="ck">✓</span> Análises ilimitadas</li>
-        <li><span class="ck">✓</span> Todos os ativos OB</li>
-        <li><span class="ck">✓</span> <strong>Grupo VIP fechado</strong></li>
-        <li><span class="ck">✓</span> <strong>Conteúdo exclusivo do JR</strong></li>
-        <li><span class="ck">✓</span> Updates vitalícios</li>
-      </ul>
-      <button class="tier-btn vip" onclick="handleTierClick(this,'vip')">QUERO O VIP →</button>
-    </div>
-  </div>
-  <div style="margin-top:24px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--t3);letter-spacing:.2em">
-    ✓ PAGAMENTO SEGURO &nbsp;·&nbsp; ✓ ACESSO IMEDIATO &nbsp;·&nbsp; ✓ GARANTIA 7 DIAS
-  </div>
-</section>
-
-<!-- PROOF -->
-<section id="proof">
-  <div class="proof-inner">
-    <div class="section-tag">Quem já usa</div>
-    <h2 class="section-title">O QUE A COMUNIDADE<br><span class="accent">ESTÁ DIZENDO</span></h2>
-    <div class="proof-grid">
-      <div class="proof-card">
-        <div class="proof-stars">★★★★★</div>
-        <div class="proof-text">"Parei de entrar em trade sem confluência. A IA me mostrou que eu entrava contra a tendência H1 o tempo todo. Mudou minha visão."</div>
-        <div class="proof-name">Rodrigo M.</div>
-        <div class="proof-sub">Trader de OB · Curitiba</div>
-      </div>
-      <div class="proof-card">
-        <div class="proof-stars">★★★★★</div>
-        <div class="proof-text">"3 segundos e já sei se vale a pena entrar. Acabou a dependência de grupo de sinais. Agora eu entendo o que estou fazendo."</div>
-        <div class="proof-name">Thiago K.</div>
-        <div class="proof-sub">Trader iniciante · São Paulo</div>
-      </div>
-      <div class="proof-card">
-        <div class="proof-stars">★★★★★</div>
-        <div class="proof-text">"Comecei a usar como segunda opinião. Quando minha análise bate com a da IA, entro com mais confiança. Win rate subiu absurdo."</div>
-        <div class="proof-name">Fernanda L.</div>
-        <div class="proof-sub">Trader · Florianópolis</div>
-      </div>
+    <div style="margin-top:20px;font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.2em">
+      ✓ PAGAMENTO SEGURO &nbsp;·&nbsp; ✓ GARANTIA 7 DIAS &nbsp;·&nbsp; ✓ ACESSO IMEDIATO
     </div>
   </div>
 </section>
@@ -470,172 +676,136 @@ footer{padding:32px 40px;border-top:1px solid rgba(30,144,255,.08);display:flex;
 <!-- FAQ -->
 <section id="faq">
   <div style="text-align:center">
-    <div class="section-tag">Dúvidas</div>
-    <h2 class="section-title">PERGUNTAS<br><span class="accent">FREQUENTES</span></h2>
+    <div class="sec-tag">Dúvidas</div>
+    <h2 class="sec-title">PERGUNTAS<br><span class="acc">FREQUENTES</span></h2>
   </div>
   <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">O ORÁCULO decide por mim?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Não. O ORÁCULO é uma segunda opinião — ele lê o gráfico e te explica o que vê. Quem decide a entrada é sempre você. O objetivo é te tornar independente, não dependente.</div></div>
+      <div class="faq-q" onclick="tFaq(this)">A live é realmente gratuita?<span class="faq-ico">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Sim. A live no YouTube é 100% gratuita. Os planos pagos dão acesso a benefícios adicionais como grupo exclusivo e a oferta especial do ORÁCULO — mas qualquer um pode assistir de graça.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Funciona em qual corretora?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Em qualquer corretora que use TradingView ou exiba gráfico no navegador: Quotex, Pocket Option, Vera Broker, Tourex, Polarium, Avalon e outras.</div></div>
+      <div class="faq-q" onclick="tFaq(this)">O JR ORÁCULO funciona em qual corretora?<span class="faq-ico">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Funciona em todas as corretoras de opções binárias autorizadas que operam com gráfico no navegador. Na live vou mostrar ao vivo em quais plataformas testei.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Precisa de instalação complicada?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Não. É uma extensão do Chrome — você instala em 30 segundos direto da Chrome Web Store. Não precisa de configuração técnica.</div></div>
+      <div class="faq-q" onclick="tFaq(this)">O ORÁCULO decide por mim?<span class="faq-ico">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Não. O ORÁCULO é um agente de análise — ele lê o contexto do mercado e te entrega a leitura em segundos. Quem decide a entrada é você. O objetivo é te tornar mais independente, não mais dependente.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Tem garantia?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">Sim. 7 dias de garantia total. Se não curtir por qualquer motivo, devolvo 100% do valor sem perguntas.</div></div>
+      <div class="faq-q" onclick="tFaq(this)">Qual a oferta da live e quando termina?<span class="faq-ico">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">A oferta do JR ORÁCULO por preço simbólico vai estar disponível apenas durante o evento ao vivo. Quando a live terminar, ela fecha — sem exceção.</div></div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Quando acontece a live?<span class="faq-icon">+</span></div>
-      <div class="faq-a"><div class="faq-a-inner">15 de Abril de 2026, às 21h no horário de Brasília, no canal do YouTube @JovemRicoTrader. É gratuita — só aparecer.</div></div>
+      <div class="faq-q" onclick="tFaq(this)">Tem garantia?<span class="faq-ico">+</span></div>
+      <div class="faq-a"><div class="faq-a-in">Sim. 7 dias de garantia incondicional. Se por qualquer motivo não curtir, devolvo 100% sem perguntas.</div></div>
     </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
-<section id="final-cta">
-  <div class="final-bg"></div>
-  <h2 class="final-title">APAREÇA NA<br><span class="accent">LIVE</span></h2>
-  <p class="final-sub">15 de Abril · 21h · Gratuita · YouTube<br>Veja o ORÁCULO funcionando ao vivo.</p>
-  <div class="final-btns">
-    <button class="btn-primary" style="font-size:22px;padding:18px 56px" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">QUERO PARTICIPAR →</button>
-    <div class="final-secure">🔒 ACESSO SEGURO · GARANTIA 7 DIAS</div>
+<section id="fcta">
+  <div class="fcta-bg"></div>
+  <h2 class="fcta-title">15 DE ABRIL<br><span class="acc">21H</span></h2>
+  <p class="fcta-sub">Uma noite que vai mudar como você opera para sempre.<br>Entrada gratuita — YouTube.</p>
+  <div class="fcta-btns">
+    <button class="btn-main" style="font-size:24px;padding:20px 56px" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">GARANTIR MINHA VAGA →</button>
   </div>
+  <div class="fcta-trust" style="margin-top:16px">🔒 GARANTIA 7 DIAS &nbsp;·&nbsp; ✓ PAGAMENTO SEGURO &nbsp;·&nbsp; ✓ ACESSO IMEDIATO</div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">JR <span>ORÁCULO</span></div>
-  <div class="footer-links">
-    <a href="#faq">Termos</a>
-    <a href="#faq">Privacidade</a>
-    <a href="mailto:contato@jovemrico.com">Suporte</a>
-  </div>
-  <div class="footer-copy">© 2026 JR Oráculo. Produto independente.</div>
+  <div class="ft-logo"><img src="https://drive.google.com/uc?export=view&id=1mSk3pEUBeXZyiopbguqd5qobI4la41-4" alt="FIM DAS OPÇÕES BINÁRIAS" style="height:28px;width:auto;object-fit:contain" onerror="this.parentElement.textContent='JR TRADER'"></div>
+  <div class="ft-links"><a href="#faq">FAQ</a><a href="mailto:contato@jovemrico.com">Suporte</a><a href="#faq">Termos</a></div>
+  <div class="ft-c">© 2026 JR Trader · Evento independente</div>
 </footer>
 
 <script>
-
-function showToast(msg){
-  const t=document.createElement('div');
-  t.textContent=msg;
-  t.style.cssText='position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:rgba(8,11,22,.95);border:1px solid rgba(30,144,255,.3);color:#F0F4FF;padding:12px 24px;border-radius:8px;font-size:13px;font-family:Barlow,sans-serif;z-index:999;animation:fadeUp .3s ease;white-space:nowrap;pointer-events:none;letter-spacing:.03em';
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),3500);
-}
-
-// ── CURSOR ──
+// CURSOR
 const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
-document.addEventListener('mousemove',e=>{
-  cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
-  cur2.style.left=e.clientX+'px';cur2.style.top=e.clientY+'px';
-});
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+setInterval(()=>{cx+=(mx-cx)*.15;cy+=(my-cy)*.15;cur2.style.left=cx+'px';cur2.style.top=cy+'px';},16);
 
-// ── COUNTDOWN — target 15/04/2026 21:00 BRT (UTC-3) ──
-const target = new Date('2026-04-15T21:00:00-03:00');
+// COUNTDOWN → 15/04/2026 21:00 BRT (UTC-3)
+const TARGET = new Date('2026-04-15T21:00:00-03:00');
 function updateCD(){
-  const now=new Date(), diff=target-now;
-  if(diff<=0){
-    document.getElementById('cd-d').textContent='00';
-    document.getElementById('cd-h').textContent='00';
-    document.getElementById('cd-m').textContent='00';
-    document.getElementById('cd-s').textContent='00';
-    return;
-  }
-  const d=Math.floor(diff/864e5),
-        h=Math.floor((diff%864e5)/36e5),
-        m=Math.floor((diff%36e5)/6e4),
-        s=Math.floor((diff%6e4)/1e3);
-  const pad=n=>String(n).padStart(2,'0');
-  document.getElementById('cd-d').textContent=pad(d);
-  document.getElementById('cd-h').textContent=pad(h);
-  document.getElementById('cd-m').textContent=pad(m);
-  document.getElementById('cd-s').textContent=pad(s);
+  const diff = TARGET - new Date();
+  if(diff<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return;}
+  const p=n=>String(Math.floor(n)).padStart(2,'0');
+  document.getElementById('cd-d').textContent=p(diff/864e5);
+  document.getElementById('cd-h').textContent=p((diff%864e5)/36e5);
+  document.getElementById('cd-m').textContent=p((diff%36e5)/6e4);
+  document.getElementById('cd-s').textContent=p((diff%6e4)/1e3);
 }
-updateCD(); setInterval(updateCD,1000);
+updateCD();setInterval(updateCD,1000);
 
-// ── CHART ANIMATION ──
-const chartArea=document.getElementById('chart-area');
-const colors=['#1E90FF','#00E5FF','#FF2D55','#22C55E','#F2A61A','#1E90FF','#00B4FF','#22C55E','#FF2D55','#00E5FF','#1E90FF','#22C55E'];
-const heights=[40,65,50,80,35,90,55,70,45,85,60,75];
-chartArea.innerHTML=heights.map((h,i)=>`<div class="chart-bar" style="height:${h}%;background:${colors[i]};opacity:.8;transition:height .8s ease ${i*.05}s"></div>`).join('');
-setInterval(()=>{
-  const bars=chartArea.querySelectorAll('.chart-bar');
-  bars.forEach(b=>{b.style.height=Math.floor(Math.random()*70+20)+'%';});
-},2500);
-
-// ── FAQ ──
-function toggleFaq(el){
-  const item=el.closest('.faq-item');
-  document.querySelectorAll('.faq-item.open').forEach(i=>{if(i!==item)i.classList.remove('open');});
-  item.classList.toggle('open');
-}
-
-// ── TIER CLICK with ripple ──
-function handleTierClick(btn, tier){
-  // Ripple
-  const r=document.createElement('span');
-  r.className='ripple';
-  r.style.cssText=`width:20px;height:20px;left:50%;top:50%;margin-left:-10px;margin-top:-10px`;
-  btn.appendChild(r);
-  setTimeout(()=>r.remove(),600);
-  // URLs do Cakto — substitua pelos links reais
-  const urls={basic:'#',duplo:'#',vip:'#'};
-  setTimeout(()=>{
-    const dest=urls[tier];
-    if(dest && dest!=='#'){ window.location.href=dest; }
-    else {
-      // Mostra toast em vez de alert
-      showToast('Link disponível na live · 15/04 às 21h 🔒');
+// SCROLL REVEAL ACTS
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), e.target.dataset.delay||0);
     }
-  },200);
-}
-
-// ── BUTTON RIPPLE ──
-document.querySelectorAll('.btn-primary,.btn-secondary,.nav-cta').forEach(btn=>{
-  btn.addEventListener('click',e=>{
-    const r=document.createElement('span');
-    const rect=btn.getBoundingClientRect();
-    r.className='ripple';
-    r.style.cssText=`width:20px;height:20px;left:${e.clientX-rect.left-10}px;top:${e.clientY-rect.top-10}px`;
-    btn.appendChild(r);
-    setTimeout(()=>r.remove(),600);
   });
-});
+},{threshold:.15});
+document.querySelectorAll('.act').forEach((el,i)=>{el.dataset.delay=i*100;obs.observe(el);});
 
-// ── EXIT POPUP ──
-let popupShown=false;
-document.addEventListener('mouseleave',e=>{
-  if(e.clientY<=0 && !popupShown){
-    popupShown=true;
-    document.getElementById('exit-popup').classList.add('show');
-  }
-});
-// Mobile: show after 60s
-setTimeout(()=>{
-  if(!popupShown){ popupShown=true; document.getElementById('exit-popup').classList.add('show'); }
-},60000);
-function closePopup(){
-  document.getElementById('exit-popup').classList.remove('show');
-}
-
-// ── SCROLL REVEAL ──
-const observer=new IntersectionObserver(entries=>{
+// GENERIC REVEAL
+const obs2 = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       e.target.style.animation='fadeUp .6s ease both';
       e.target.style.opacity='1';
     }
   });
-},{threshold:.15});
-document.querySelectorAll('.step,.tier,.proof-card,.faq-item,.about-text,.about-visual').forEach(el=>{
-  el.style.opacity='0';
-  observer.observe(el);
+},{threshold:.1});
+document.querySelectorAll('.tier,.sobre-photo,.sobre-text,.ot-agent,.stat').forEach(el=>{
+  el.style.opacity='0';obs2.observe(el);
+});
+
+// FAQ
+function tFaq(el){
+  const it=el.closest('.faq-item');
+  document.querySelectorAll('.faq-item.open').forEach(i=>{if(i!==it)i.classList.remove('open');});
+  it.classList.toggle('open');
+}
+
+// BUY
+function handleBuy(btn,tier){
+  const r=document.createElement('span');
+  const rect=btn.getBoundingClientRect();
+  r.className='rpl';r.style.cssText=`width:20px;height:20px;left:${50}%;top:50%;margin:-10px 0 0 -10px;border-radius:50%;position:absolute`;
+  btn.appendChild(r);setTimeout(()=>r.remove(),500);
+  // Replace # with Cakto URLs
+  const urls={plus:'#',vip:'#'};
+  const dest=urls[tier];
+  if(dest&&dest!=='#'){window.location.href=dest;}
+  else{showToast('Link disponível na live · 15/04 às 21h 🔒');}
+}
+
+function showToast(msg){
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText='position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:rgba(5,6,15,.97);border:1px solid rgba(29,111,255,.3);color:#EEF0FF;padding:12px 24px;border-radius:4px;font-size:12px;font-family:Barlow,sans-serif;z-index:999;animation:fadeUp .3s ease;white-space:nowrap;pointer-events:none;letter-spacing:.04em';
+  document.body.appendChild(t);setTimeout(()=>t.remove(),3500);
+}
+
+// EXIT POPUP
+let shown=false;
+document.addEventListener('mouseleave',e=>{if(e.clientY<=0&&!shown){shown=true;document.getElementById('xpop').classList.add('show');}});
+setTimeout(()=>{if(!shown){shown=true;document.getElementById('xpop').classList.add('show');}},60000);
+function closeXP(){document.getElementById('xpop').classList.remove('show');}
+
+// RIPPLE on all main buttons
+document.querySelectorAll('.btn-main,.btn-ghost,.nav-btn').forEach(b=>{
+  b.addEventListener('click',e=>{
+    const r=document.createElement('span');
+    const rc=b.getBoundingClientRect();
+    r.className='rpl';
+    r.style.cssText=`width:20px;height:20px;left:${e.clientX-rc.left-10}px;top:${e.clientY-rc.top-10}px;border-radius:50%;position:absolute;background:rgba(255,255,255,.15);animation:ripple .5s linear;pointer-events:none`;
+    b.appendChild(r);setTimeout(()=>r.remove(),500);
+  });
 });
 </script>
 </body>
