@@ -7,13 +7,15 @@ const crypto = require('crypto');
 const PORT     = process.env.PORT     || 3000;
 const RESEND_KEY  = process.env.RESEND_API_KEY     || 're_athkVvum_BmRSNDFkQyYcjAydedvZj8MM';
 const FROM_EMAIL  = process.env.FROM_EMAIL          || 'contato@jovemrico.com';
-const SITE_URL    = process.env.SITE_URL            || 'https://fim.jovemrico.com';
+const SITE_URL    = process.env.SITE_URL            || 'https://fimdeob.jovemrico.com';
+const CAKTO_ORACULO = 'ky2iw3a_839473'; // JR ORÁCULO checkout ID
 const SB_HOST = process.env.SUPABASE_HOST || 'xotatkushgbjivrqkufv.supabase.co';
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvdGF0a3VzaGdiaml2cnFrdWZ2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NTA4NTY3OCwiZXhwIjoyMDkwNjYxNjc4fQ.aYMxEJCI-2gzknvJSqdcqeWfWPu3gaqo9z8VsWnk7Us';
 const WA_LINK  = process.env.WA_LINK  || 'https://devzapp.com.br/api-engennier/campanha/api/redirect/67afa5e33a35eb00016e97ff'; // WhatsApp group link — set in Railway env
 const WA_LINK_VIP = process.env.WA_LINK_VIP || 'https://devzapp.com.br/api-engennier/campanha/api/redirect/67afa5e33a35eb00016e97ff'; // VIP group link
 const HMAC_SECRET = process.env.HMAC_SECRET || crypto.randomBytes(32).toString('hex');
-const CAKTO_SECRET = process.env.CAKTO_CLIENT_SECRET || '';
+const CAKTO_CLIENT_ID = process.env.CAKTO_CLIENT_ID || '4rx7nA7ddCDJqj4W3yyZpJMRgvfO7vX8h7DdpC47';
+const CAKTO_SECRET   = process.env.CAKTO_CLIENT_SECRET || 'Shm6PZBoVA0AmSRFr8XhVU69IZPleZL17UiQ7OTWBwIdIXsK4gtR31hdfvObm5UKVsySNqE0HSr81r46L9u9bWxZszSQd88Ca3qgyzg0pHmF3wb6DJj7Nf4bBMs1lMSy';
 
 
 // ── SUPABASE PERSISTENCE ──
@@ -162,9 +164,14 @@ function serveFile(res, filePath, ct) {
 // ── CAKTO WEBHOOK ──
 // tier detection by product ID or price
 function detectProduct(body) {
-  const s = JSON.stringify(body).toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  if (s.includes('oraculo') || s.includes('oracle') || s.includes('extensao') || s.includes('extension')) return 'oraculo';
+  const raw = JSON.stringify(body);
+  // Match by Cakto product ID (most reliable)
+  if (raw.includes('ky2iw3a_839473')) return 'oraculo';
+  // Match by product name
+  const s = raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (s.includes('oraculo') || s.includes('oracle') || s.includes('extensao') || s.includes('jr oraculo')) return 'oraculo';
+  // Evento products
+  if (raw.includes('36e62hm_839322') || raw.includes('i8ffwh9')) return 'evento';
   return 'evento';
 }
 
