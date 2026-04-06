@@ -1,812 +1,588 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FIM DAS OPÇÕES BINÁRIAS — Evento Ao Vivo · 15 Abril 2026</title>
-<meta name="description" content="Um evento ao vivo que vai mudar como você opera para sempre. 15 de Abril, 21h. Gratuito.">
-<meta property="og:title" content="FIM DAS OPÇÕES BINÁRIAS — Evento Ao Vivo">
-<meta property="og:description" content="Não é curso. Não é sinal. É o fim do jeito antigo de operar. 15/04 · 21h · Gratuito.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://drive.google.com/uc?export=view&id=1mSk3pEUBeXZyiopbguqd5qobI4la41-4">
-<meta name="theme-color" content="#02030A">
+<meta name="robots" content="index,follow">
+<meta name="description" content="7 anos operando OB. Uma noite que muda tudo. O fim do M1, das salas de sinais. 15 Abril · 21h · Ao vivo.">
+<meta property="og:title" content="FIM DAS OPÇÕES BINÁRIAS — JR ORÁCULO · 22 ABR 2026">
+<meta property="og:description" content="O sistema foi construído para você perder. O Oráculo foi construído para você dominar.">
+<title>FIM DAS OPÇÕES BINÁRIAS — JR ORÁCULO · 15 Abril 2026</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,600&family=Barlow:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900&family=Barlow:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<script>
+tailwind.config={darkMode:"class",theme:{extend:{
+  colors:{
+    "aobg":"#10131f","aobg2":"#181b27","aobg3":"#1c1f2b","aobg4":"#272936","aobg5":"#323441","aobg0":"#0b0e19",
+    "aoprimary":"#baf2ff","aopc":"#00e0ff","aosecondary":"#42f09e","aosc":"#00d384",
+    "aotertiary":"#ffe4c3","aotc":"#ffc165","aosurf":"#e0e1f3","aomuted":"#bac9cd","aodim":"#859397","aoghost":"#3b494c",
+    "aoerr":"#ffb4ab","aoerc":"#93000a"
+  },
+  fontFamily:{hl:["Bebas Neue","sans-serif"],cond:["Barlow Condensed","sans-serif"],body:["Barlow","sans-serif"],mono:["Share Tech Mono","monospace"]},
+  borderRadius:{DEFAULT:"0.125rem",md:"0.25rem",lg:"0.5rem",full:"0.75rem"},
+}}}
+</script>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg:    #02030A;
-  --bg2:   #05060F;
-  --bg3:   #080A18;
-  --card:  #0A0C1C;
-  --b:     rgba(255,255,255,.05);
-  --b2:    rgba(255,255,255,.09);
-  --t:     #EEF0FF;
-  --t2:    #7880A8;
-  --t3:    #3A3F60;
-  --blue:  #1D6FFF;
-  --blue2: #0AF;
-  --cyan:  #00E5FF;
-  --gold:  #F2A61A;
-  --red:   #FF2552;
-  --gr:    #00D48A;
-  --mono:  'Share Tech Mono', monospace;
-  --cond:  'Barlow Condensed', sans-serif;
-  --disp:  'Bebas Neue', sans-serif;
-  --body:  'Barlow', sans-serif;
-}
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--t);
-  font-family: var(--body);
-  overflow-x: hidden;
-  cursor: none;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+.mat-icon{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;font-family:'Material Symbols Outlined';vertical-align:middle;line-height:1}
+.mat-fill{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;font-family:'Material Symbols Outlined';vertical-align:middle;line-height:1}
+body{cursor:none;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+#cur{position:fixed;width:5px;height:5px;background:#00e0ff;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen}
+#cur2{position:fixed;width:22px;height:22px;border:1px solid rgba(0,224,255,.22);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s,top .12s}
+@media(hover:none){#cur,#cur2{display:none}body{cursor:auto}}
+/* Scanline */
+.scanline{background:linear-gradient(to bottom,transparent 50%,rgba(0,224,255,.03) 50%),linear-gradient(90deg,rgba(255,0,0,.01),rgba(0,255,0,.005),rgba(0,0,255,.01));background-size:100% 4px,3px 100%;pointer-events:none}
+/* Glows */
+.glow-c{box-shadow:0 0 24px rgba(0,224,255,.25)}
+.glow-g{box-shadow:0 0 16px rgba(66,240,158,.18)}
+.glow-gold{box-shadow:0 0 16px rgba(255,193,101,.18)}
+/* Glass */
+.glass{background:rgba(28,31,43,.75);backdrop-filter:blur(20px)}
+/* Oracle pulse */
+@keyframes op{0%,100%{box-shadow:0 0 0 0 rgba(66,240,158,.5)}70%{box-shadow:0 0 0 7px rgba(66,240,158,0)}}
+.op{animation:op 2s ease infinite}
+/* Ticker */
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker{animation:tick 32s linear infinite;display:inline-block;white-space:nowrap}
+/* Reveal */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.ru{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.ru.vis{opacity:1;transform:none}
+.hl-anim{animation:fadeUp .6s ease both}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}.d5{animation-delay:.7s}
+/* Glitch */
+@keyframes glitch{0%,92%,100%{clip-path:none;transform:none}93%{clip-path:polygon(0 8%,100% 8%,100% 30%,0 30%);transform:translate(-4px,0)}96%{clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%);transform:translate(4px,0)}}
+.glitch{animation:glitch 9s ease infinite 5s}
+/* Count */
+@keyframes cPop{from{transform:scale(1.2);opacity:.6}to{transform:scale(1);opacity:1}}
+.cpop{animation:cPop .2s ease}
+/* Ripple */
+@keyframes ripple{from{transform:scale(0);opacity:.35}to{transform:scale(3.5);opacity:0}}
+/* Exit popup */
+@keyframes sUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.sup{animation:sUp .35s ease}
+/* Bar fill */
+@keyframes bFill{from{width:0}to{width:var(--w)}}
+.bfill{animation:bFill 1.3s ease both}
+/* Oracle glow border pulse */
+@keyframes bPulse{0%,100%{border-color:rgba(0,224,255,.15)}50%{border-color:rgba(0,224,255,.5)}}
+.bpulse{animation:bPulse 3.5s ease infinite}
+
+/* ══ RESPONSIVE: MOBILE ══ */
+@media (max-width: 639px) {
+  /* Nav */
+  .nav-logo-text { display: none }
+  /* Hero — more breathing room */
+  section.hero { padding-top: 80px !important; padding-bottom: 90px !important; min-height: 95svh }
+  /* Countdown — smaller gap, no overflow */
+  .cd-unit { padding: 0 8px !important }
+  /* Date badges — scroll horizontal if needed */
+  .date-badges { overflow-x: auto; -webkit-overflow-scrolling: touch; justify-content: flex-start !important; padding: 0 4px }
+  .date-badges > div { flex-shrink: 0 }
+  /* CTA buttons — full width */
+  .hero-ctas button { width: 100%; max-width: 320px }
+  /* Story grid — single col */
+  .story-grid { grid-template-columns: 1fr !important }
+  /* Presenter grid — photo above text */
+  .presenter-grid { grid-template-columns: 1fr !important }
+  .presenter-photo { order: -1; max-height: 400px; overflow: hidden }
+  .presenter-photo img { object-position: top }
+  /* Lotes grid */
+  .lotes-grid { grid-template-columns: 1fr !important }
+  .lote-destaque { transform: none !important }
+  /* 4 atos — 2 cols on mobile */
+  .atos-grid { grid-template-columns: 1fr 1fr !important }
+  /* FAQ max-width */
+  #faq { padding-left: 16px !important; padding-right: 16px !important }
+  /* Footer — bottom padding for mobile nav */
+  footer { padding-bottom: 72px !important }
+  /* General section padding */
+  section, .section-pad { padding-left: 16px !important; padding-right: 16px !important }
+  /* Exit popup */
+  #xpop .sup { margin: 0 !important; border-radius: 8px 8px 0 0 }
+  /* Ticker — faster on small screens */
+  .ticker { animation-duration: 20s }
+  /* Stats row */
+  .stats-row { gap: 16px !important; flex-wrap: wrap }
 }
 
-/* ── CURSOR ── */
-#cur  { position:fixed;width:6px;height:6px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:.06s }
-#cur2 { position:fixed;width:24px;height:24px;border:1px solid rgba(0,229,255,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s,top .12s }
-
-/* ── NOISE ── */
-body::before {
-  content:'';position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:0;
+/* ══ RESPONSIVE: TABLET ══ */
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* Lotes — 2 cols */
+  .lotes-grid { grid-template-columns: 1fr 1fr !important }
+  .lote-destaque { transform: none !important; grid-column: 1 / -1 }
+  /* 4 atos — 2 cols */
+  .atos-grid { grid-template-columns: 1fr 1fr !important }
+  /* Presenter */
+  .presenter-grid { gap: 32px !important }
+  .presenter-photo img { max-height: 480px; object-fit: cover }
 }
 
-/* ── SCANLINE ── */
-@keyframes scan { from{transform:translateY(-100vh)} to{transform:translateY(100vh)} }
-.scanline { position:fixed;top:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,rgba(0,229,255,.015),transparent);animation:scan 6s linear infinite;pointer-events:none;z-index:1 }
+/* ══ RESPONSIVE: DESKTOP ══ */
+@media (min-width: 1024px) {
+  /* Lote featured — scale up */
+  .lote-destaque { transform: scale(1.05) }
+  /* Presenter full */
+  .presenter-photo { max-height: none }
+  /* Story grid - 2 cols */
+  .story-grid { grid-template-columns: 1fr 1fr }
+}
 
-/* ── ANIMS ── */
-@keyframes fadeUp    { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn    { from{opacity:0} to{opacity:1} }
-@keyframes glow      { 0%,100%{opacity:.7}50%{opacity:1} }
-@keyframes pulse     { 0%,100%{opacity:1}50%{opacity:.2} }
-@keyframes float     { 0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)} }
-@keyframes glitch1   { 0%,94%,100%{clip-path:none;transform:none}95%{clip-path:polygon(0 15%,100% 15%,100% 30%,0 30%);transform:translateX(-4px)}97%{clip-path:polygon(0 65%,100% 65%,100% 80%,0 80%);transform:translateX(4px)} }
-@keyframes revealBar { from{width:0} to{width:100%} }
-@keyframes ticker    { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-@keyframes countPop  { from{opacity:0;transform:scale(1.4)} to{opacity:1;transform:scale(1)} }
-@keyframes borderPulse { 0%,100%{border-color:rgba(29,111,255,.15)}50%{border-color:rgba(0,229,255,.5)} }
-@keyframes ripple    { from{transform:scale(0);opacity:.5} to{transform:scale(3);opacity:0} }
-@keyframes drawLine  { from{stroke-dashoffset:1000} to{stroke-dashoffset:0} }
+/* ══ TOUCH & SCROLL ══ */
+* { -webkit-tap-highlight-color: transparent }
+html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch }
+button { touch-action: manipulation }
+/* Prevent text size adjust on iOS */
+body { -webkit-text-size-adjust: 100%; text-size-adjust: 100% }
+/* Safe area for notch devices */
+.mobile-nav-safe { padding-bottom: env(safe-area-inset-bottom, 0px) }
+nav.mobile-nav { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 8px) }
 
-/* ── NAV ── */
-nav {
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  padding:14px 40px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(2,3,10,.8);backdrop-filter:blur(24px);
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-.nav-logo { font-family:var(--disp);font-size:20px;letter-spacing:.08em }
-.nav-logo span { color:var(--blue) }
-.nav-live { display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;color:var(--t2);letter-spacing:.2em }
-.nav-dot  { width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 1.2s ease infinite }
-.nav-btn  {
-  padding:9px 24px;background:transparent;
-  border:1px solid rgba(29,111,255,.35);border-radius:4px;
-  font-family:var(--cond);font-size:13px;font-weight:700;letter-spacing:.1em;
-  color:var(--blue2);cursor:pointer;transition:all .2s;
-}
-.nav-btn:hover { background:rgba(29,111,255,.1);border-color:var(--blue2);color:var(--cyan) }
-
-/* ── TICKER ── */
-.ticker-wrap { background:var(--bg3);border-top:1px solid var(--b);border-bottom:1px solid var(--b);padding:10px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:2 }
-.ticker-inner { display:inline-block;animation:ticker 30s linear infinite }
-.ticker-item  { display:inline-block;padding:0 40px;font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.2em }
-.ticker-item .hi { color:var(--cyan) }
-
-/* ── HERO ── */
-#hero {
-  min-height:100vh;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-  padding:120px 24px 80px;text-align:center;
-}
-.hero-grid {
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(29,111,255,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(29,111,255,.04) 1px,transparent 1px);
-  background-size:60px 60px;
-}
-.hero-vignette {
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 50%,transparent 30%,var(--bg) 100%);
-}
-.hero-glow {
-  position:absolute;width:600px;height:600px;
-  top:50%;left:50%;transform:translate(-50%,-60%);
-  background:radial-gradient(ellipse,rgba(29,111,255,.07) 0%,transparent 70%);
-  pointer-events:none;
-}
-.hero-eyebrow {
-  font-family:var(--mono);font-size:10px;letter-spacing:.5em;
-  color:var(--blue2);text-transform:uppercase;
-  margin-bottom:28px;
-  animation:fadeUp .5s ease .2s both;
-  display:flex;align-items:center;gap:12px;justify-content:center;
-}
-.hero-eyebrow::before,.hero-eyebrow::after { content:'';flex:0 0 32px;height:1px;background:rgba(10,170,255,.3) }
-.hero-title {
-  font-family:var(--disp);
-  font-size:clamp(64px,12vw,160px);
-  line-height:.85;
-  margin-bottom:12px;
-  position:relative;z-index:2;
-  letter-spacing:.01em;
-}
-.hero-title .l1 { display:block;color:var(--t);animation:fadeUp .5s ease .35s both,glitch1 8s ease infinite 3s;opacity:0 }
-.hero-title .l2 { display:block;color:var(--blue);animation:fadeUp .5s ease .5s both;opacity:0 }
-.hero-title .l3 { display:block;color:transparent;-webkit-text-stroke:1px var(--t3);animation:fadeUp .5s ease .65s both;opacity:0 }
-.hero-dash {
-  width:60px;height:2px;background:var(--blue);margin:24px auto;
-  animation:revealBar .8s ease .8s both;transform-origin:left;
-}
-.hero-sub {
-  font-family:var(--cond);font-size:clamp(18px,2.5vw,26px);font-weight:300;
-  letter-spacing:.08em;color:var(--t2);
-  max-width:600px;line-height:1.6;
-  margin-bottom:48px;
-  animation:fadeUp .5s ease .85s both;opacity:0;
-}
-.hero-sub strong { color:var(--t);font-weight:600 }
-.hero-date-badge {
-  display:inline-flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center;
-  background:rgba(29,111,255,.06);border:1px solid rgba(29,111,255,.2);
-  border-radius:6px;padding:16px 32px;margin-bottom:40px;
-  animation:fadeUp .5s ease 1s both;opacity:0;
-}
-.hdb-item { text-align:center }
-.hdb-val  { font-family:var(--disp);font-size:28px;letter-spacing:.05em;color:var(--t) }
-.hdb-lbl  { font-family:var(--mono);font-size:8px;letter-spacing:.3em;color:var(--t3);margin-top:2px }
-.hdb-sep  { width:1px;height:36px;background:var(--b2) }
-.hero-cta { animation:fadeUp .5s ease 1.1s both;opacity:0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap }
-.btn-main {
-  padding:18px 48px;
-  background:var(--blue);
-  border:none;border-radius:4px;
-  font-family:var(--disp);font-size:22px;letter-spacing:.06em;
-  color:#fff;cursor:pointer;
-  transition:all .2s;position:relative;overflow:hidden;
-}
-.btn-main::after { content:'';position:absolute;inset:0;background:rgba(255,255,255,.1);opacity:0;transition:.2s }
-.btn-main:hover::after { opacity:1 }
-.btn-main:hover { box-shadow:0 0 40px rgba(29,111,255,.5);transform:translateY(-2px) }
-.btn-ghost {
-  padding:18px 40px;background:transparent;
-  border:1px solid var(--b2);border-radius:4px;
-  font-family:var(--disp);font-size:22px;letter-spacing:.06em;
-  color:var(--t2);cursor:pointer;transition:all .2s;
-}
-.btn-ghost:hover { border-color:var(--t2);color:var(--t) }
-
-/* ── COUNTDOWN ── */
-#cd {
-  background:var(--bg2);
-  border-top:1px solid var(--b);border-bottom:1px solid var(--b);
-  padding:48px 24px;text-align:center;position:relative;overflow:hidden;
-}
-.cd-label { font-family:var(--mono);font-size:9px;letter-spacing:.5em;color:var(--t3);margin-bottom:24px;text-transform:uppercase }
-.cd-row   { display:flex;gap:0;justify-content:center;align-items:center }
-.cd-unit  { width:clamp(80px,14vw,140px);text-align:center }
-.cd-num   { font-family:var(--disp);font-size:clamp(52px,10vw,100px);line-height:1;color:var(--t);animation:countPop .3s ease }
-.cd-sub   { font-family:var(--mono);font-size:8px;letter-spacing:.35em;color:var(--t3);margin-top:4px }
-.cd-col   { font-family:var(--disp);font-size:clamp(40px,8vw,80px);color:var(--t3);padding:0 4px;line-height:1;animation:pulse 1s ease infinite }
-.cd-free  { margin-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--t2) }
-.cd-free span { color:var(--cyan) }
-
-/* ── AGENDA ── */
-#agenda { padding:100px 24px;max-width:900px;margin:0 auto }
-.sec-tag { font-family:var(--mono);font-size:9px;letter-spacing:.5em;color:var(--blue2);text-transform:uppercase;margin-bottom:16px }
-.sec-title { font-family:var(--disp);font-size:clamp(44px,7vw,80px);line-height:.9;margin-bottom:8px }
-.sec-title .acc { color:var(--blue) }
-.sec-sub { font-family:var(--cond);font-size:18px;font-weight:300;color:var(--t2);letter-spacing:.04em;margin-bottom:56px }
-.acts { display:flex;flex-direction:column;gap:0;position:relative }
-.acts::before { content:'';position:absolute;left:28px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--b2) 10%,var(--b2) 90%,transparent) }
-.act {
-  display:grid;grid-template-columns:56px 1fr;gap:24px;
-  padding:32px 0;border-bottom:1px solid var(--b);
-  position:relative;opacity:0;transform:translateX(-20px);
-  transition:all .5s ease;
-}
-.act.visible { opacity:1;transform:translateX(0) }
-.act:last-child { border-bottom:none }
-.act-num {
-  width:56px;height:56px;border-radius:50%;
-  background:var(--bg3);border:1px solid var(--b2);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--disp);font-size:20px;color:var(--t3);
-  position:relative;z-index:1;flex-shrink:0;
-  transition:all .3s;
-}
-.act:hover .act-num { border-color:var(--blue);color:var(--blue);box-shadow:0 0 20px rgba(29,111,255,.2) }
-.act-body {}
-.act-time { font-family:var(--mono);font-size:9px;letter-spacing:.3em;color:var(--t3);margin-bottom:8px }
-.act-title { font-family:var(--cond);font-size:clamp(22px,3vw,30px);font-weight:700;margin-bottom:8px;letter-spacing:.02em }
-.act-desc  { font-size:15px;color:var(--t2);line-height:1.75;max-width:560px }
-.act-tag   {
-  display:inline-block;margin-top:10px;
-  padding:3px 10px;border-radius:3px;
-  font-family:var(--mono);font-size:8px;letter-spacing:.2em;
-}
-.tag-blue  { background:rgba(29,111,255,.1);border:1px solid rgba(29,111,255,.25);color:var(--blue2) }
-.tag-cyan  { background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2);color:var(--cyan) }
-.tag-gold  { background:rgba(242,166,26,.1);border:1px solid rgba(242,166,26,.2);color:var(--gold) }
-
-/* ── SOBRE ── */
-#sobre { padding:80px 24px;background:var(--bg2);border-top:1px solid var(--b) }
-.sobre-inner { max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center }
-.sobre-photo {
-  position:relative;
-}
-.photo-frame {
-  width:100%;aspect-ratio:3/4;
-  background:var(--bg3);
-  border:1px solid var(--b2);
-  border-radius:4px;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;position:relative;
-}
-.photo-frame img { width:100%;height:100%;object-fit:cover;object-position:top }
-.photo-placeholder {
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.2em;
-}
-.photo-frame::after {
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to bottom,transparent 60%,var(--bg3) 100%);
-}
-.photo-tag {
-  position:absolute;bottom:20px;left:20px;z-index:1;
-  background:rgba(2,3,10,.9);border:1px solid var(--b2);
-  padding:10px 16px;border-radius:4px;
-}
-.photo-tag .name  { font-family:var(--cond);font-size:18px;font-weight:700;letter-spacing:.04em }
-.photo-tag .role  { font-family:var(--mono);font-size:8px;color:var(--t3);letter-spacing:.2em;margin-top:2px }
-.photo-accent { position:absolute;top:-16px;right:-16px;width:64px;height:64px;border:1px solid rgba(29,111,255,.3);border-radius:50%;animation:float 4s ease infinite }
-.sobre-text {}
-.sobre-text p { font-size:16px;color:var(--t2);line-height:1.85;margin-bottom:20px }
-.sobre-text strong { color:var(--t) }
-.stats-row { display:flex;gap:32px;margin-top:32px;flex-wrap:wrap }
-.stat { }
-.stat-val { font-family:var(--disp);font-size:36px;color:var(--t) }
-.stat-lbl { font-family:var(--mono);font-size:8px;color:var(--t3);letter-spacing:.2em;margin-top:2px }
-
-/* ── ORÁCULO TEASER ── */
-#oraculo-teaser { padding:100px 24px;text-align:center;position:relative;overflow:hidden }
-.ot-bg { position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(29,111,255,.06) 0%,transparent 70%) }
-.ot-inner { max-width:700px;margin:0 auto;position:relative;z-index:2 }
-.ot-tag { font-family:var(--mono);font-size:9px;letter-spacing:.5em;color:var(--t3);margin-bottom:20px }
-.ot-title { font-family:var(--disp);font-size:clamp(40px,7vw,80px);line-height:.9;margin-bottom:24px }
-.ot-title .acc { color:var(--cyan) }
-.ot-agent {
-  background:var(--card);border:1px solid rgba(0,229,255,.15);
-  border-radius:8px;padding:28px;margin:32px auto;
-  text-align:left;max-width:500px;position:relative;
-  animation:borderPulse 4s ease infinite;
-}
-.ot-agent-header { display:flex;align-items:center;gap:10px;margin-bottom:16px }
-.ot-agent-icon  { width:36px;height:36px;border-radius:50%;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px }
-.ot-agent-name  { font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:.15em }
-.ot-agent-stat  { font-family:var(--mono);font-size:8px;color:var(--t3);letter-spacing:.15em;margin-top:2px }
-.ot-lines { display:flex;flex-direction:column;gap:8px }
-.ot-line  { height:8px;border-radius:2px;background:linear-gradient(to right,rgba(0,229,255,.3),rgba(29,111,255,.15));animation:glow 2s ease infinite }
-.ot-line:nth-child(2) { width:75%;animation-delay:.5s }
-.ot-line:nth-child(3) { width:55%;animation-delay:1s }
-.ot-result {
-  margin-top:16px;padding:10px 14px;
-  background:rgba(0,212,138,.05);border:1px solid rgba(0,212,138,.2);
-  border-radius:4px;
-  font-family:var(--mono);font-size:10px;color:var(--gr);letter-spacing:.1em;
-}
-.ot-desc { font-size:16px;color:var(--t2);line-height:1.85;max-width:560px;margin:0 auto }
-.ot-desc strong { color:var(--t) }
-
-/* ── PRICING ── */
-#pricing { padding:80px 24px;background:var(--bg2);border-top:1px solid var(--b) }
-.pricing-inner { max-width:800px;margin:0 auto;text-align:center }
-.pricing-intro { font-family:var(--cond);font-size:18px;font-weight:300;color:var(--t2);letter-spacing:.04em;margin:16px 0 48px }
-.tiers { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start }
-.tier {
-  background:var(--card);border:1px solid var(--b2);
-  border-radius:6px;padding:28px 20px;
-  transition:all .3s;position:relative;overflow:hidden;
-  text-align:left;
-}
-.tier:hover { transform:translateY(-4px);border-color:rgba(29,111,255,.3) }
-.tier.mid { border-color:rgba(0,229,255,.3);animation:borderPulse 3s ease infinite }
-.tier.mid::before {
-  content:'MAIS ESCOLHIDO';position:absolute;top:14px;right:-30px;
-  background:var(--cyan);color:#02030A;
-  font-family:var(--disp);font-size:10px;letter-spacing:.08em;
-  padding:3px 40px;transform:rotate(45deg);
-}
-.tier-tag   { font-family:var(--mono);font-size:8px;letter-spacing:.35em;color:var(--t3);margin-bottom:10px }
-.tier-name  { font-family:var(--disp);font-size:24px;letter-spacing:.04em;margin-bottom:16px }
-.tier.mid .tier-name { color:var(--cyan) }
-.tier-price { margin-bottom:20px }
-.tier-price .val { font-family:var(--disp);font-size:48px;color:var(--t);line-height:1 }
-.tier-price .sym { font-size:18px;color:var(--t2);vertical-align:top;margin-top:6px;display:inline-block }
-.tier-price .lbl { font-family:var(--mono);font-size:8px;color:var(--t3);letter-spacing:.2em;margin-top:4px }
-.tier-features { list-style:none;margin-bottom:22px;display:flex;flex-direction:column;gap:7px }
-.tier-features li { font-size:12px;color:var(--t2);display:flex;align-items:flex-start;gap:7px;line-height:1.5 }
-.tier-features li .on  { color:var(--gr);flex-shrink:0 }
-.tier-features li .off { color:var(--t3);flex-shrink:0 }
-.tier-btn {
-  width:100%;padding:13px;border-radius:4px;
-  font-family:var(--disp);font-size:16px;letter-spacing:.06em;
-  cursor:pointer;transition:all .2s;border:none;position:relative;overflow:hidden;
-}
-.tb-basic { background:rgba(255,255,255,.04);border:1px solid var(--b2);color:var(--t2) }
-.tb-basic:hover  { background:rgba(255,255,255,.08);color:var(--t) }
-.tb-mid   { background:var(--blue);color:#fff }
-.tb-mid:hover    { box-shadow:0 6px 30px rgba(29,111,255,.5) }
-.tb-vip   { background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.25);color:var(--cyan) }
-.tb-vip:hover    { background:rgba(0,229,255,.12) }
-.tier-btn .rpl   { position:absolute;border-radius:50%;background:rgba(255,255,255,.15);animation:ripple .5s linear }
-
-/* ── FAQ ── */
-#faq { padding:80px 24px;max-width:680px;margin:0 auto }
-.faq-list { margin-top:48px;display:flex;flex-direction:column;gap:6px }
-.faq-item { border:1px solid var(--b);border-radius:4px;overflow:hidden;transition:border-color .2s }
-.faq-item.open { border-color:rgba(29,111,255,.25) }
-.faq-q  { padding:18px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:15px;font-weight:500;gap:12px }
-.faq-q:hover { color:var(--blue2) }
-.faq-ico { font-family:var(--disp);font-size:20px;color:var(--blue2);flex-shrink:0;transition:transform .25s }
-.faq-item.open .faq-ico { transform:rotate(45deg) }
-.faq-a { max-height:0;overflow:hidden;transition:max-height .3s ease }
-.faq-item.open .faq-a { max-height:240px }
-.faq-a-in { padding:0 20px 18px;font-size:14px;color:var(--t2);line-height:1.8 }
-
-/* ── FINAL CTA ── */
-#fcta { padding:120px 24px;text-align:center;position:relative;overflow:hidden }
-.fcta-bg { position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 80%,rgba(29,111,255,.08) 0%,transparent 70%) }
-.fcta-title { font-family:var(--disp);font-size:clamp(52px,9vw,110px);line-height:.88;margin-bottom:20px;position:relative;z-index:2 }
-.fcta-title .acc { color:var(--blue) }
-.fcta-sub { font-family:var(--cond);font-size:20px;font-weight:300;color:var(--t2);letter-spacing:.06em;max-width:480px;margin:0 auto 40px;position:relative;z-index:2 }
-.fcta-btns { position:relative;z-index:2;display:flex;gap:12px;justify-content:center;flex-wrap:wrap }
-.fcta-trust { font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.2em;margin-top:16px;position:relative;z-index:2 }
-
-/* ── EXIT POPUP ── */
-#xpop { position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;padding:20px }
-#xpop.show { display:flex }
-.xp-ov { position:absolute;inset:0;background:rgba(2,3,10,.92);backdrop-filter:blur(12px) }
-.xp-card {
-  position:relative;z-index:1;
-  background:var(--bg3);border:1px solid rgba(0,229,255,.25);
-  border-radius:8px;padding:48px 36px;
-  max-width:440px;width:100%;text-align:center;
-  animation:fadeUp .35s ease;
-}
-.xp-x { position:absolute;top:14px;right:16px;background:none;border:none;color:var(--t3);font-size:18px;cursor:pointer;font-family:var(--disp);transition:color .2s }
-.xp-x:hover { color:var(--t) }
-.xp-et  { font-family:var(--mono);font-size:8px;letter-spacing:.4em;color:var(--t3);margin-bottom:10px }
-.xp-t   { font-family:var(--disp);font-size:32px;line-height:.95;margin-bottom:12px }
-.xp-t span { color:var(--red) }
-.xp-d   { font-size:14px;color:var(--t2);line-height:1.75;margin-bottom:24px }
-.xp-box {
-  background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.2);
-  border-radius:6px;padding:20px;margin-bottom:20px;
-}
-.xp-box .v { font-family:var(--disp);font-size:44px;color:var(--cyan);line-height:1 }
-.xp-box .s { font-family:var(--mono);font-size:8px;color:var(--t2);letter-spacing:.2em;margin-top:4px }
-.xp-btn { width:100%;padding:14px;background:var(--blue);border:none;border-radius:4px;font-family:var(--disp);font-size:18px;letter-spacing:.05em;color:#fff;cursor:pointer;margin-bottom:10px;transition:all .2s }
-.xp-btn:hover { box-shadow:0 6px 24px rgba(29,111,255,.4) }
-.xp-skip { font-family:var(--mono);font-size:9px;color:var(--t3);background:none;border:none;cursor:pointer;letter-spacing:.1em;text-decoration:underline }
-.xp-skip:hover { color:var(--t2) }
-
-/* ── FOOTER ── */
-footer { padding:28px 40px;border-top:1px solid var(--b);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px }
-.ft-logo { font-family:var(--disp);font-size:16px;letter-spacing:.06em }
-.ft-logo span { color:var(--blue) }
-.ft-links { display:flex;gap:20px }
-.ft-links a { font-family:var(--mono);font-size:9px;color:var(--t3);text-decoration:none;letter-spacing:.15em;transition:color .2s }
-.ft-links a:hover { color:var(--t2) }
-.ft-c { font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.1em }
-
-/* ── MOBILE ── */
-@media(max-width:768px){
-  nav { padding:12px 20px }
-  .nav-live { display:none }
-  .sobre-inner { grid-template-columns:1fr }
-  .tiers { grid-template-columns:1fr }
-  .hero-cta,.fcta-btns { flex-direction:column;align-items:center }
-  .btn-main,.btn-ghost { width:100%;max-width:340px }
-  .acts::before { left:22px }
-  .act { grid-template-columns:44px 1fr;gap:16px }
-  .act-num { width:44px;height:44px;font-size:16px }
-  footer { flex-direction:column;text-align:center }
-  .ft-links { justify-content:center }
-  input,select,textarea { font-size:16px!important }
-}
 </style>
 </head>
-<body>
+<body class="bg-aobg text-aosurf font-body">
+
 <div id="cur"></div><div id="cur2"></div>
-<div class="scanline"></div>
 
 <!-- EXIT POPUP -->
-<div id="xpop">
-  <div class="xp-ov" onclick="closeXP()"></div>
-  <div class="xp-card">
-    <button class="xp-x" onclick="closeXP()">✕</button>
-    <div class="xp-et">ANTES DE IR EMBORA</div>
-    <div class="xp-t">É <span>GRATUITO</span><br>APARECER</div>
-    <div class="xp-d">A live é pública e gratuita. Mas a oferta do JR ORÁCULO vai estar disponível só durante o evento — e a preço simbólico, só pra quem assistir ao vivo.</div>
-    <div class="xp-box">
-      <div class="v">GRÁTIS</div>
-      <div class="s">LIVE · 15 ABRIL · 21H · YOUTUBE</div>
+<div id="xpop" style="display:none" class="fixed inset-0 z-[600] flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-aobg/90 backdrop-blur-xl" onclick="closeXP()"></div>
+  <div class="relative z-10 glass border border-aopc/25 rounded-md p-10 max-w-sm w-full text-center sup">
+    <button onclick="closeXP()" class="absolute top-3 right-4 text-aoghost hover:text-aosurf font-hl text-lg">✕</button>
+    <div class="font-mono text-[9px] tracking-[.4em] text-aoghost uppercase mb-2">UMA COISA ANTES DE IR</div>
+    <h2 class="font-hl text-3xl leading-none mb-3 text-aosurf">LOTE 2<br><span class="text-aoerr">ESTÁ ACABANDO</span></h2>
+    <p class="text-aomuted text-sm mb-5 leading-relaxed">Quando o Lote 2 esgotar o preço sobe. A oferta fecha quando a live terminar.</p>
+    <div class="bg-aobg4 border border-aopc/20 rounded p-4 mb-5">
+      <div class="font-hl text-5xl text-aopc" id="xp-vagas">12</div>
+      <div class="font-mono text-[9px] tracking-[.2em] text-aomuted mt-1">VAGAS RESTANTES · LOTE 2 · R$27</div>
     </div>
-    <button class="xp-btn" onclick="closeXP();document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">GARANTIR MINHA VAGA →</button>
-    <button class="xp-skip" onclick="closeXP()">Não quero evoluir meu trading</button>
+    <button onclick="closeXP();scrollTo('lotes')" class="w-full py-3 bg-aopc text-aobg font-hl text-xl tracking-wider rounded hover:brightness-110 active:scale-95 transition-all mb-2 glow-c">GARANTIR AGORA →</button>
+    <button onclick="closeXP()" class="font-mono text-[9px] text-aoghost tracking-[.1em] underline">Prefiro pagar mais depois</button>
   </div>
 </div>
 
 <!-- NAV -->
-<nav>
-  <div class="nav-logo" style="display:flex;align-items:center;gap:10px">
-    <img src="https://drive.google.com/uc?export=view&id=1mSk3pEUBeXZyiopbguqd5qobI4la41-4" alt="FIM DAS OPÇÕES BINÁRIAS" style="height:36px;width:auto;object-fit:contain" onerror="this.style.display='none'">
+<header class="fixed top-0 w-full z-[200] flex justify-between items-center px-5 py-3 bg-aobg/80 backdrop-blur-xl border-b border-aoghost/15">
+  <div class="flex items-center gap-2">
+    <span class="mat-icon text-aopc text-xl">terminal</span>
+    <span class="font-hl text-xl tracking-[.08em] text-aoprimary">JR ORÁCULO</span>
   </div>
-  <div class="nav-live"><div class="nav-dot"></div>15 ABR · 21H</div>
-  <button class="nav-btn" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">GARANTIR VAGA</button>
-</nav>
+  <div class="hidden md:flex items-center gap-2">
+    <span class="w-2 h-2 rounded-full bg-aosecondary op"></span>
+    <span class="font-mono text-[9px] text-aosecondary/70 tracking-[.2em] uppercase">LIVE · 22 ABR · 21H</span>
+  </div>
+  <button onclick="scrollTo('lotes')" class="font-cond font-bold text-xs tracking-[.1em] uppercase px-4 py-2 border border-aopc/35 text-aoprimary hover:bg-aopc/10 hover:border-aopc transition-all rounded-sm">GARANTIR VAGA</button>
+</header>
 
 <!-- TICKER -->
-<div class="ticker-wrap" style="margin-top:56px">
-  <div class="ticker-inner">
-    <span class="ticker-item">EVENTO AO VIVO &nbsp;<span class="hi">·</span>&nbsp; 15 ABRIL &nbsp;<span class="hi">·</span>&nbsp; 21H BRASÍLIA</span>
-    <span class="ticker-item">FIM DAS OPÇÕES BINÁRIAS &nbsp;<span class="hi">·</span>&nbsp; MÉTODO JR &nbsp;<span class="hi">·</span>&nbsp; VOLUME &nbsp;<span class="hi">&</span>&nbsp; PREÇO</span>
-    <span class="ticker-item">DEMONSTRAÇÃO AO VIVO &nbsp;<span class="hi">·</span>&nbsp; JR ORÁCULO &nbsp;<span class="hi">·</span>&nbsp; OFERTA EXCLUSIVA</span>
-    <span class="ticker-item">EVENTO AO VIVO &nbsp;<span class="hi">·</span>&nbsp; 15 ABRIL &nbsp;<span class="hi">·</span>&nbsp; 21H BRASÍLIA</span>
-    <span class="ticker-item">FIM DAS OPÇÕES BINÁRIAS &nbsp;<span class="hi">·</span>&nbsp; MÉTODO JR &nbsp;<span class="hi">·</span>&nbsp; VOLUME &nbsp;<span class="hi">&</span>&nbsp; PREÇO</span>
-    <span class="ticker-item">DEMONSTRAÇÃO AO VIVO &nbsp;<span class="hi">·</span>&nbsp; JR ORÁCULO &nbsp;<span class="hi">·</span>&nbsp; OFERTA EXCLUSIVA</span>
+<div class="mt-[52px] bg-aobg2 border-b border-aoghost/10 overflow-hidden py-2 relative z-10">
+  <div class="ticker">
+    <span class="font-mono text-[9px] tracking-[.2em] text-aoghost mx-10">EVENTO AO VIVO <span class="text-aopc">·</span> 22 ABRIL 2026 <span class="text-aopc">·</span> 21H BRASÍLIA</span>
+    <span class="font-mono text-[9px] tracking-[.2em] text-aoghost mx-10">FIM DAS OPÇÕES BINÁRIAS <span class="text-aopc">·</span> VOLUME <span class="text-aopc">·</span> PREÇO <span class="text-aopc">·</span> FLUXO</span>
+    <span class="font-mono text-[9px] tracking-[.2em] text-aoghost mx-10">LOTE 2 DISPONÍVEL <span class="text-aosecondary">·</span> 12 VAGAS <span class="text-aopc">·</span> DEMO AO VIVO JR ORÁCULO</span>
+    <span class="font-mono text-[9px] tracking-[.2em] text-aoghost mx-10">EVENTO AO VIVO <span class="text-aopc">·</span> 22 ABRIL 2026 <span class="text-aopc">·</span> 21H BRASÍLIA</span>
+    <span class="font-mono text-[9px] tracking-[.2em] text-aoghost mx-10">FIM DAS OPÇÕES BINÁRIAS <span class="text-aopc">·</span> VOLUME <span class="text-aopc">·</span> PREÇO <span class="text-aopc">·</span> FLUXO</span>
+    <span class="font-mono text-[9px] tracking-[.2em] text-aoghost mx-10">LOTE 2 DISPONÍVEL <span class="text-aosecondary">·</span> 12 VAGAS <span class="text-aopc">·</span> DEMO AO VIVO JR ORÁCULO</span>
   </div>
 </div>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-vignette"></div>
-  <div class="hero-glow"></div>
-  <div style="position:relative;z-index:2">
-    <div style="margin-bottom:24px;animation:fadeIn .6s ease .1s both;opacity:0">
-      <img src="https://drive.google.com/uc?export=view&id=1mSk3pEUBeXZyiopbguqd5qobI4la41-4" alt="FIM DAS OPÇÕES BINÁRIAS" 
-           style="max-width:min(400px,80vw);height:auto;object-fit:contain"
-           onerror="this.style.display='none'">
+<section class="hero relative min-h-[92vh] flex flex-col items-center justify-center text-center px-5 overflow-hidden scanline">
+  <div class="absolute inset-0 bg-[linear-gradient(45deg,rgba(0,224,255,.1),transparent_60%)] pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_40%,rgba(0,224,255,.06),transparent)] pointer-events-none"></div>
+  <div class="relative z-10 max-w-5xl mx-auto">
+    <div class="flex items-center justify-center gap-2 mb-6 hl-anim d1">
+      <span class="w-2 h-2 rounded-full bg-aosecondary op"></span>
+      <span class="font-mono text-[10px] text-aosecondary/80 tracking-[.3em] uppercase">Evento Ao Vivo · 22 de Abril de 2026</span>
     </div>
-    <div class="hero-eyebrow">EVENTO AO VIVO · 15 DE ABRIL DE 2026</div>
-    <h1 class="hero-title">
-      <span class="l1">FIM DAS</span>
-      <span class="l2">OPÇÕES</span>
-      <span class="l3">BINÁRIAS</span>
+    <h1 class="font-hl leading-[.88] mb-4 hl-anim d2 glitch">
+      <span class="block text-[clamp(58px,12vw,148px)] text-aosurf">O FIM DA SORTE.</span>
+      <span class="block text-[clamp(48px,10vw,120px)] text-aopc">O INÍCIO DA<br>PRECISÃO.</span>
     </h1>
-    <div class="hero-dash"></div>
-    <p class="hero-sub">Sala de sinais, M1, copiar trade — <strong>esse modelo acabou.</strong><br>Uma noite. Uma virada. Ao vivo.</p>
-    <div class="hero-date-badge">
-      <div class="hdb-item"><div class="hdb-val">15</div><div class="hdb-lbl">ABRIL</div></div>
-      <div class="hdb-sep"></div>
-      <div class="hdb-item"><div class="hdb-val">21H</div><div class="hdb-lbl">BRASÍLIA</div></div>
-      <div class="hdb-sep"></div>
-      <div class="hdb-item"><div class="hdb-val">AO VIVO</div><div class="hdb-lbl">YOUTUBE</div></div>
-      <div class="hdb-sep"></div>
-      <div class="hdb-item"><div class="hdb-val">GRATUITO</div><div class="hdb-lbl">ACESSO</div></div>
+    <p class="font-cond text-[clamp(16px,2.2vw,22px)] font-light text-aomuted tracking-widest max-w-2xl mx-auto mb-10 hl-anim d3 uppercase">O sistema foi construído para você perder.<br>O Oráculo foi construído para você dominar.</p>
+    <!-- Date badges -->
+    <div class="date-badges flex justify-center mb-8 hl-anim d4">
+      <div class="flex items-stretch border border-aoghost/20 rounded-sm overflow-hidden">
+        <div class="px-5 py-3 text-center border-r border-aoghost/20"><div class="font-hl text-3xl text-aosurf">22</div><div class="font-mono text-[8px] text-aoghost tracking-[.3em]">ABRIL</div></div>
+        <div class="px-5 py-3 text-center border-r border-aoghost/20"><div class="font-hl text-3xl text-aosurf">21H</div><div class="font-mono text-[8px] text-aoghost tracking-[.3em]">BRASÍLIA</div></div>
+        <div class="px-5 py-3 text-center border-r border-aoghost/20"><div class="font-hl text-3xl text-aosurf">AO VIVO</div><div class="font-mono text-[8px] text-aoghost tracking-[.3em]">YOUTUBE</div></div>
+        <div class="px-5 py-3 text-center"><div class="font-hl text-3xl text-aosecondary">GRÁTIS</div><div class="font-mono text-[8px] text-aoghost tracking-[.3em]">ASSISTIR</div></div>
+      </div>
     </div>
-    <div class="hero-cta">
-      <button class="btn-main" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">QUERO PARTICIPAR →</button>
-      <button class="btn-ghost" onclick="document.getElementById('agenda').scrollIntoView({behavior:'smooth'})">VER PROGRAMAÇÃO</button>
+    <div class="hero-ctas flex flex-wrap gap-3 justify-center hl-anim d5">
+      <button onclick="scrollTo('lotes')" class="relative overflow-hidden px-10 py-4 bg-aopc text-aobg font-hl text-2xl tracking-wider rounded-sm glow-c hover:brightness-110 active:scale-95 transition-all rpl">GARANTIR MINHA VAGA →</button>
+      <button onclick="scrollTo('atos')" class="px-10 py-4 border border-aoghost/40 text-aomuted font-hl text-2xl tracking-wider rounded-sm hover:border-aoprimary hover:text-aoprimary transition-all rpl">VER PROGRAMAÇÃO</button>
     </div>
+  </div>
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-25">
+    <span class="font-mono text-[9px] tracking-[.3em]">SCROLL TO DECRYPT</span>
+    <span class="mat-icon text-sm animate-bounce">keyboard_double_arrow_down</span>
   </div>
 </section>
 
 <!-- COUNTDOWN -->
-<div id="cd">
-  <div class="cd-label">A live começa em</div>
-  <div class="cd-row">
-    <div class="cd-unit"><div class="cd-num" id="cd-d">00</div><div class="cd-sub">DIAS</div></div>
-    <div class="cd-col">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-h">00</div><div class="cd-sub">HORAS</div></div>
-    <div class="cd-col">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-m">00</div><div class="cd-sub">MIN</div></div>
-    <div class="cd-col">:</div>
-    <div class="cd-unit"><div class="cd-num" id="cd-s">00</div><div class="cd-sub">SEG</div></div>
+<div class="bg-aobg2 border-y border-aoghost/10 py-10 text-center relative z-10">
+  <div class="font-mono text-[9px] tracking-[.5em] text-aoghost uppercase mb-5">O PROTOCOLO INICIA EM</div>
+  <div class="flex justify-center items-center gap-0 flex-nowrap overflow-x-auto px-2">
+    <div class="text-center px-4 md:px-8"><div class="font-hl text-[clamp(44px,9vw,88px)] text-aosurf cpop" id="cd-d">00</div><div class="font-mono text-[8px] tracking-[.3em] text-aoghost">DIAS</div></div>
+    <div class="font-hl text-[clamp(36px,7vw,70px)] text-aoghost leading-none self-start mt-2 px-1">:</div>
+    <div class="text-center px-4 md:px-8"><div class="font-hl text-[clamp(44px,9vw,88px)] text-aosurf" id="cd-h">00</div><div class="font-mono text-[8px] tracking-[.3em] text-aoghost">HORAS</div></div>
+    <div class="font-hl text-[clamp(36px,7vw,70px)] text-aoghost leading-none self-start mt-2 px-1">:</div>
+    <div class="text-center px-4 md:px-8"><div class="font-hl text-[clamp(44px,9vw,88px)] text-aosurf" id="cd-m">00</div><div class="font-mono text-[8px] tracking-[.3em] text-aoghost">MIN</div></div>
+    <div class="font-hl text-[clamp(36px,7vw,70px)] text-aoghost leading-none self-start mt-2 px-1">:</div>
+    <div class="text-center px-4 md:px-8"><div class="font-hl text-[clamp(44px,9vw,88px)] text-aopc" id="cd-sec">00</div><div class="font-mono text-[8px] tracking-[.3em] text-aoghost">SEG</div></div>
   </div>
-  <div class="cd-free">ENTRADA GRATUITA &nbsp;·&nbsp; <span>YouTube @JovemRicoTrader</span></div>
+  <div class="font-mono text-[10px] text-aoghost/60 tracking-[.2em] mt-4">YOUTUBE <span class="text-aoprimary">@JovemRicoTrader</span> · ENTRADA GRATUITA</div>
 </div>
 
-<!-- AGENDA -->
-<section id="agenda">
-  <div class="sec-tag">Programação do evento</div>
-  <h2 class="sec-title">O QUE<br>VAI <span class="acc">ACONTECER</span></h2>
-  <p class="sec-sub">Uma noite dividida em 4 momentos. Sem enrolação.</p>
-  <div class="acts">
-    <div class="act">
-      <div class="act-num">01</div>
-      <div class="act-body">
-        <div class="act-time">ABERTURA · ~21H00</div>
-        <div class="act-title">Por que o jeito antigo te faz perder dinheiro</div>
-        <div class="act-desc">Sala de sinais cria dependência. M1 é ruído. Copiar trade é loteria. Vamos destruir esses modelos com dados reais e mostrar onde o dinheiro está de fato se movendo.</div>
-        <span class="act-tag tag-blue">ANÁLISE · DADOS REAIS</span>
+<!-- 4 ATOS -->
+<section id="atos" class="py-20 px-4 md:px-8 bg-aobg2 relative z-10">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-14 ru">
+      <div>
+        <div class="font-mono text-[9px] tracking-[.5em] text-aopc uppercase mb-3">PROGRAMAÇÃO DO EVENTO</div>
+        <h2 class="font-hl text-[clamp(40px,7vw,76px)] leading-none">CRONOGRAMA<br><span class="text-aopc">DE 4 ATOS</span></h2>
       </div>
+      <div class="font-mono text-xs text-aosecondary border-l-2 border-aosecondary pl-4">ESTRATÉGIA SEQUENCIAL<br>DE EXECUÇÃO</div>
     </div>
-    <div class="act">
-      <div class="act-num">02</div>
-      <div class="act-body">
-        <div class="act-time">MÉTODO · ~21H30</div>
-        <div class="act-title">Operar a favor do volume e do preço — Estratégia JR</div>
-        <div class="act-desc">A lógica que profissionais usam e nunca ensinam em grupo de sinal: ler o que o mercado está fazendo de verdade. Vou mostrar a estratégia completa ao vivo, no gráfico.</div>
-        <span class="act-tag tag-blue">AO VIVO · GRÁFICO REAL</span>
+    <div class="atos-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-aobg4 p-7 rounded-sm hover:bg-aobg5 transition-colors ru" style="transition-delay:.04s">
+        <div class="font-mono text-aopc text-4xl mb-5 leading-none">01</div>
+        <h3 class="font-cond font-bold text-xl mb-3 tracking-wide text-aosurf">O DIAGNÓSTICO</h3>
+        <p class="text-aomuted text-sm leading-relaxed">Por que sala de sinais, M1 e copy trade te mantêm dependente — e destroem sua banca no longo prazo.</p>
+        <div class="mt-4 inline-block px-2 py-1 text-[9px] font-mono tracking-[.12em] bg-aobg2 border border-aopc/20 text-aopc/70 rounded-sm">DADOS REAIS · AO VIVO</div>
       </div>
-    </div>
-    <div class="act">
-      <div class="act-num">03</div>
-      <div class="act-body">
-        <div class="act-time">REVELAÇÃO · ~22H00</div>
-        <div class="act-title">Apresentando o JR ORÁCULO — demonstração ao vivo</div>
-        <div class="act-desc">1 ano em desenvolvimento. Um agente de inteligência que lê o gráfico com você, identifica o contexto do mercado e entrega a análise em segundos — sem você precisar saber de nada técnico.</div>
-        <span class="act-tag tag-cyan">DEMO AO VIVO · JR ORÁCULO</span>
+      <div class="bg-aobg4 p-7 rounded-sm hover:bg-aobg5 transition-colors ru" style="transition-delay:.08s">
+        <div class="font-mono text-aopc text-4xl mb-5 leading-none">02</div>
+        <h3 class="font-cond font-bold text-xl mb-3 tracking-wide text-aosurf">A ARQUITETURA</h3>
+        <p class="text-aomuted text-sm leading-relaxed">Volume, preço e fluxo de ordem — a lógica que os profissionais usam e que sala de sinais jamais vai te ensinar.</p>
+        <div class="mt-4 inline-block px-2 py-1 text-[9px] font-mono tracking-[.12em] bg-aobg2 border border-aopc/20 text-aopc/70 rounded-sm">ESTRATÉGIA COMPLETA</div>
       </div>
-    </div>
-    <div class="act">
-      <div class="act-num">04</div>
-      <div class="act-body">
-        <div class="act-time">OFERTA · ~22H30</div>
-        <div class="act-title">Acesso ao ORÁCULO — preço simbólico só durante a live</div>
-        <div class="act-desc">Quem assistir ao vivo vai ter acesso ao JR ORÁCULO por um preço que não vai se repetir. A oferta fecha quando a live terminar.</div>
-        <span class="act-tag tag-gold">OFERTA EXCLUSIVA · LIVE ONLY</span>
+      <div class="bg-aobg4 p-7 rounded-sm hover:bg-aobg5 transition-colors border-b-2 border-aopc ru" style="transition-delay:.12s">
+        <div class="font-mono text-aopc text-4xl mb-5 leading-none">03</div>
+        <h3 class="font-cond font-bold text-xl mb-3 tracking-wide text-aosurf">A EXECUÇÃO</h3>
+        <p class="text-aomuted text-sm leading-relaxed">JR ORÁCULO — 1 ano de desenvolvimento. Demonstração ao vivo, gráfico real, corretora real. Primeira vez.</p>
+        <div class="mt-4 inline-block px-2 py-1 text-[9px] font-mono tracking-[.12em] bg-aobg3 border border-aopc/35 text-aopc rounded-sm">REVELAÇÃO · DEMO AO VIVO</div>
+      </div>
+      <div class="bg-aobg4 p-7 rounded-sm hover:bg-aobg5 transition-colors ru" style="transition-delay:.16s">
+        <div class="font-mono text-aotc text-4xl mb-5 leading-none">04</div>
+        <h3 class="font-cond font-bold text-xl mb-3 tracking-wide text-aotertiary">O DOMÍNIO</h3>
+        <p class="text-aomuted text-sm leading-relaxed">Oferta exclusiva ao vivo. Preço simbólico que não vai se repetir. Só para quem estiver presente.</p>
+        <div class="mt-4 inline-block px-2 py-1 text-[9px] font-mono tracking-[.12em] bg-aobg2 border border-aotc/30 text-aotc rounded-sm">OFERTA LIVE ONLY</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOBRE -->
-<section id="sobre">
-  <div class="sobre-inner">
-    <div class="sobre-photo">
-      <div class="photo-frame">
-        <!-- COLOQUE A URL DA SUA FOTO AQUI -->
-        <img src="https://drive.google.com/uc?export=view&id=1DkTx0JJSwLyTc3eNJlPtj2ScJTwr6IHn" alt="André Luiz · JR Trader" style="width:100%;height:100%;object-fit:cover;object-position:top center">
+<!-- STORY -->
+<section class="py-20 px-4 md:px-8 bg-aobg relative z-10">
+  <div class="max-w-3xl mx-auto ru">
+    <div class="font-mono text-[9px] tracking-[.5em] text-aopc uppercase mb-4">POR QUE ESTE EVENTO EXISTE</div>
+    <h2 class="font-hl text-[clamp(38px,6vw,68px)] leading-none mb-10">O FIM DE<br><span class="text-aopc">UMA ERA.</span></h2>
+    <div class="story-grid grid md:grid-cols-2 gap-8 text-aomuted text-base leading-[1.9]">
+      <div>
+        <p class="mb-5">Por <strong class="text-aosurf">7 anos</strong> operei opções binárias. Passei por tudo que não funciona: sala de sinais, robô, M1, M5, copy trade, Fibonacci, indicadores de repaint.</p>
+        <p>No início, como todo mundo, achei que o problema era eu. Que eu não tinha disciplina, que entrava na hora errada. Até entender que o problema era <em class="text-aotc not-italic font-semibold">o método</em>.</p>
       </div>
-      <div class="photo-tag">
-        <div class="name">ANDRÉ LUIZ</div>
-        <div class="role">@JOVEMRICOTRADER · TRADER · CRIADOR</div>
-      </div>
-      <div class="photo-accent"></div>
-    </div>
-    <div class="sobre-text">
-      <div class="sec-tag">Quem apresenta</div>
-      <h2 class="sec-title" style="font-size:clamp(36px,5vw,56px)">MAIS DE<br><span class="acc">3 ANOS</span><br>OPERANDO OB</h2>
-      <p style="margin-top:24px">Comecei do zero. Passei por sala de sinais, robô, indicador de repaint, copy trade — tudo que não funciona. <strong>Aprendi na prática o que realmente move o mercado.</strong></p>
-      <p>Hoje opero puro preço e volume, sem M1, sem Fibonacci, sem dependência. E criei ferramentas reais pra que outros traders façam o mesmo — de forma independente.</p>
-      <p>O <strong>JR ORÁCULO</strong> é o resultado de 1 ano de desenvolvimento. Nessa live, vou mostrar tudo ao vivo.</p>
-      <div class="stats-row">
-        <div class="stat"><div class="stat-val">+3</div><div class="stat-lbl">ANOS OPERANDO</div></div>
-        <div class="stat"><div class="stat-val">1</div><div class="stat-lbl">ANO DE DEV</div></div>
-        <div class="stat"><div class="stat-val">1</div><div class="stat-lbl">NOITE. TUDO MUDA.</div></div>
+      <div>
+        <p class="mb-5">O mercado <strong class="text-aosurf">não se move por padrão gráfico</strong>. Ele se move por <em class="text-aopc not-italic font-semibold">volume, pressão e fluxo de ordem</em>. Quem manda no preço não é o RSI — é o dinheiro grande se posicionando.</p>
+        <p>Quando entendi isso, parei de depender de grupo, de guru, de alerta. Nessa noite, vou mostrar exatamente isso — ao vivo, no gráfico real.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ORÁCULO TEASER -->
-<section id="oraculo-teaser">
-  <div class="ot-bg"></div>
-  <div class="ot-inner">
-    <div class="ot-tag">REVELADO NA LIVE · 15/04 · 22H</div>
-    <h2 class="ot-title">JR <span class="acc">ORÁCULO</span><br>— 1 ANO CRIANDO</h2>
-    <p class="ot-desc">Um agente de inteligência que <strong>observa o mesmo gráfico que você</strong>, lê o contexto do mercado e entrega a análise — em segundos. Funciona em qualquer corretora de OB autorizada.</p>
-    <div class="ot-agent">
-      <div class="ot-agent-header">
-        <div class="ot-agent-icon">⚡</div>
+<section class="py-20 px-4 md:px-8 bg-aobg2 relative z-10">
+  <div class="max-w-2xl mx-auto text-center ru">
+    <div class="font-mono text-[9px] tracking-[.5em] text-aoghost uppercase mb-4 flex items-center justify-center gap-3">
+      <span class="h-px w-5 bg-aoghost/40"></span>REVELADO NA LIVE · ATO 3 · ~22H<span class="h-px w-5 bg-aoghost/40"></span>
+    </div>
+    <h2 class="font-hl text-[clamp(42px,7vw,82px)] leading-none mb-5">JR <span class="text-aopc">ORÁCULO</span></h2>
+    <p class="text-aomuted text-base leading-relaxed mb-8 max-w-lg mx-auto">Um agente de inteligência que <strong class="text-aosurf">aprende com o mercado</strong>. Lê o contexto de volume e fluxo, e entrega a análise em segundos. Funciona em qualquer corretora de OB autorizada.</p>
+    <!-- Agent card -->
+    <div class="glass border border-aopc/15 rounded-md p-6 text-left max-w-md mx-auto relative overflow-hidden mb-5 bpulse">
+      <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-aopc/40 to-transparent"></div>
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-9 h-9 rounded-sm bg-aopc/10 border border-aopc/25 flex items-center justify-center"><span class="mat-icon text-aopc text-lg">bolt</span></div>
         <div>
-          <div class="ot-agent-name">ORÁCULO · AGENTE ATIVO</div>
-          <div class="ot-agent-stat">ANALISANDO · APRENDENDO · ADAPTANDO</div>
+          <div class="font-mono text-[10px] text-aopc tracking-[.12em]">ORÁCULO · AGENTE ATIVO</div>
+          <div class="font-mono text-[8px] text-aoghost tracking-[.08em] mt-0.5">LENDO CONTEXTO · IDENTIFICANDO FLUXO</div>
         </div>
       </div>
-      <div class="ot-lines">
-        <div class="ot-line"></div>
-        <div class="ot-line"></div>
-        <div class="ot-line"></div>
+      <div class="space-y-2 mb-4">
+        <div class="h-2 rounded-sm bg-gradient-to-r from-aopc/30 to-aopc/10" style="animation:op 2.5s ease infinite"></div>
+        <div class="h-2 rounded-sm bg-gradient-to-r from-aopc/30 to-aopc/10 w-4/5" style="animation:op 2.5s ease infinite .5s"></div>
+        <div class="h-2 rounded-sm bg-gradient-to-r from-aopc/30 to-aopc/10 w-3/5" style="animation:op 2.5s ease infinite 1s"></div>
       </div>
-      <div class="ot-result">→ CONTEXTO IDENTIFICADO · ANÁLISE CONCLUÍDA EM 3s</div>
+      <div class="bg-aosecondary/5 border border-aosecondary/20 rounded-sm px-3 py-2 font-mono text-[9px] text-aosecondary tracking-[.08em]">→ CONTEXTO DE FLUXO IDENTIFICADO · ANÁLISE EM 3s</div>
     </div>
-    <p class="ot-desc" style="margin-top:16px;font-size:14px">Não é robô de sinal. Não é automação cega. É inteligência que <strong>aprende com o mercado</strong> e te ajuda a tomar decisões melhores — você ainda decide.</p>
-    <div style="margin-top:32px">
-      <button class="btn-main" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">VER A DEMONSTRAÇÃO AO VIVO →</button>
+    <div class="font-mono text-[9px] text-aoghost tracking-[.15em]">1 ANO DE DESENVOLVIMENTO · <span class="text-aotc">DEMO AO VIVO 22/04 ~22H</span></div>
+  </div>
+</section>
+
+<!-- PRESENTER -->
+<section id="apresentador" class="py-20 px-4 md:px-8 bg-aobg relative z-10">
+  <div class="max-w-5xl mx-auto">
+    <div class="presenter-grid grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <!-- Photo -->
+      <div class="presenter-photo relative ru">
+        <div class="absolute -inset-6 bg-aopc/6 blur-3xl rounded-full pointer-events-none"></div>
+        <div class="relative overflow-hidden rounded-sm border-l border-aopc/20">
+          <img src="jr-foto.png" alt="André Luiz · JR Trader" class="w-full object-cover object-top" style="filter:contrast(1.08) saturate(1.05)" onerror="this.src='https://drive.google.com/uc?export=view&id=1DkTx0JJSwLyTc3eNJlPtj2ScJTwr6IHn'">
+          <div class="absolute inset-0 bg-gradient-to-t from-aobg via-transparent to-transparent opacity-70"></div>
+        </div>
+        <div class="absolute bottom-5 left-5 right-5 glass border border-aoghost/20 p-4 rounded-sm">
+          <div class="font-cond font-bold text-xl tracking-[.04em]">ANDRÉ LUIZ</div>
+          <div class="font-mono text-[8px] text-aoghost tracking-[.18em] mt-0.5">@JOVEMRICOTRADER · 7 ANOS EM OB</div>
+        </div>
+        <div class="absolute -top-4 -right-4 w-12 h-12 border border-aopc/25 rounded-full" style="animation:op 4s ease infinite"></div>
+      </div>
+      <!-- Text -->
+      <div class="ru" style="transition-delay:.12s">
+        <div class="font-mono text-[9px] tracking-[.4em] text-aosecondary uppercase mb-4">THE VISIONARY</div>
+        <h2 class="font-hl leading-none mb-6">
+          <span class="text-[clamp(30px,4vw,46px)] text-aosurf block">QUEM É</span>
+          <span class="text-[clamp(44px,6vw,72px)] text-aopc block">ANDRÉ LUIZ?</span>
+        </h2>
+        <div class="space-y-4 text-aomuted text-[15px] leading-[1.9]">
+          <p>Comecei do zero em opções binárias. Passei por tudo que não funciona — e aprendi da forma mais cara possível, perdendo dinheiro até entender como o mercado realmente funciona.</p>
+          <p><strong class="text-aosurf">Hoje opero puro preço, volume e fluxo de ordem.</strong> Sem indicadores de repaint, sem Fibonacci, sem M1, sem dependência de grupo.</p>
+          <p>Passei <strong class="text-aosurf">1 ano desenvolvendo o JR ORÁCULO</strong> — uma ferramenta que reforça o que ensino, sem substituir o raciocínio do trader.</p>
+        </div>
+        <div class="stats-row flex gap-10 mt-8 pt-8 border-t border-aoghost/15">
+          <div><div class="font-hl text-4xl text-aosurf">+7</div><div class="font-mono text-[8px] text-aosecondary tracking-[.2em] mt-1">ANOS EM OB</div></div>
+          <div><div class="font-hl text-4xl text-aosurf">1</div><div class="font-mono text-[8px] text-aosecondary tracking-[.2em] mt-1">ANO CRIANDO O ORÁCULO</div></div>
+          <div><div class="font-hl text-4xl text-aotc">22/04</div><div class="font-mono text-[8px] text-aosecondary tracking-[.2em] mt-1">TUDO AO VIVO</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing">
-  <div class="pricing-inner">
-    <div class="sec-tag">Acesso ao evento</div>
-    <h2 class="sec-title">ESCOLHA COMO<br>VOCÊ <span class="acc">PARTICIPA</span></h2>
-    <p class="pricing-intro">A live é gratuita no YouTube. Escolha seu nível de acesso.</p>
-    <div class="tiers">
-      <div class="tier">
-        <div class="tier-tag">BÁSICO</div>
-        <div class="tier-name">GRATUITO</div>
-        <div class="tier-price"><span class="val">R$0</span><div class="lbl">ACESSO LIVRE</div></div>
-        <ul class="tier-features">
-          <li><span class="on">✓</span> Live completa no YouTube</li>
-          <li><span class="on">✓</span> Método JR ao vivo</li>
-          <li><span class="on">✓</span> Demo do ORÁCULO</li>
-          <li><span class="off">—</span> <span style="color:var(--t3)">Oferta exclusiva live</span></li>
-          <li><span class="off">—</span> <span style="color:var(--t3)">Grupo de acesso</span></li>
-        </ul>
-        <button class="tier-btn tb-basic" onclick="window.open('https://www.youtube.com/@JovemRicoTrader','_blank')">ACESSE O CANAL →</button>
-      </div>
-      <div class="tier mid">
-        <div class="tier-tag">MAIS ESCOLHIDO</div>
-        <div class="tier-name">ACESSO +</div>
-        <div class="tier-price"><span class="sym">R$</span><span class="val">27</span><div class="lbl">VOCÊ + UM AMIGO</div></div>
-        <ul class="tier-features">
-          <li><span class="on">✓</span> Live completa</li>
-          <li><span class="on">✓</span> <strong>2 acessos — presenteia alguém</strong></li>
-          <li><span class="on">✓</span> Oferta especial durante a live</li>
-          <li><span class="on">✓</span> Grupo de acesso exclusivo</li>
-          <li><span class="off">—</span> <span style="color:var(--t3)">VIP + conteúdo extra</span></li>
-        </ul>
-        <button class="tier-btn tb-mid" onclick="handleBuy(this,'plus')">GARANTIR ACESSO + →</button>
-      </div>
-      <div class="tier">
-        <div class="tier-tag">VIP</div>
-        <div class="tier-name">VIP</div>
-        <div class="tier-price"><span class="sym">R$</span><span class="val">47</span><div class="lbl">ACESSO COMPLETO</div></div>
-        <ul class="tier-features">
-          <li><span class="on">✓</span> Live completa</li>
-          <li><span class="on">✓</span> Oferta especial durante a live</li>
-          <li><span class="on">✓</span> <strong>Grupo VIP fechado</strong></li>
-          <li><span class="on">✓</span> <strong>Conteúdo exclusivo JR</strong></li>
-          <li><span class="on">✓</span> Acesso antecipado a novidades</li>
-        </ul>
-        <button class="tier-btn tb-vip" onclick="handleBuy(this,'vip')">QUERO O VIP →</button>
+<!-- LOTES -->
+<section id="lotes" class="py-20 px-4 md:px-8 bg-aobg2 relative z-10">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12 ru">
+      <div class="font-mono text-[9px] tracking-[.5em] text-aopc uppercase mb-3">INGRESSOS DO EVENTO</div>
+      <h2 class="font-hl text-[clamp(40px,7vw,76px)] leading-none mb-5">SELECIONE<br><span class="text-aopc">SEU ACESSO</span></h2>
+      <p class="font-cond font-light text-lg text-aomuted tracking-[.04em] mb-5">A live é pública. O ingresso garante grupo fechado e oferta exclusiva do ORÁCULO.</p>
+      <div class="inline-flex items-center gap-3 px-4 py-2 bg-aoerc/15 border border-aoerr/25 rounded-sm">
+        <span class="mat-fill text-aoerr text-base">emergency</span>
+        <span class="font-mono text-[9px] tracking-[.15em] text-aoerr font-bold uppercase">Lote 1 Esgotado — 50 ingressos vendidos</span>
       </div>
     </div>
-    <div style="margin-top:20px;font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.2em">
-      ✓ PAGAMENTO SEGURO &nbsp;·&nbsp; ✓ GARANTIA 7 DIAS &nbsp;·&nbsp; ✓ ACESSO IMEDIATO
+    <div class="lotes-grid grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
+      <!-- LOTE 1 ESGOTADO -->
+      <div class="bg-aobg opacity-50 p-7 rounded-sm border border-aoghost/10 flex flex-col relative overflow-hidden ru" style="transition-delay:.04s">
+        <div class="absolute top-0 right-0 overflow-hidden w-20 h-20">
+          <div class="absolute top-5 right-[-20px] bg-aoerr text-aobg font-mono text-[8px] tracking-[.1em] px-6 py-0.5 rotate-45">ESGOTADO</div>
+        </div>
+        <div class="font-mono text-[8px] tracking-[.35em] text-aoghost uppercase mb-2">LOTE 01</div>
+        <div class="font-hl text-3xl mb-4">EARLY BIRD</div>
+        <div class="mb-5"><div class="flex items-baseline gap-1"><span class="text-aomuted text-sm">R$</span><span class="font-hl text-5xl text-aomuted">17</span></div><div class="font-mono text-[8px] text-aoghost tracking-[.2em] mt-1">PRIMEIRO LOTE · ESGOTADO</div></div>
+        <div class="mb-5"><div class="flex justify-between font-mono text-[8px] text-aoghost mb-1"><span>VAGAS</span><span>100%</span></div><div class="h-1 bg-aobg4 rounded-full overflow-hidden"><div class="h-full bg-aoghost/40 w-full"></div></div></div>
+        <ul class="flex-1 space-y-2 mb-5">
+          <li class="flex gap-2 text-xs text-aoghost"><span class="mat-icon text-aoghost text-sm">check_circle</span>Ingresso ao evento</li>
+          <li class="flex gap-2 text-xs text-aoghost"><span class="mat-icon text-aoghost text-sm">check_circle</span>Grupo fechado</li>
+          <li class="flex gap-2 text-xs text-aoghost"><span class="mat-icon text-aoghost text-sm">check_circle</span>Oferta da live</li>
+        </ul>
+        <button disabled class="w-full py-3 bg-aobg4 text-aoghost font-cond font-bold text-sm uppercase tracking-[.1em] rounded-sm cursor-not-allowed">ESGOTADO</button>
+      </div>
+      <!-- LOTE 2 DESTAQUE -->
+      <div class="lote-destaque bg-aobg5 p-7 rounded-sm border-2 border-aopc flex flex-col lg:scale-105 glow-c bpulse relative overflow-hidden ru" style="transition-delay:.08s">
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-aopc to-transparent"></div>
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-aopc text-aobg font-mono text-[9px] font-bold uppercase tracking-[.1em] px-3 py-1 rounded-full whitespace-nowrap">MAIS ESCOLHIDO</div>
+        <div class="font-mono text-[8px] tracking-[.35em] text-aoprimary uppercase mb-2 mt-4">LOTE 02 · DUPLO</div>
+        <div class="font-hl text-3xl text-aopc mb-1">DUPLO</div>
+        <div class="font-mono text-[8px] tracking-[.1em] text-aosecondary mb-4 flex items-center gap-1">
+          <span class="mat-icon text-aosecondary text-xs">group</span>VOCÊ + 1 AMIGO · 2 ACESSOS
+        </div>
+        <div class="mb-5"><div class="flex items-baseline gap-1"><span class="text-aomuted text-sm">R$</span><span class="font-hl text-5xl text-aosurf">27</span></div><div class="font-mono text-[8px] text-aoghost tracking-[.2em] mt-1">LOTE ATUAL</div></div>
+        <div class="mb-5">
+          <div class="flex justify-between font-mono text-[8px] text-aoghost mb-1"><span>VAGAS</span><span id="bar-pct2">76%</span></div>
+          <div class="h-1 bg-aobg3 rounded-full overflow-hidden"><div class="h-full rounded-full bfill" id="bar2" style="--w:76%;background:linear-gradient(to right,#00e0ff,#00d384)"></div></div>
+          <div class="font-mono text-[9px] text-aopc mt-1.5 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-aopc op"></span><span id="vagas2">12</span> VAGAS RESTANTES</div>
+        </div>
+        <ul class="flex-1 space-y-2 mb-6">
+          <li class="flex gap-2 text-sm text-aosurf"><span class="mat-fill text-aopc text-sm">check_circle</span>Ingresso ao evento</li>
+          <li class="flex gap-2 text-sm text-aosurf"><span class="mat-fill text-aopc text-sm">check_circle</span><strong>2 acessos — presenteia um amigo</strong></li>
+          <li class="flex gap-2 text-sm text-aosurf"><span class="mat-fill text-aopc text-sm">check_circle</span>Grupo fechado do evento</li>
+          <li class="flex gap-2 text-sm text-aosurf"><span class="mat-fill text-aopc text-sm">check_circle</span>Oferta exclusiva da live</li>
+          <li class="flex gap-2 text-sm text-aosurf"><span class="mat-fill text-aopc text-sm">check_circle</span>Avisos e atualizações JR</li>
+        </ul>
+        <button onclick="handleBuy(this,'duplo')" class="relative overflow-hidden w-full py-4 bg-aopc text-aobg font-cond font-bold text-base uppercase tracking-[.1em] rounded-sm hover:brightness-110 active:scale-95 transition-all rpl">GARANTIR ACESSO →</button>
+      </div>
+      <!-- LOTE VIP -->
+      <div class="bg-aobg p-7 rounded-sm border border-aotc/25 flex flex-col ru glow-gold" style="transition-delay:.12s">
+        <div class="font-mono text-[8px] tracking-[.35em] text-aotc uppercase mb-2">LOTE 03 · VIP</div>
+        <div class="font-hl text-3xl text-aotertiary mb-4">VIP</div>
+        <div class="mb-5"><div class="flex items-baseline gap-1"><span class="text-aomuted text-sm">R$</span><span class="font-hl text-5xl text-aosurf">47</span></div><div class="font-mono text-[8px] text-aoghost tracking-[.2em] mt-1">ACESSO COMPLETO</div></div>
+        <div class="mb-5">
+          <div class="flex justify-between font-mono text-[8px] text-aoghost mb-1"><span>VAGAS VIP</span><span>40%</span></div>
+          <div class="h-1 bg-aobg4 rounded-full overflow-hidden"><div class="h-full rounded-full bfill" style="--w:40%;background:linear-gradient(to right,rgba(255,193,101,.6),#ffc165)"></div></div>
+          <div class="font-mono text-[9px] text-aotc mt-1.5"><span id="vagasVip">20</span> vagas VIP</div>
+        </div>
+        <ul class="flex-1 space-y-2 mb-6">
+          <li class="flex gap-2 text-sm text-aomuted"><span class="mat-fill text-aotc text-sm">verified</span>Ingresso ao evento</li>
+          <li class="flex gap-2 text-sm text-aomuted"><span class="mat-fill text-aotc text-sm">verified</span><strong class="text-aosurf">Grupo VIP exclusivo</strong></li>
+          <li class="flex gap-2 text-sm text-aomuted"><span class="mat-fill text-aotc text-sm">verified</span>Oferta exclusiva da live</li>
+          <li class="flex gap-2 text-sm text-aomuted"><span class="mat-fill text-aotc text-sm">verified</span>Replay exclusivo do evento</li>
+          <li class="flex gap-2 text-sm text-aomuted"><span class="mat-fill text-aotc text-sm">verified</span>Acesso antecipado a novidades</li>
+        </ul>
+        <button onclick="handleBuy(this,'vip')" class="w-full py-3 bg-aotc/10 border border-aotc/30 text-aotc font-cond font-bold text-sm uppercase tracking-[.1em] rounded-sm hover:bg-aotc/20 active:scale-95 transition-all rpl">QUERO O VIP →</button>
+      </div>
     </div>
+    <div class="text-center mt-5 font-mono text-[9px] text-aoghost tracking-[.18em]">🔒 PAGAMENTO SEGURO &nbsp;·&nbsp; ✓ GARANTIA 7 DIAS &nbsp;·&nbsp; ✓ ACESSO IMEDIATO AO GRUPO</div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq">
-  <div style="text-align:center">
-    <div class="sec-tag">Dúvidas</div>
-    <h2 class="sec-title">PERGUNTAS<br><span class="acc">FREQUENTES</span></h2>
+<section id="faq" class="py-20 px-5 bg-aobg relative z-10 max-w-2xl mx-auto w-full">
+  <div class="text-center mb-12 ru">
+    <div class="font-mono text-[9px] tracking-[.5em] text-aopc uppercase mb-3">DÚVIDAS</div>
+    <h2 class="font-hl text-[clamp(38px,6vw,66px)] leading-none">PERGUNTAS<br><span class="text-aopc">FREQUENTES</span></h2>
   </div>
-  <div class="faq-list">
-    <div class="faq-item">
-      <div class="faq-q" onclick="tFaq(this)">A live é realmente gratuita?<span class="faq-ico">+</span></div>
-      <div class="faq-a"><div class="faq-a-in">Sim. A live no YouTube é 100% gratuita. Os planos pagos dão acesso a benefícios adicionais como grupo exclusivo e a oferta especial do ORÁCULO — mas qualquer um pode assistir de graça.</div></div>
+  <div class="space-y-2 ru">
+    <div class="faq-item border border-aoghost/15 rounded-sm overflow-hidden">
+      <button class="faq-q w-full flex justify-between items-center px-5 py-4 text-left text-sm font-medium hover:text-aoprimary transition-colors gap-3">A live é realmente gratuita?<span class="font-hl text-xl text-aopc flex-shrink-0 faq-ico transition-transform">+</span></button>
+      <div class="faq-a max-h-0 overflow-hidden transition-[max-height] duration-300"><div class="px-5 pb-4 text-sm text-aomuted leading-[1.8]">Sim. A live no YouTube é 100% gratuita. Os ingressos pagos dão acesso ao grupo fechado, à oferta exclusiva do ORÁCULO durante a live, e ao replay (VIP).</div></div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="tFaq(this)">O JR ORÁCULO funciona em qual corretora?<span class="faq-ico">+</span></div>
-      <div class="faq-a"><div class="faq-a-in">Funciona em todas as corretoras de opções binárias autorizadas que operam com gráfico no navegador. Na live vou mostrar ao vivo em quais plataformas testei.</div></div>
+    <div class="faq-item border border-aoghost/15 rounded-sm overflow-hidden">
+      <button class="faq-q w-full flex justify-between items-center px-5 py-4 text-left text-sm font-medium hover:text-aoprimary transition-colors gap-3">O ORÁCULO funciona em qual corretora?<span class="font-hl text-xl text-aopc flex-shrink-0 faq-ico transition-transform">+</span></button>
+      <div class="faq-a max-h-0 overflow-hidden transition-[max-height] duration-300"><div class="px-5 pb-4 text-sm text-aomuted leading-[1.8]">Funciona em qualquer corretora de OB autorizada que opere com gráfico no navegador. Na live vou demonstrar ao vivo em quais plataformas testei.</div></div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="tFaq(this)">O ORÁCULO decide por mim?<span class="faq-ico">+</span></div>
-      <div class="faq-a"><div class="faq-a-in">Não. O ORÁCULO é um agente de análise — ele lê o contexto do mercado e te entrega a leitura em segundos. Quem decide a entrada é você. O objetivo é te tornar mais independente, não mais dependente.</div></div>
+    <div class="faq-item border border-aoghost/15 rounded-sm overflow-hidden">
+      <button class="faq-q w-full flex justify-between items-center px-5 py-4 text-left text-sm font-medium hover:text-aoprimary transition-colors gap-3">O que é o grupo fechado?<span class="font-hl text-xl text-aopc flex-shrink-0 faq-ico transition-transform">+</span></button>
+      <div class="faq-a max-h-0 overflow-hidden transition-[max-height] duration-300"><div class="px-5 pb-4 text-sm text-aomuted leading-[1.8]">Avisos sobre o evento, link da live, e acesso à oferta do ORÁCULO. Todos com ingresso entram. VIP tem grupo separado mais exclusivo com o JR.</div></div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="tFaq(this)">Qual a oferta da live e quando termina?<span class="faq-ico">+</span></div>
-      <div class="faq-a"><div class="faq-a-in">A oferta do JR ORÁCULO por preço simbólico vai estar disponível apenas durante o evento ao vivo. Quando a live terminar, ela fecha — sem exceção.</div></div>
+    <div class="faq-item border border-aoghost/15 rounded-sm overflow-hidden">
+      <button class="faq-q w-full flex justify-between items-center px-5 py-4 text-left text-sm font-medium hover:text-aoprimary transition-colors gap-3">Qual o preço do ORÁCULO na live?<span class="font-hl text-xl text-aopc flex-shrink-0 faq-ico transition-transform">+</span></button>
+      <div class="faq-a max-h-0 overflow-hidden transition-[max-height] duration-300"><div class="px-5 pb-4 text-sm text-aomuted leading-[1.8]">Preço simbólico — revelado exclusivamente durante a live. Quando a live terminar, a oferta fecha. Sem previsão de nova oferta a esse preço.</div></div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="tFaq(this)">Tem garantia?<span class="faq-ico">+</span></div>
-      <div class="faq-a"><div class="faq-a-in">Sim. 7 dias de garantia incondicional. Se por qualquer motivo não curtir, devolvo 100% sem perguntas.</div></div>
+    <div class="faq-item border border-aoghost/15 rounded-sm overflow-hidden">
+      <button class="faq-q w-full flex justify-between items-center px-5 py-4 text-left text-sm font-medium hover:text-aoprimary transition-colors gap-3">Tem garantia?<span class="font-hl text-xl text-aopc flex-shrink-0 faq-ico transition-transform">+</span></button>
+      <div class="faq-a max-h-0 overflow-hidden transition-[max-height] duration-300"><div class="px-5 pb-4 text-sm text-aomuted leading-[1.8]">Sim. 7 dias de garantia incondicional no ingresso. Se por qualquer motivo não curtir, devolvo 100% do valor sem perguntas.</div></div>
     </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
-<section id="fcta">
-  <div class="fcta-bg"></div>
-  <h2 class="fcta-title">15 DE ABRIL<br><span class="acc">21H</span></h2>
-  <p class="fcta-sub">Uma noite que vai mudar como você opera para sempre.<br>Entrada gratuita — YouTube.</p>
-  <div class="fcta-btns">
-    <button class="btn-main" style="font-size:24px;padding:20px 56px" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">GARANTIR MINHA VAGA →</button>
+<section class="py-24 px-5 text-center relative overflow-hidden z-10">
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_80%,rgba(0,224,255,.07),transparent)] pointer-events-none"></div>
+  <div class="relative z-10 ru">
+    <h2 class="font-hl leading-none mb-5">
+      <span class="block text-[clamp(48px,9vw,108px)] text-aosurf">15 DE ABRIL</span>
+      <span class="block text-[clamp(56px,10vw,120px)] text-aopc">21H</span>
+    </h2>
+    <p class="font-cond font-light text-xl text-aomuted tracking-[.06em] max-w-md mx-auto mb-10">Uma noite. O fim de uma era.<br>O início de outra forma de operar.</p>
+    <button onclick="scrollTo('lotes')" class="relative overflow-hidden px-14 py-5 bg-aopc text-aobg font-hl text-[clamp(20px,3vw,26px)] tracking-[.06em] rounded-sm glow-c hover:brightness-110 active:scale-95 transition-all rpl">GARANTIR MINHA VAGA →</button>
+    <div class="font-mono text-[9px] text-aoghost tracking-[.18em] mt-4">🔒 GARANTIA 7 DIAS · PAGAMENTO SEGURO · ACESSO IMEDIATO</div>
   </div>
-  <div class="fcta-trust" style="margin-top:16px">🔒 GARANTIA 7 DIAS &nbsp;·&nbsp; ✓ PAGAMENTO SEGURO &nbsp;·&nbsp; ✓ ACESSO IMEDIATO</div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="ft-logo"><img src="https://drive.google.com/uc?export=view&id=1mSk3pEUBeXZyiopbguqd5qobI4la41-4" alt="FIM DAS OPÇÕES BINÁRIAS" style="height:28px;width:auto;object-fit:contain" onerror="this.parentElement.textContent='JR TRADER'"></div>
-  <div class="ft-links"><a href="#faq">FAQ</a><a href="mailto:contato@jovemrico.com">Suporte</a><a href="#faq">Termos</a></div>
-  <div class="ft-c">© 2026 JR Trader · Evento independente</div>
+<footer class="bg-aobg2 border-t border-aoghost/10 py-8 px-5 md:pb-8 pb-20 flex flex-wrap justify-between items-center gap-4 relative z-10">
+  <div class="font-hl text-lg tracking-[.06em]">JR <span class="text-aopc">ORÁCULO</span></div>
+  <div class="flex gap-5"><a href="#faq" class="font-mono text-[9px] text-aoghost tracking-[.14em] hover:text-aomuted transition-colors">FAQ</a><a href="mailto:contato@jovemrico.com" class="font-mono text-[9px] text-aoghost tracking-[.14em] hover:text-aomuted transition-colors">SUPORTE</a></div>
+  <div class="font-mono text-[9px] text-aoghost/50 tracking-[.08em]">© 2026 JR TRADER · EVENTO · 22 ABRIL 2026</div>
 </footer>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-aobg2 border-t border-aoghost/15 shadow-[0_-4px_20px_rgba(0,0,0,.5)]" style="min-height:56px;padding-bottom:env(safe-area-inset-bottom,0px)">
+  <button onclick="scrollTo('atos')" class="flex flex-col items-center text-aoghost hover:text-aopc transition-colors"><span class="mat-icon text-xl">event</span><span class="font-mono text-[8px] mt-0.5">Atos</span></button>
+  <button onclick="scrollTo('apresentador')" class="flex flex-col items-center text-aoghost hover:text-aopc transition-colors"><span class="mat-icon text-xl">person</span><span class="font-mono text-[8px] mt-0.5">André</span></button>
+  <button onclick="scrollTo('lotes')" class="flex flex-col items-center text-aopc"><span class="mat-icon text-xl">confirmation_number</span><span class="font-mono text-[8px] mt-0.5">Ingressos</span></button>
+  <button onclick="scrollTo('faq')" class="flex flex-col items-center text-aoghost hover:text-aopc transition-colors"><span class="mat-icon text-xl">help</span><span class="font-mono text-[8px] mt-0.5">FAQ</span></button>
+</nav>
 
 <script>
 // CURSOR
-const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+const _c=document.getElementById('cur'),_c2=document.getElementById('cur2');
 let mx=0,my=0,cx=0,cy=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-setInterval(()=>{cx+=(mx-cx)*.15;cy+=(my-cy)*.15;cur2.style.left=cx+'px';cur2.style.top=cy+'px';},16);
-
-// COUNTDOWN → 15/04/2026 21:00 BRT (UTC-3)
-const TARGET = new Date('2026-04-15T21:00:00-03:00');
-function updateCD(){
-  const diff = TARGET - new Date();
-  if(diff<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return;}
-  const p=n=>String(Math.floor(n)).padStart(2,'0');
-  document.getElementById('cd-d').textContent=p(diff/864e5);
-  document.getElementById('cd-h').textContent=p((diff%864e5)/36e5);
-  document.getElementById('cd-m').textContent=p((diff%36e5)/6e4);
-  document.getElementById('cd-s').textContent=p((diff%6e4)/1e3);
+if(window.matchMedia('(hover:hover)').matches){
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;_c.style.left=mx+'px';_c.style.top=my+'px';});
+  setInterval(()=>{cx+=(mx-cx)*.15;cy+=(my-cy)*.15;_c2.style.left=cx+'px';_c2.style.top=cy+'px';},16);
 }
-updateCD();setInterval(updateCD,1000);
 
-// SCROLL REVEAL ACTS
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){
-      setTimeout(()=>e.target.classList.add('visible'), e.target.dataset.delay||0);
-    }
-  });
-},{threshold:.15});
-document.querySelectorAll('.act').forEach((el,i)=>{el.dataset.delay=i*100;obs.observe(el);});
+// SCROLL
+function scrollTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
 
-// GENERIC REVEAL
-const obs2 = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.style.animation='fadeUp .6s ease both';
-      e.target.style.opacity='1';
-    }
-  });
-},{threshold:.1});
-document.querySelectorAll('.tier,.sobre-photo,.sobre-text,.ot-agent,.stat').forEach(el=>{
-  el.style.opacity='0';obs2.observe(el);
-});
+// COUNTDOWN
+const TGT=new Date('2026-04-22T21:00:00-03:00');
+function upCD(){
+  const d=TGT-new Date();
+  if(d<=0){['cd-d','cd-h','cd-m','cd-sec'].forEach(i=>document.getElementById(i).textContent='00');return;}
+  const p=n=>String(Math.floor(n)).padStart(2,'0');
+  document.getElementById('cd-d').textContent=p(d/864e5);
+  document.getElementById('cd-h').textContent=p((d%864e5)/36e5);
+  document.getElementById('cd-m').textContent=p((d%36e5)/6e4);
+  document.getElementById('cd-sec').textContent=p((d%6e4)/1e3);
+}
+upCD();setInterval(upCD,1000);
+
+// VAGAS
+const V2=12,VV=20;
+document.getElementById('vagas2').textContent=V2;
+document.getElementById('vagasVip').textContent=VV;
+document.getElementById('xp-vagas').textContent=V2;
+const pct2=Math.round((1-V2/50)*100);
+document.getElementById('bar-pct2').textContent=pct2+'%';
+document.getElementById('bar2').style.setProperty('--w',pct2+'%');
+
+// SCROLL REVEAL
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08});
+document.querySelectorAll('.ru').forEach(el=>ro.observe(el));
 
 // FAQ
-function tFaq(el){
-  const it=el.closest('.faq-item');
-  document.querySelectorAll('.faq-item.open').forEach(i=>{if(i!==it)i.classList.remove('open');});
-  it.classList.toggle('open');
-}
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.closest('.faq-item'),open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight='0';
+      const ic=i.querySelector('.faq-ico');if(ic)ic.style.transform='';
+    });
+    if(!open){
+      item.classList.add('open');
+      const a=item.querySelector('.faq-a');a.style.maxHeight=a.scrollHeight+'px';
+      const ic=btn.querySelector('.faq-ico');if(ic)ic.style.transform='rotate(45deg)';
+    }
+  });
+});
+
+// RIPPLE on all buttons
+document.querySelectorAll('.rpl,button').forEach(b=>{
+  if(b.classList.contains('_rpl'))return;b.classList.add('_rpl');
+  b.style.position='relative';b.style.overflow='hidden';
+  b.addEventListener('click',e=>{
+    const r=document.createElement('span'),rc=b.getBoundingClientRect();
+    r.style.cssText=`position:absolute;width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.18);animation:ripple .5s linear;left:${e.clientX-rc.left-10}px;top:${e.clientY-rc.top-10}px;pointer-events:none`;
+    b.appendChild(r);setTimeout(()=>r.remove(),500);
+  });
+});
 
 // BUY
 function handleBuy(btn,tier){
-  const r=document.createElement('span');
-  const rect=btn.getBoundingClientRect();
-  r.className='rpl';r.style.cssText=`width:20px;height:20px;left:${50}%;top:50%;margin:-10px 0 0 -10px;border-radius:50%;position:absolute`;
-  btn.appendChild(r);setTimeout(()=>r.remove(),500);
-  // Replace # with Cakto URLs
-  const urls={plus:'#',vip:'#'};
-  const dest=urls[tier];
-  if(dest&&dest!=='#'){window.location.href=dest;}
-  else{showToast('Link disponível na live · 15/04 às 21h 🔒');}
+  const urls={duplo:'https://pay.cakto.com.br/36e62hm_839322',vip:'https://pay.cakto.com.br/i8ffwh9'};
+  const d=urls[tier];
+  if(d&&d!=='#'){window.location.href=d;}else{showToast('Links disponíveis durante a live · 22/04 às 21h 🔒');}
 }
 
 function showToast(msg){
   const t=document.createElement('div');
   t.textContent=msg;
-  t.style.cssText='position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:rgba(5,6,15,.97);border:1px solid rgba(29,111,255,.3);color:#EEF0FF;padding:12px 24px;border-radius:4px;font-size:12px;font-family:Barlow,sans-serif;z-index:999;animation:fadeUp .3s ease;white-space:nowrap;pointer-events:none;letter-spacing:.04em';
+  t.style.cssText='position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(11,14,25,.97);border:1px solid rgba(0,224,255,.25);color:#e0e1f3;padding:10px 22px;border-radius:2px;font-size:11px;font-family:Share Tech Mono,monospace;z-index:999;white-space:nowrap;pointer-events:none;letter-spacing:.04em';
   document.body.appendChild(t);setTimeout(()=>t.remove(),3500);
 }
 
 // EXIT POPUP
-let shown=false;
-document.addEventListener('mouseleave',e=>{if(e.clientY<=0&&!shown){shown=true;document.getElementById('xpop').classList.add('show');}});
-setTimeout(()=>{if(!shown){shown=true;document.getElementById('xpop').classList.add('show');}},60000);
-function closeXP(){document.getElementById('xpop').classList.remove('show');}
-
-// RIPPLE on all main buttons
-document.querySelectorAll('.btn-main,.btn-ghost,.nav-btn').forEach(b=>{
-  b.addEventListener('click',e=>{
-    const r=document.createElement('span');
-    const rc=b.getBoundingClientRect();
-    r.className='rpl';
-    r.style.cssText=`width:20px;height:20px;left:${e.clientX-rc.left-10}px;top:${e.clientY-rc.top-10}px;border-radius:50%;position:absolute;background:rgba(255,255,255,.15);animation:ripple .5s linear;pointer-events:none`;
-    b.appendChild(r);setTimeout(()=>r.remove(),500);
-  });
-});
+let _shown=false;
+document.addEventListener('mouseleave',e=>{if(e.clientY<=0&&!_shown){_shown=true;document.getElementById('xpop').style.display='flex';}});
+setTimeout(()=>{if(!_shown){_shown=true;document.getElementById('xpop').style.display='flex';}},60000);
+function closeXP(){document.getElementById('xpop').style.display='none';}
 </script>
 </body>
 </html>

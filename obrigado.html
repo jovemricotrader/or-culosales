@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Acesso Confirmado — JR Trader</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#01020A;--bg2:#03040E;--bg3:#060814;
+  --b:rgba(255,255,255,.06);--b2:rgba(255,255,255,.1);
+  --t:#EEF0FF;--t2:#7078A0;--t3:#32385A;
+  --blue:#1B6FFF;--blue2:#09AAFF;--cyan:#00E0FF;
+  --gold:#F2A61A;--gr:#00D485;
+  --disp:'Bebas Neue',sans-serif;
+  --cond:'Barlow Condensed',sans-serif;
+  --body:'Barlow',sans-serif;
+  --mono:'Share Tech Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t);font-family:var(--body);min-height:100vh;cursor:none;overflow-x:hidden}
+#cur{position:fixed;width:5px;height:5px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen}
+#cur2{position:fixed;width:22px;height:22px;border:1px solid rgba(0,224,255,.2);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s,top .12s}
+@media(hover:none){#cur,#cur2{display:none}body{cursor:auto}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.15}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes bPulse{0%,100%{border-color:rgba(0,224,255,.15)}50%{border-color:rgba(0,224,255,.5)}}
+@keyframes countIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0% 0 0)}}
+@keyframes tick{0%{transform:scale(0) rotate(-10deg);opacity:0}60%{transform:scale(1.2) rotate(2deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes scanH{from{transform:translateY(-100vh)}to{transform:translateY(100vh)}}
+.scanline{position:fixed;top:0;left:0;right:0;height:90px;background:linear-gradient(to bottom,transparent,rgba(0,224,255,.01),transparent);animation:scanH 7s linear infinite;pointer-events:none;z-index:1}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+
+/* HERO */
+.pg{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;text-align:center;position:relative;overflow:hidden}
+.pg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(27,111,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(27,111,255,.03) 1px,transparent 1px);background-size:52px 52px}
+.pg-vig{position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%,transparent 20%,var(--bg) 100%)}
+.pg-glow{position:absolute;width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-60%);background:radial-gradient(ellipse,rgba(0,212,133,.06) 0%,transparent 65%);pointer-events:none}
+.inner{position:relative;z-index:2;max-width:640px;margin:0 auto}
+
+/* CHECK */
+.check-circle{width:80px;height:80px;border-radius:50%;background:rgba(0,212,133,.1);border:2px solid rgba(0,212,133,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;animation:tick .6s cubic-bezier(.34,1.56,.64,1) .3s both}
+.check-svg{width:36px;height:36px;stroke:var(--gr);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.pg-tag{font-family:var(--mono);font-size:9px;letter-spacing:.45em;color:var(--gr);margin-bottom:14px;animation:fadeUp .5s ease .5s both;opacity:0}
+.pg-title{font-family:var(--disp);font-size:clamp(44px,8vw,88px);line-height:.9;margin-bottom:14px;animation:fadeUp .5s ease .6s both;opacity:0}
+.pg-title .acc{color:var(--gr)}
+.pg-tier{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--b2);border-radius:3px;padding:6px 16px;margin-bottom:28px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;animation:fadeUp .5s ease .7s both;opacity:0}
+.pg-tier .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.pg-sub{font-family:var(--cond);font-size:18px;font-weight:300;color:var(--t2);letter-spacing:.04em;line-height:1.7;max-width:480px;margin:0 auto 40px;animation:fadeUp .5s ease .8s both;opacity:0}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:36px;animation:fadeUp .5s ease .9s both;opacity:0}
+.card{background:var(--bg3);border:1px solid var(--b2);border-radius:5px;padding:20px;text-align:left;transition:border-color .2s}
+.card:hover{border-color:rgba(27,111,255,.3)}
+.card-ico{font-size:24px;margin-bottom:10px}
+.card-title{font-family:var(--cond);font-size:16px;font-weight:700;margin-bottom:6px;letter-spacing:.02em}
+.card-body{font-size:12px;color:var(--t2);line-height:1.7}
+
+/* DUPLO CARD */
+.duplo-card{background:rgba(0,224,255,.04);border:1px solid rgba(0,224,255,.2);border-radius:5px;padding:20px 24px;margin-bottom:28px;text-align:left;animation:fadeUp .5s ease .95s both;opacity:0;animation:bPulse 3s ease infinite}
+.dc-title{font-family:var(--cond);font-size:16px;font-weight:700;color:var(--cyan);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.dc-body{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:14px}
+.dc-link{font-family:var(--mono);font-size:10px;letter-spacing:.12em;background:rgba(0,224,255,.07);border:1px solid rgba(0,224,255,.2);border-radius:3px;padding:10px 14px;word-break:break-all;color:var(--cyan);display:flex;align-items:center;gap:8px;justify-content:space-between}
+.dc-copy{background:none;border:none;color:var(--cyan);cursor:pointer;font-family:var(--mono);font-size:9px;letter-spacing:.1em;white-space:nowrap;flex-shrink:0;transition:color .2s}
+.dc-copy:hover{color:var(--t)}
+
+/* VIP CARD */
+.vip-card{background:rgba(242,166,26,.04);border:1px solid rgba(242,166,26,.2);border-radius:5px;padding:20px 24px;margin-bottom:28px;text-align:left;animation:fadeUp .5s ease .95s both;opacity:0}
+.vc-title{font-family:var(--cond);font-size:16px;font-weight:700;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.vc-body{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:14px}
+.btn-manual{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:rgba(242,166,26,.1);border:1px solid rgba(242,166,26,.3);border-radius:3px;font-family:var(--cond);font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--gold);cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-manual:hover{background:rgba(242,166,26,.18)}
+
+/* WA BUTTON */
+.wa-section{animation:fadeUp .5s ease 1s both;opacity:0}
+.wa-label{font-family:var(--mono);font-size:9px;letter-spacing:.4em;color:var(--t3);margin-bottom:12px}
+.btn-wa{display:inline-flex;align-items:center;gap:12px;padding:16px 40px;background:linear-gradient(135deg,#25D366,#128C7E);border:none;border-radius:4px;font-family:var(--disp);font-size:22px;letter-spacing:.05em;color:#fff;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.btn-wa:hover{box-shadow:0 6px 28px rgba(37,211,102,.4);transform:translateY(-2px)}
+.btn-wa svg{width:24px;height:24px;fill:#fff;flex-shrink:0}
+.wa-note{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.15em;margin-top:10px}
+
+/* DATE */
+.date-badge{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--b);border-radius:3px;padding:12px 24px;margin-top:28px;font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.2em;animation:fadeUp .5s ease 1.1s both;opacity:0}
+.date-badge span{color:var(--t2)}
+
+/* DEVTOOLS BLOCKER */
+.devblock{display:none;position:fixed;inset:0;background:var(--bg);z-index:9990;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+.devblock p{font-family:var(--mono);font-size:12px;color:var(--t3);letter-spacing:.2em}
+
+@media(max-width:600px){.cards{grid-template-columns:1fr}.btn-wa{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+<!-- DEVTOOLS BLOCKER -->
+<div id="devblock" class="devblock">
+  <div style="font-size:48px">🔒</div>
+  <p>ACESSO RESTRITO</p>
+  <p style="font-size:9px;opacity:.5">FERRAMENTAS DE DESENVOLVIMENTO DETECTADAS</p>
+</div>
+
+<div id="cur"></div><div id="cur2"></div>
+<div class="scanline"></div>
+
+<div class="pg" id="main-page">
+  <div class="pg-grid"></div>
+  <div class="pg-vig"></div>
+  <div class="pg-glow"></div>
+  <div class="inner" id="content">
+
+    <div class="check-circle">
+      <svg class="check-svg" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+
+    <div class="pg-tag" id="tier-tag">ACESSO CONFIRMADO</div>
+    <h1 class="pg-title">VOCÊ ESTÁ<br><span class="acc">DENTRO.</span></h1>
+    <div class="pg-tier" id="tier-badge">
+      <span class="dot" id="tier-dot"></span>
+      <span id="tier-name">CARREGANDO...</span>
+    </div>
+    <p class="pg-sub" id="pg-sub-text">Seu ingresso foi confirmado. Siga os passos abaixo para garantir seu acesso completo ao evento.</p>
+
+    <!-- DUPLO — amigo link (só aparece se tier=duplo) -->
+    <div class="duplo-card" id="duplo-section" style="display:none">
+      <div class="dc-title">👥 SEU LINK DO AMIGO</div>
+      <div class="dc-body">Você comprou o ingresso Duplo — você + 1 amigo. Copie o link abaixo e manda pro seu amigo. Cada link é único e funciona só uma vez.</div>
+      <div class="dc-link">
+        <span id="amigo-link" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Carregando link...</span>
+        <button class="dc-copy" onclick="copyAmigoLink()">COPIAR</button>
+      </div>
+    </div>
+
+    <!-- VIP — material exclusivo (só aparece se tier=vip) -->
+    <div class="vip-card" id="vip-section" style="display:none">
+      <div class="vc-title">⭐ SEU MATERIAL VIP</div>
+      <div class="vc-body">Como VIP, você recebe o <strong style="color:var(--t)">Manual JR de Volume e Fluxo</strong> — material exclusivo e animado com toda a metodologia que será ensinada na live. Estude antes para aproveitar ao máximo.</div>
+      <a href="/manual-jr?t=__TOKEN__" class="btn-manual" id="manual-btn">
+        <span>📖</span> ACESSAR O MANUAL JR
+      </a>
+    </div>
+
+    <!-- CARDS INFO -->
+    <div class="cards" id="info-cards">
+      <div class="card">
+        <div class="card-ico">📅</div>
+        <div class="card-title">Data do evento</div>
+        <div class="card-body"><strong style="color:var(--t)">15 de Abril de 2026</strong><br>21h · Horário de Brasília<br>YouTube @JovemRicoTrader</div>
+      </div>
+      <div class="card">
+        <div class="card-ico">🔔</div>
+        <div class="card-title">Não perca a live</div>
+        <div class="card-body">Ative o <strong style="color:var(--t)">sininho</strong> no YouTube e entre no grupo pelo botão abaixo para receber o lembrete.</div>
+      </div>
+    </div>
+
+    <!-- WHATSAPP -->
+    <div class="wa-section">
+      <div class="wa-label">PASSO 1 — ENTRE NO GRUPO</div>
+      <button class="btn-wa" id="btn-wa" onclick="openWA()">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        ENTRAR NO GRUPO
+      </button>
+      <div class="wa-note" id="wa-loading">Carregando link...</div>
+    </div>
+
+    <div class="date-badge">
+      <span>📍</span>
+      <span>15 ABRIL · <span>21H BRASÍLIA</span> · YOUTUBE</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- BLOCKED PAGE (fallback) -->
+<div id="blocked-page" style="display:none;position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px">
+  <div style="font-size:56px;margin-bottom:16px">🔒</div>
+  <div style="font-family:var(--disp);font-size:36px;margin-bottom:10px">ACESSO INVÁLIDO</div>
+  <div style="font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.2em;margin-bottom:24px">LINK EXPIRADO OU JÁ UTILIZADO</div>
+  <a href="/" style="font-family:var(--disp);font-size:18px;color:var(--blue2);letter-spacing:.06em;text-decoration:none;border:1px solid rgba(27,111,255,.3);padding:10px 24px;border-radius:3px">← VOLTAR</a>
+</div>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+let mx=0,my=0,cx=0,cy=0;
+if(window.matchMedia('(hover:hover)').matches){
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  setInterval(()=>{cx+=(mx-cx)*.15;cy+=(my-cy)*.15;cur2.style.left=cx+'px';cur2.style.top=cy+'px';},16);
+}
+
+// TOKEN — injected by server
+const _tk = '__TOKEN__';
+const _tier = '__TIER__';
+
+// Setup page based on tier
+function setupPage(tier) {
+  const tierBadge = document.getElementById('tier-badge');
+  const tierName  = document.getElementById('tier-name');
+  const tierDot   = document.getElementById('tier-dot');
+  const subText   = document.getElementById('pg-sub-text');
+
+  const cfg = {
+    vip:   { label: 'INGRESSO VIP', color: '#F2A61A', msg: 'Você garantiu o VIP. Acesse seu material exclusivo abaixo e entre no grupo VIP.' },
+    duplo: { label: 'INGRESSO DUPLO', color: '#00E0FF', msg: 'Você comprou para você e um amigo. Copie o link do amigo abaixo e entre no grupo.' },
+    basic: { label: 'INGRESSO CONFIRMADO', color: '#00D485', msg: 'Seu ingresso está confirmado. Entre no grupo pelo botão abaixo para não perder nenhum aviso.' },
+  };
+  const c = cfg[tier] || cfg.basic;
+  if(tierName) tierName.textContent = c.label;
+  if(tierDot)  tierDot.style.background = c.color;
+  if(subText)  subText.textContent = c.msg;
+
+  if(tier === 'vip') {
+    document.getElementById('vip-section').style.display = 'block';
+  }
+  if(tier === 'duplo') {
+    document.getElementById('duplo-section').style.display = 'block';
+    // Generate amigo link — would come from server in real impl
+    const amigoLink = document.getElementById('amigo-link');
+    if(amigoLink) amigoLink.textContent = 'Gerando link... aguarde';
+    // Fetch amigo token from server
+    fetch('/api/amigo-token?t='+encodeURIComponent(_tk))
+      .then(r=>r.json())
+      .then(d=>{
+        if(d.ok&&d.url) amigoLink.textContent = window.location.origin + d.url;
+        else amigoLink.textContent = 'Disponível em breve';
+      }).catch(()=>{ amigoLink.textContent = 'Disponível em breve'; });
+  }
+}
+
+// Load WA link from server
+async function loadWA() {
+  const note = document.getElementById('wa-loading');
+  try {
+    const r = await fetch('/api/wa-link?t='+encodeURIComponent(_tk));
+    const d = await r.json();
+    if(d.ok && d.link) {
+      window._waLink = d.link;
+      if(note) note.style.display = 'none';
+    } else {
+      if(note) note.textContent = 'Link do grupo em breve';
+    }
+  } catch(e) {
+    if(note) note.textContent = 'Link disponível em breve';
+  }
+}
+
+function openWA() {
+  if(window._waLink && window._waLink !== '#') {
+    window.open(window._waLink, '_blank', 'noopener,noreferrer');
+  } else {
+    showToast('Link do grupo sendo liberado — verifique o email cadastrado');
+  }
+}
+
+function copyAmigoLink() {
+  const el = document.getElementById('amigo-link');
+  if(!el) return;
+  const txt = el.textContent;
+  navigator.clipboard.writeText(txt).then(()=>{
+    showToast('Link copiado! Manda pro seu amigo.');
+  }).catch(()=>{
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    showToast('Link copiado!');
+  });
+}
+
+function showToast(msg) {
+  const t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(3,4,14,.97);border:1px solid rgba(27,111,255,.3);color:#EEF0FF;padding:11px 22px;border-radius:3px;font-size:12px;font-family:Barlow,sans-serif;z-index:999;animation:fadeUp .3s ease;white-space:nowrap;pointer-events:none;letter-spacing:.04em';
+  document.body.appendChild(t); setTimeout(()=>t.remove(),3000);
+}
+
+// ANTI-COPY / ANTI-SHARE
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('dragstart',   e => e.preventDefault());
+document.addEventListener('copy',        e => e.preventDefault());
+
+// Disable common keyboard shortcuts for inspect/save/select
+document.addEventListener('keydown', e => {
+  const k = e.key.toLowerCase();
+  if ((e.ctrlKey||e.metaKey) && (k==='u'||k==='s'||k==='a'||k==='c'||k==='p')) {
+    e.preventDefault(); return false;
+  }
+  if (e.key === 'F12') { e.preventDefault(); return false; }
+});
+
+// ANTI-DEVTOOLS (basic)
+let devOpen = false;
+function detectDevTools() {
+  const threshold = 160;
+  const widthGap  = window.outerWidth  - window.innerWidth  > threshold;
+  const heightGap = window.outerHeight - window.innerHeight > threshold;
+  if ((widthGap || heightGap) && !devOpen) {
+    devOpen = true;
+    document.getElementById('devblock').style.display = 'flex';
+    document.getElementById('main-page').style.visibility = 'hidden';
+  } else if (!widthGap && !heightGap && devOpen) {
+    devOpen = false;
+    document.getElementById('devblock').style.display = 'none';
+    document.getElementById('main-page').style.visibility = 'visible';
+  }
+}
+setInterval(detectDevTools, 1000);
+
+// Init
+// Server substitui __TOKEN__ e __TIER__ — se ainda tiver esses valores, acesso direto sem token
+const _raw_check = ['_','_','T','O','K','E','N','_','_'].join('');
+if (_tk && _tk !== _raw_check && _tier && _tier !== ['_','_','T','I','E','R','_','_'].join('')) {
+  setupPage(_tier);
+  loadWA();
+} else {
+  // Token not injected — might be direct URL access
+  document.getElementById('main-page').style.display = 'none';
+  document.getElementById('blocked-page').style.display = 'flex';
+}
+</script>
+</body>
+</html>

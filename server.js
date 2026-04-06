@@ -1,11 +1,359 @@
-const http=require('http'),fs=require('fs'),path=require('path');
-const PORT=process.env.PORT||3000;
-http.createServer((req,res)=>{
-  res.setHeader('X-Frame-Options','SAMEORIGIN');
-  res.setHeader('X-Content-Type-Options','nosniff');
-  fs.readFile(path.join(__dirname,'fim-das-opcoes.html'),(err,data)=>{
-    if(err){res.writeHead(404);res.end('Not found');return;}
-    res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});
+const http  = require('http');
+const fs    = require('fs');
+const path  = require('path');
+const https = require('https');
+const crypto = require('crypto');
+
+const PORT     = process.env.PORT     || 3000;
+const RESEND_KEY  = process.env.RESEND_API_KEY     || 're_athkVvum_BmRSNDFkQyYcjAydedvZj8MM';
+const FROM_EMAIL  = process.env.FROM_EMAIL          || 'contato@jovemrico.com';
+const SITE_URL    = process.env.SITE_URL            || 'https://fim.jovemrico.com';
+const SB_HOST = process.env.SUPABASE_HOST || 'xotatkushgbjivrqkufv.supabase.co';
+const SB_KEY  = process.env.SUPABASE_SERVICE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvdGF0a3VzaGdiaml2cnFrdWZ2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NTA4NTY3OCwiZXhwIjoyMDkwNjYxNjc4fQ.aYMxEJCI-2gzknvJSqdcqeWfWPu3gaqo9z8VsWnk7Us';
+const WA_LINK  = process.env.WA_LINK  || 'https://devzapp.com.br/api-engennier/campanha/api/redirect/67afa5e33a35eb00016e97ff'; // WhatsApp group link — set in Railway env
+const WA_LINK_VIP = process.env.WA_LINK_VIP || 'https://devzapp.com.br/api-engennier/campanha/api/redirect/67afa5e33a35eb00016e97ff'; // VIP group link
+const HMAC_SECRET = process.env.HMAC_SECRET || crypto.randomBytes(32).toString('hex');
+const CAKTO_SECRET = process.env.CAKTO_CLIENT_SECRET || '';
+
+
+// ── SUPABASE PERSISTENCE ──
+function sbQ(p){return new Promise(res=>{const o={hostname:SB_HOST,path:'/rest/v1/'+p,method:'GET',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'}};const r=https.request(o,s=>{let d='';s.on('data',c=>d+=c);s.on('end',()=>{try{res(JSON.parse(d))}catch{res([])}})});r.on('error',()=>res([]));r.end();})}
+function sbI(t,row){return new Promise(res=>{const p=JSON.stringify(row);const o={hostname:SB_HOST,path:'/rest/v1/'+t,method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates','Content-Length':Buffer.byteLength(p)}};const r=https.request(o,s=>{s.on('data',()=>{});s.on('end',()=>res(true))});r.on('error',()=>res(false));r.write(p);r.end();})}
+async function genTokenSB(tier,email){const token=crypto.randomBytes(24).toString('hex');const exp=new Date(Date.now()+48*3600*1000).toISOString();sbI('event_tokens',{token,tier,email:email||'',event:'fim_ob_2026',expires_at:exp});TOKENS.set(token,{tier,email:email||'',expiresAt:Date.now()+48*3600*1000});return token;}
+async function validateTokenSB(token){if(!token||token.length<10)return null;const m=TOKENS.get(token);if(m&&Date.now()<m.expiresAt)return m;try{const rows=await sbQ('event_tokens?token=eq.'+encodeURIComponent(token)+'&select=tier,email,expires_at');if(!Array.isArray(rows)||!rows[0])return null;if(new Date(rows[0].expires_at)<new Date())return null;const t={tier:rows[0].tier,email:rows[0].email||'',expiresAt:new Date(rows[0].expires_at).getTime()};TOKENS.set(token,t);return t;}catch{return null;}}
+
+
+// ── RESEND EMAIL ──
+async function sendEmail({ to, subject, html }) {
+  if (!to || !RESEND_KEY) return;
+  try {
+    const payload = JSON.stringify({ from: FROM_EMAIL, to: [to], subject, html });
+    const opts = {
+      hostname: 'api.resend.com', path: '/emails', method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + RESEND_KEY,
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(payload)
+      }
+    };
+    await new Promise((resolve) => {
+      const r = https.request(opts, res => {
+        let d = ''; res.on('data', c => d += c);
+        res.on('end', () => { console.log('[EMAIL]', res.statusCode); resolve(); });
+      });
+      r.on('error', e => { console.error('[EMAIL ERROR]', e.message); resolve(); });
+      r.write(payload); r.end();
+    });
+  } catch(e) { console.error('[EMAIL]', e.message); }
+}
+
+function emailEventoHtml(token, tier, amigoUrl) {
+  const isDuplo = tier === 'duplo';
+  const isVip   = tier === 'vip';
+  const label   = isVip ? 'VIP' : isDuplo ? 'DUPLO' : 'INGRESSO';
+  const acesso  = SITE_URL + '/obrigado?t=' + token;
+  const amigoBlock = isDuplo && amigoUrl
+    ? '<tr><td style="padding:16px 0"><div style="background:rgba(0,224,255,.04);border:1px solid rgba(0,224,255,.15);padding:20px;text-align:center"><div style="font-size:11px;letter-spacing:.2em;color:#00e0ff;margin-bottom:8px">LINK DO SEU AMIGO</div><div style="font-size:11px;color:#7078a0;margin-bottom:12px">Você comprou o ingresso Duplo — manda para seu amigo:</div><div style="background:#10131f;border:1px solid rgba(0,224,255,.15);padding:10px;font-size:11px;color:#00e0ff;word-break:break-all">' + amigoUrl + '</div></div></td></tr>'
+    : '';
+  return '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Ingresso Confirmado</title></head>'
+    + '<body style="margin:0;padding:0;background:#10131f;font-family:Arial,sans-serif;color:#e0e1f3">'
+    + '<table width="100%" cellpadding="0" cellspacing="0" style="background:#10131f;padding:40px 20px"><tr><td align="center">'
+    + '<table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%">'
+    + '<tr><td style="padding:0 0 24px 0;text-align:center">'
+    + '<div style="font-size:11px;letter-spacing:.4em;color:#42f09e;text-transform:uppercase;margin-bottom:8px">ACESSO CONFIRMADO</div>'
+    + '<div style="font-size:28px;font-weight:900;color:#baf2ff">JR ORÁCULO</div>'
+    + '<div style="font-size:11px;letter-spacing:.2em;color:#3b494c;margin-top:4px">FIM DAS OPÇÕES BINÁRIAS · 22 ABRIL · 21H</div>'
+    + '</td></tr>'
+    + '<tr><td style="padding:0 0 20px 0;text-align:center">'
+    + '<div style="display:inline-block;background:rgba(0,224,255,.08);border:1px solid rgba(0,224,255,.2);padding:8px 20px;font-size:11px;letter-spacing:.2em;color:#00e0ff">INGRESSO ' + label + '</div>'
+    + '</td></tr>'
+    + '<tr><td style="background:#1c1f2b;border:1px solid rgba(0,224,255,.1);padding:32px;text-align:center">'
+    + '<div style="font-size:13px;color:#7078a0;margin-bottom:20px;line-height:1.7">Seu ingresso está confirmado. Clica no botão abaixo para acessar o grupo e garantir seu lugar na live.</div>'
+    + '<a href="' + acesso + '" style="display:inline-block;background:#00e0ff;color:#10131f;font-weight:900;font-size:15px;letter-spacing:.06em;text-decoration:none;padding:14px 36px;text-transform:uppercase">ACESSAR MEU INGRESSO</a>'
+    + '<div style="margin-top:12px;font-size:10px;color:#3b494c">' + acesso + '</div>'
+    + '</td></tr>'
+    + amigoBlock
+    + '<tr><td style="padding:24px 0 0 0;text-align:center;border-top:1px solid rgba(255,255,255,.05)">'
+    + '<div style="font-size:10px;color:#3b494c;letter-spacing:.1em;line-height:1.8">@JovemRicoTrader · JR ORÁCULO<br>Este email foi enviado porque você realizou uma compra.</div>'
+    + '</td></tr>'
+    + '</table></td></tr></table></body></html>';
+}
+
+function emailOraculoHtml(licenseKey) {
+  return '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Sua Licença JR ORÁCULO</title></head>'
+    + '<body style="margin:0;padding:0;background:#10131f;font-family:Arial,sans-serif;color:#e0e1f3">'
+    + '<table width="100%" cellpadding="0" cellspacing="0" style="background:#10131f;padding:40px 20px"><tr><td align="center">'
+    + '<table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%">'
+    + '<tr><td style="padding:0 0 24px 0;text-align:center">'
+    + '<div style="font-size:11px;letter-spacing:.4em;color:#42f09e;text-transform:uppercase;margin-bottom:8px">LICENÇA ATIVA</div>'
+    + '<div style="font-size:28px;font-weight:900;color:#baf2ff">JR ORÁCULO</div>'
+    + '<div style="font-size:11px;letter-spacing:.2em;color:#3b494c;margin-top:4px">CLONE DA MENTE DO JR TRADER</div>'
+    + '</td></tr>'
+    + '<tr><td style="background:#1c1f2b;border:1px solid rgba(0,224,255,.15);padding:32px;text-align:center">'
+    + '<div style="font-size:12px;color:#7078a0;margin-bottom:16px">Sua chave de licença individual:</div>'
+    + '<div style="background:#10131f;border:1px solid rgba(0,224,255,.3);padding:14px 20px;font-size:14px;font-family:monospace;color:#00e0ff;letter-spacing:.08em;word-break:break-all">' + licenseKey + '</div>'
+    + '<div style="margin-top:16px;font-size:11px;color:#3b494c;line-height:1.7">Cole essa chave na extensão JR ORÁCULO após instalá-la no Chrome.<br>Ela é única e intransferível — guarde com segurança.</div>'
+    + '</td></tr>'
+    + '<tr><td style="padding:24px 0 0 0;text-align:center;border-top:1px solid rgba(255,255,255,.05)">'
+    + '<div style="font-size:10px;color:#3b494c;letter-spacing:.1em">@JovemRicoTrader · JR ORÁCULO</div>'
+    + '</td></tr>'
+    + '</table></td></tr></table></body></html>';
+}
+
+
+// ── TOKEN STORE (in-memory, 48h TTL) ──
+// token → { tier, email, used, createdAt, expiresAt }
+const TOKENS = new Map();
+const TOKEN_TTL = 48 * 60 * 60 * 1000; // 48h
+
+function genToken(tier, email) {
+  const token = crypto.randomBytes(24).toString('hex');
+  const now = Date.now();
+  TOKENS.set(token, {
+    tier,
+    email: email || '',
+    used: 0,
+    createdAt: now,
+    expiresAt: now + TOKEN_TTL,
+  });
+  return token;
+}
+
+function validateToken(token) {
+  if (!token || token.length < 10) return null;
+  const t = TOKENS.get(token);
+  if (!t) return null;
+  if (Date.now() > t.expiresAt) { TOKENS.delete(token); return null; }
+  return t;
+}
+
+// Cleanup expired tokens every 30min
+setInterval(() => {
+  const now = Date.now();
+  for (const [k, v] of TOKENS.entries()) {
+    if (now > v.expiresAt) TOKENS.delete(k);
+  }
+}, 30 * 60 * 1000);
+
+// ── HELPERS ──
+function readBody(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    const t = setTimeout(() => reject(new Error('timeout')), 10000);
+    req.on('data', c => { body += c; if (body.length > 1e6) { clearTimeout(t); reject(new Error('too large')); } });
+    req.on('end', () => { clearTimeout(t); resolve(body); });
+    req.on('error', e => { clearTimeout(t); reject(e); });
+  });
+}
+
+function json(res, data, status = 200) {
+  res.writeHead(status, { 'Content-Type': 'application/json', 'X-Content-Type-Options': 'nosniff' });
+  res.end(JSON.stringify(data));
+}
+
+function serveFile(res, filePath, ct) {
+  fs.readFile(filePath, (err, data) => {
+    if (err) { res.writeHead(404); res.end('Not found'); return; }
+    res.writeHead(200, { 'Content-Type': ct, 'Cache-Control': 'no-store' });
     res.end(data);
   });
-}).listen(PORT,()=>console.log('JR ORACULO SITE :'+PORT));
+}
+
+// ── CAKTO WEBHOOK ──
+// tier detection by product ID or price
+function detectProduct(body) {
+  const s = JSON.stringify(body).toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (s.includes('oraculo') || s.includes('oracle') || s.includes('extensao') || s.includes('extension')) return 'oraculo';
+  return 'evento';
+}
+
+async function genLicenseKey(email, tier) {
+  const licenseKey = crypto.randomUUID().toUpperCase();
+  const now = new Date().toISOString();
+  // Salva no Supabase oraculo_keys
+  await sbInsert('oraculo_keys', {
+    license_key: licenseKey,
+    email: email || '',
+    tier: tier || 'basic',
+    active: true,
+    daily_count: 0,
+    last_reset: now.slice(0,10),
+    created_at: now,
+  });
+  console.log(`[LICENSE] gerada: ${licenseKey.slice(0,8)}… email:${email}`);
+  if (email) {
+    sendEmail({
+      to: email,
+      subject: '🔑 Sua Licença JR ORÁCULO — Guarde com segurança',
+      html: emailOraculoHtml(licenseKey),
+    });
+  }
+  return licenseKey;
+}
+
+function detectTier(body) {
+  const s = JSON.stringify(body).toLowerCase();
+  if (s.includes('vip') || s.includes('47')) return 'vip';
+  if (s.includes('duplo') || s.includes('27')) return 'duplo';
+  return 'basic';
+}
+
+function verifyHmac(payload, signature) {
+  if (!CAKTO_SECRET || !signature) return true; // skip if not configured
+  const expected = crypto.createHmac('sha256', CAKTO_SECRET).update(payload).digest('hex');
+  try { return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature)); }
+  catch { return false; }
+}
+
+// ── SERVER ──
+http.createServer(async (req, res) => {
+  const url = req.url.split('?')[0];
+  const qs  = new URLSearchParams(req.url.includes('?') ? req.url.split('?')[1] : '');
+  const origin = req.headers.origin || '';
+
+  // Security headers on all responses
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'no-referrer');
+
+  // ── STATIC FILES ──
+  if (url === '/jr-foto.png') {
+    return serveFile(res, path.join(__dirname, 'jr-foto.png'), 'image/png');
+  }
+
+  // ── MAIN PAGE ──
+  if (url === '/' || url === '/fim-das-opcoes.html') {
+    return serveFile(res, path.join(__dirname, 'fim-das-opcoes.html'), 'text/html; charset=utf-8');
+  }
+
+  // ── OBRIGADO PAGE (token-gated) ──
+  if (url === '/obrigado') {
+    const token = qs.get('t') || qs.get('token') || '';
+    const data  = await validateTokenSB(token);
+
+    if (!data) {
+      // Invalid/expired token → redirect home
+      res.writeHead(302, { 'Location': '/?expired=1' });
+      res.end();
+      return;
+    }
+
+    // Read obrigado template and inject tier + anti-leak headers
+    fs.readFile(path.join(__dirname, 'obrigado.html'), (err, raw) => {
+      if (err) { res.writeHead(404); res.end('Not found'); return; }
+      // Inject tier and token into page via meta-tag replacement
+      let page = raw.toString()
+        .replace('__TIER__', data.tier)
+        .replaceAll('__TOKEN__', token)
+        .replaceAll('__TIER__', data.tier);
+
+      res.writeHead(200, {
+        'Content-Type': 'text/html; charset=utf-8',
+        'Cache-Control': 'no-store, no-cache, must-revalidate, private',
+        'Pragma': 'no-cache',
+        'X-Robots-Tag': 'noindex, nofollow',
+      });
+      res.end(page);
+    });
+    return;
+  }
+
+  // ── API: get WhatsApp link (only with valid token) ──
+  if (url === '/api/wa-link' && req.method === 'GET') {
+    const token = qs.get('t') || '';
+    const data  = await validateTokenSB(token);
+    if (!data) return json(res, { ok: false }, 401);
+    const link = data.tier === 'vip' ? WA_LINK_VIP : WA_LINK;
+    if (!link || link === '#') return json(res, { ok: false, msg: 'Link em breve' }, 200);
+    return json(res, { ok: true, link });
+  }
+
+  // ── API: generate test token (DEV ONLY — remove in prod) ──
+  if (url === '/api/dev-token' && process.env.NODE_ENV !== 'production') {
+    const tier  = qs.get('tier') || 'basic';
+    const token = genToken(tier, 'test@dev.com');
+    if (tier === 'duplo') {
+      const token2 = genToken('basic', 'friend@dev.com');
+      return json(res, { ok: true, token, token2, url: `/obrigado?t=${token}` });
+    }
+    return json(res, { ok: true, token, url: `/obrigado?t=${token}` });
+  }
+
+  // ── WEBHOOK: Cakto ──
+  if (url === '/webhook/cakto' && req.method === 'POST') {
+    try {
+      const rawBody = await readBody(req);
+      const sig = req.headers['x-cakto-signature'] || req.headers['x-signature'] || '';
+      if (!verifyHmac(rawBody, sig)) {
+        console.warn('[WEBHOOK] HMAC inválido');
+        res.writeHead(401); res.end('Unauthorized'); return;
+      }
+      const body = JSON.parse(rawBody);
+      const event = (body.event || body.type || '').toLowerCase();
+
+      if (event.includes('paid') || event.includes('approved') || event.includes('complet')) {
+        const email   = body.customer?.email || body.email || '';
+        const tier    = detectTier(body);
+        const product = detectProduct(body); // 'evento' ou 'oraculo'
+
+        // ── Produto: JR ORÁCULO (pago único — gera license key) ──
+        if (product === 'oraculo') {
+          const licKey = await genLicenseKey(email, tier);
+          console.log(`[WEBHOOK] ORÁCULO — email:${email} key:${licKey.slice(0,8)}…`);
+          // TODO: enviar email com licKey para email do comprador
+          res.writeHead(200); res.end('OK'); return;
+        }
+
+        // ── Produto: Evento (gera token de acesso à pg obrigado) ──
+        const token  = await genTokenSB(tier, email);
+
+        let tokens = [token];
+        if (tier === 'duplo') {
+          const token2 = await genTokenSB('basic', '');
+          tokens.push(token2);
+          console.log(`[WEBHOOK] DUPLO — email:${email} token1:${token.slice(0,8)} token2:${token2.slice(0,8)}`);
+          // Envia email com link de acesso
+          if (email) {
+            const amigoUrl = SITE_URL + '/obrigado?t=' + token2;
+            sendEmail({
+              to: email,
+              subject: '✅ Ingresso Confirmado — FIM DAS OPÇÕES BINÁRIAS · 22 Abril',
+              html: emailEventoHtml(token, 'duplo', amigoUrl),
+            });
+          }
+        } else {
+          console.log(`[WEBHOOK] ${tier.toUpperCase()} — email:${email} token:${token.slice(0,8)}`);
+          if (email) {
+            sendEmail({
+              to: email,
+              subject: '✅ Ingresso Confirmado — FIM DAS OPÇÕES BINÁRIAS · 22 Abril',
+              html: emailEventoHtml(token, tier, null),
+            });
+          }
+        }
+        // TODO: Send tokens via Resend/email here if desired
+        res.writeHead(200); res.end('OK');
+      } else {
+        res.writeHead(200); res.end('OK');
+      }
+    } catch(e) {
+      console.error('[WEBHOOK] error:', e.message);
+      res.writeHead(500); res.end('Error');
+    }
+    return;
+  }
+
+  // ── HEALTH ──
+  if (url === '/health') {
+    res.writeHead(200); res.end(JSON.stringify({ ok: true, tokens: TOKENS.size }));
+    return;
+  }
+
+  res.writeHead(404); res.end('Not found');
+
+}).listen(PORT, () => {
+  console.log(`JR ORÁCULO SITE :${PORT}`);
+  console.log(`Dev token: http://localhost:${PORT}/api/dev-token?tier=vip`);
+});
