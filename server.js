@@ -103,6 +103,65 @@ function emailOraculoHtml(licenseKey) {
 }
 
 
+
+// ── eNOTAS — NFS-e automática ──
+async function emitirNFSe({ email, nome, valorTotal, descricao, idExterno }) {
+  const KEY_B64   = process.env.ENOTAS_API_KEY   || 'YWE2ZDYwNWItZjliOC00ZjgwLThjZGQtZDZkYmNmZDlhZWNh';
+  const EMPRESA   = process.env.ENOTAS_EMPRESA_ID || '2dcea124-57ea-4867-bd78-083b5a640a00';
+  if (!KEY_B64 || !EMPRESA) return;
+  const https2 = require('https');
+  const apiKey = Buffer.from(KEY_B64, 'base64').toString();
+  const auth   = 'Basic ' + Buffer.from(apiKey + ':').toString('base64');
+  const body   = JSON.stringify({
+    tipo: 'NFS-e', idExterno: String(idExterno || Date.now()),
+    ambienteEmissao: 'Producao', enviarPorEmail: true,
+    cliente: {
+      nome: nome || email || 'Cliente', email: email || '', tipoPessoa: 'F',
+      cpfCnpj: '00000000000',
+      endereco: { codigoIbgeCidade: '3106200', cidade: 'Belo Horizonte', uf: 'MG',
+                  cep: '30000000', logradouro: 'Não informado', numero: 'SN', bairro: 'Centro' }
+    },
+    servico: { descricao: descricao || 'Serviço digital - JR Trader' },
+    valorTotal: Number(valorTotal) || 0,
+  });
+  return new Promise(resolve => {
+    const req = https2.request({
+      hostname: 'api.enotasgw.com.br',
+      path: `/v1/empresas/${EMPRESA}/nfes`,
+      method: 'POST',
+      headers: { 'Authorization': auth, 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) }
+    }, res => {
+      let d = ''; res.on('data', c => d += c);
+      res.on('end', () => { try { const r=JSON.parse(d); console.log('[ENOTAS]', res.statusCode, r.id||r.codigo||'ok'); resolve(r); } catch { resolve({}); } });
+    });
+    req.on('error', e => { console.error('[ENOTAS]', e.message); resolve({}); });
+    req.setTimeout(10000, () => { req.destroy(); resolve({}); });
+    req.write(body); req.end();
+  });
+}
+
+// ── ENOTAS QUEUE — 7-day delay ──
+async function queueNFSe(data) {
+  // Store in Supabase to emit after 7 days
+  const emitAfter = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+  await sbFetch('pending_nfse?select=id', 'POST', { ...data, emit_after: emitAfter, emitted: false });
+  console.log('[ENOTAS QUEUE] agendado para:', emitAfter);
+}
+
+async function processNFSeQueue() {
+  const now = new Date().toISOString();
+  const rows = await sbFetch(`pending_nfse?emitted=eq.false&emit_after=lte.${now}`);
+  if (!Array.isArray(rows) || !rows.length) return { processed: 0 };
+  let count = 0;
+  for (const row of rows) {
+    try {
+      await emitirNFSe({ email: row.email, nome: row.nome, valorTotal: row.valor_total, descricao: row.descricao, idExterno: row.id_externo });
+      await sbFetch(`pending_nfse?id=eq.${row.id}`, 'PATCH', { emitted: true, emitted_at: new Date().toISOString() });
+      count++;
+    } catch(e) { console.error('[ENOTAS QUEUE]', e.message); }
+  }
+  return { processed: count };
+}
 // ── TOKEN STORE (in-memory, 48h TTL) ──
 // token → { tier, email, used, createdAt, expiresAt }
 const TOKENS = new Map();
@@ -189,6 +248,7 @@ async function genLicenseKey(email, tier) {
     created_at: now,
   });
   console.log(`[LICENSE] gerada: ${licenseKey.slice(0,8)}… email:${email}`);
+  queueNFSe({ email, nome: email, valor_total: 5, id_externo: licenseKey.slice(0,8), descricao: 'JR ORÁCULO - Software de análise de trading - JR Trader' });
   if (email) {
     sendEmail({
       to: email,
@@ -235,7 +295,32 @@ http.createServer(async (req, res) => {
     return serveFile(res, path.join(__dirname, 'fim-das-opcoes.html'), 'text/html; charset=utf-8');
   }
 
-  // ── OBRIGADO PAGE (token-gated) ──
+  
+// ── MANUAL JR (VIP only) ──
+app.get('/manual-jr', async (req, res) => {
+  const token = req.query.t || '';
+  const row = await validateTokenSB(token);
+  if (!row) {
+    res.setHeader('Cache-Control','no-store');
+    return res.redirect(302, '/');
+  }
+  if (row.tier !== 'vip') {
+    res.setHeader('Cache-Control','no-store');
+    return res.redirect(302, '/obrigado?t=' + encodeURIComponent(token));
+  }
+  try {
+    let html = fs.readFileSync(path.join(__dirname, 'manual-jr.html'), 'utf8');
+    html = html.replaceAll('__TOKEN__', token).replaceAll('__TIER__', row.tier);
+    res.setHeader('Cache-Control','no-store,no-cache,must-revalidate');
+    res.setHeader('Content-Type','text/html; charset=utf-8');
+    res.setHeader('X-Robots-Tag','noindex');
+    return res.send(html);
+  } catch(e) {
+    return res.redirect(302, '/');
+  }
+});
+
+// ── OBRIGADO PAGE (token-gated) ──
   if (url === '/obrigado') {
     const token = qs.get('t') || qs.get('token') || '';
     const data  = await validateTokenSB(token);
@@ -332,6 +417,7 @@ http.createServer(async (req, res) => {
           }
         } else {
           console.log(`[WEBHOOK] ${tier.toUpperCase()} — email:${email} token:${token.slice(0,8)}`);
+          queueNFSe({ email, nome: email, valor_total: tier==='vip'?47:27, id_externo: token.slice(0,8), descricao: 'Ingresso - Evento FIM DAS OPÇÕES BINÁRIAS - JR Trader' });
           if (email) {
             sendEmail({
               to: email,
