@@ -296,29 +296,19 @@ http.createServer(async (req, res) => {
   }
 
   
-// ── MANUAL JR (VIP only) ──
-app.get('/manual-jr', async (req, res) => {
-  const token = req.query.t || '';
-  const row = await validateTokenSB(token);
-  if (!row) {
-    res.setHeader('Cache-Control','no-store');
-    return res.redirect(302, '/');
+  // ── MANUAL JR (VIP only) ──
+  if (url.startsWith('/manual-jr')) {
+    const token = qs.get('t') || '';
+    const row = await validateTokenSB(token);
+    if (!row) { res.writeHead(302,{'Location':'/'}); res.end(); return; }
+    if (row.tier !== 'vip') { res.writeHead(302,{'Location':'/obrigado?t='+encodeURIComponent(token)}); res.end(); return; }
+    try {
+      let pg = fs.readFileSync(path.join(__dirname,'manual-jr.html'),'utf8');
+      pg = pg.split('__TOKEN__').join(token).split('__TIER__').join(row.tier);
+      res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex'});
+      res.end(pg); return;
+    } catch(e) { res.writeHead(302,{'Location':'/'}); res.end(); return; }
   }
-  if (row.tier !== 'vip') {
-    res.setHeader('Cache-Control','no-store');
-    return res.redirect(302, '/obrigado?t=' + encodeURIComponent(token));
-  }
-  try {
-    let html = fs.readFileSync(path.join(__dirname, 'manual-jr.html'), 'utf8');
-    html = html.replaceAll('__TOKEN__', token).replaceAll('__TIER__', row.tier);
-    res.setHeader('Cache-Control','no-store,no-cache,must-revalidate');
-    res.setHeader('Content-Type','text/html; charset=utf-8');
-    res.setHeader('X-Robots-Tag','noindex');
-    return res.send(html);
-  } catch(e) {
-    return res.redirect(302, '/');
-  }
-});
 
 // ── OBRIGADO PAGE (token-gated) ──
   if (url === '/obrigado') {
