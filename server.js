@@ -8,20 +8,33 @@ const PORT     = process.env.PORT     || 3000;
 const RESEND_KEY  = process.env.RESEND_API_KEY     || 're_athkVvum_BmRSNDFkQyYcjAydedvZj8MM';
 const FROM_EMAIL  = process.env.FROM_EMAIL          || 'contato@jovemrico.com';
 const SITE_URL    = process.env.SITE_URL            || 'https://fimdeob.jovemrico.com';
-const CAKTO_ORACULO = 'ky2iw3a_839473'; // JR ORÁCULO checkout ID
 const SB_HOST = process.env.SUPABASE_HOST || 'xotatkushgbjivrqkufv.supabase.co';
 const SB_KEY  = process.env.SUPABASE_SERVICE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhvdGF0a3VzaGdiaml2cnFrdWZ2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NTA4NTY3OCwiZXhwIjoyMDkwNjYxNjc4fQ.aYMxEJCI-2gzknvJSqdcqeWfWPu3gaqo9z8VsWnk7Us';
 const WA_LINK  = process.env.WA_LINK  || 'https://devzapp.com.br/api-engennier/campanha/api/redirect/67afa5e33a35eb00016e97ff'; // WhatsApp group link — set in Railway env
 const WA_LINK_VIP = process.env.WA_LINK_VIP || 'https://devzapp.com.br/api-engennier/campanha/api/redirect/67afa5e33a35eb00016e97ff'; // VIP group link
-const HMAC_SECRET = process.env.HMAC_SECRET || crypto.randomBytes(32).toString('hex');
-const CAKTO_CLIENT_ID = process.env.CAKTO_CLIENT_ID || '4rx7nA7ddCDJqj4W3yyZpJMRgvfO7vX8h7DdpC47';
 const CAKTO_SECRET   = process.env.CAKTO_CLIENT_SECRET || 'Shm6PZBoVA0AmSRFr8XhVU69IZPleZL17UiQ7OTWBwIdIXsK4gtR31hdfvObm5UKVsySNqE0HSr81r46L9u9bWxZszSQd88Ca3qgyzg0pHmF3wb6DJj7Nf4bBMs1lMSy';
 
 
 // ── SUPABASE PERSISTENCE ──
-function sbQ(p){return new Promise(res=>{const o={hostname:SB_HOST,path:'/rest/v1/'+p,method:'GET',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'}};const r=https.request(o,s=>{let d='';s.on('data',c=>d+=c);s.on('end',()=>{try{res(JSON.parse(d))}catch{res([])}})});r.on('error',()=>res([]));r.end();})}
-function sbI(t,row){return new Promise(res=>{const p=JSON.stringify(row);const o={hostname:SB_HOST,path:'/rest/v1/'+t,method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates','Content-Length':Buffer.byteLength(p)}};const r=https.request(o,s=>{s.on('data',()=>{});s.on('end',()=>res(true))});r.on('error',()=>res(false));r.write(p);r.end();})}
-async function genTokenSB(tier,email){const token=crypto.randomBytes(24).toString('hex');const exp=new Date(Date.now()+48*3600*1000).toISOString();sbI('event_tokens',{token,tier,email:email||'',event:'fim_ob_2026',expires_at:exp});TOKENS.set(token,{tier,email:email||'',expiresAt:Date.now()+48*3600*1000});return token;}
+function sbQ(p){return new Promise(res=>{const o={hostname:SB_HOST,path:'/rest/v1/'+p,method:'GET',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json'}};const r=https.request(o,s=>{let d='';s.on('data',c=>d+=c);s.on('end',()=>{try{res(JSON.parse(d))}catch{res([])}})});r.on('error',()=>res([]));r.setTimeout(8000,()=>{r.destroy();res([])});r.end();})}
+// sbFetch: GET/POST/PATCH genérico
+function sbFetch(path, method, body){
+  if(!method||method==='GET') return sbQ(path);
+  return new Promise(res=>{
+    const p=body?JSON.stringify(body):'';
+    const h={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'};
+    if(p) h['Content-Length']=Buffer.byteLength(p);
+    if(method==='PATCH') h['Prefer']='return=minimal';
+    const o={hostname:SB_HOST,path:'/rest/v1/'+path,method,headers:h};
+    const r=https.request(o,s=>{let d='';s.on('data',c=>d+=c);s.on('end',()=>{try{res(JSON.parse(d))}catch{res(true)}})});
+    r.on('error',()=>res(false));r.setTimeout(8000,()=>{r.destroy();res(false)});
+    if(p) r.write(p); r.end();
+  });
+}
+// sbInsert: alias de sbI para compatibilidade
+function sbInsert(t,row){return sbI(t,row);}
+function sbI(t,row){return new Promise(res=>{const p=JSON.stringify(row);const o={hostname:SB_HOST,path:'/rest/v1/'+t,method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates','Content-Length':Buffer.byteLength(p)}};const r=https.request(o,s=>{s.on('data',()=>{});s.on('end',()=>res(true))});r.on('error',()=>res(false));r.setTimeout(8000,()=>{r.destroy();res(false)});r.write(p);r.end();})}
+async function genTokenSB(tier,email){const token=crypto.randomBytes(24).toString('hex');const exp=new Date(Date.now()+30*24*3600*1000).toISOString();const ok=await sbI('event_tokens',{token,tier,email:email||'',event:'fim_ob_2026',expires_at:exp});if(!ok){console.error('[TOKEN] falha ao persistir token no Supabase');}TOKENS.set(token,{tier,email:email||'',expiresAt:Date.now()+30*24*3600*1000});return token;}
 async function validateTokenSB(token){if(!token||token.length<10)return null;const m=TOKENS.get(token);if(m&&Date.now()<m.expiresAt)return m;try{const rows=await sbQ('event_tokens?token=eq.'+encodeURIComponent(token)+'&select=tier,email,expires_at');if(!Array.isArray(rows)||!rows[0])return null;if(new Date(rows[0].expires_at)<new Date())return null;const t={tier:rows[0].tier,email:rows[0].email||'',expiresAt:new Date(rows[0].expires_at).getTime()};TOKENS.set(token,t);return t;}catch{return null;}}
 
 
@@ -44,6 +57,7 @@ async function sendEmail({ to, subject, html }) {
         res.on('end', () => { console.log('[EMAIL]', res.statusCode); resolve(); });
       });
       r.on('error', e => { console.error('[EMAIL ERROR]', e.message); resolve(); });
+      r.setTimeout(10000, () => { r.destroy(); console.error('[EMAIL TIMEOUT]'); resolve(); });
       r.write(payload); r.end();
     });
   } catch(e) { console.error('[EMAIL]', e.message); }
@@ -64,7 +78,7 @@ function emailEventoHtml(token, tier, amigoUrl) {
     + '<tr><td style="padding:0 0 24px 0;text-align:center">'
     + '<div style="font-size:11px;letter-spacing:.4em;color:#42f09e;text-transform:uppercase;margin-bottom:8px">ACESSO CONFIRMADO</div>'
     + '<div style="font-size:28px;font-weight:900;color:#baf2ff">JR ORÁCULO</div>'
-    + '<div style="font-size:11px;letter-spacing:.2em;color:#3b494c;margin-top:4px">FIM DAS OPÇÕES BINÁRIAS · 22 ABRIL · 21H</div>'
+    + '<div style="font-size:11px;letter-spacing:.2em;color:#3b494c;margin-top:4px">FIM DAS OPÇÕES BINÁRIAS · 29 ABRIL · 21H</div>'
     + '</td></tr>'
     + '<tr><td style="padding:0 0 20px 0;text-align:center">'
     + '<div style="display:inline-block;background:rgba(0,224,255,.08);border:1px solid rgba(0,224,255,.2);padding:8px 20px;font-size:11px;letter-spacing:.2em;color:#00e0ff">INGRESSO ' + label + '</div>'
@@ -109,7 +123,6 @@ async function emitirNFSe({ email, nome, valorTotal, descricao, idExterno }) {
   const KEY_B64   = process.env.ENOTAS_API_KEY   || 'YWE2ZDYwNWItZjliOC00ZjgwLThjZGQtZDZkYmNmZDlhZWNh';
   const EMPRESA   = process.env.ENOTAS_EMPRESA_ID || '2dcea124-57ea-4867-bd78-083b5a640a00';
   if (!KEY_B64 || !EMPRESA) return;
-  const https2 = require('https');
   const apiKey = Buffer.from(KEY_B64, 'base64').toString();
   const auth   = 'Basic ' + Buffer.from(apiKey + ':').toString('base64');
   const body   = JSON.stringify({
@@ -125,7 +138,7 @@ async function emitirNFSe({ email, nome, valorTotal, descricao, idExterno }) {
     valorTotal: Number(valorTotal) || 0,
   });
   return new Promise(resolve => {
-    const req = https2.request({
+    const req = https.request({
       hostname: 'api.enotasgw.com.br',
       path: `/v1/empresas/${EMPRESA}/nfes`,
       method: 'POST',
@@ -144,7 +157,7 @@ async function emitirNFSe({ email, nome, valorTotal, descricao, idExterno }) {
 async function queueNFSe(data) {
   // Store in Supabase to emit after 7 days
   const emitAfter = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
-  await sbFetch('pending_nfse?select=id', 'POST', { ...data, emit_after: emitAfter, emitted: false });
+  await sbFetch('pending_nfse', 'POST', { ...data, emit_after: emitAfter, emitted: false });
   console.log('[ENOTAS QUEUE] agendado para:', emitAfter);
 }
 
@@ -165,7 +178,7 @@ async function processNFSeQueue() {
 // ── TOKEN STORE (in-memory, 48h TTL) ──
 // token → { tier, email, used, createdAt, expiresAt }
 const TOKENS = new Map();
-const TOKEN_TTL = 48 * 60 * 60 * 1000; // 48h
+const TOKEN_TTL = 30 * 24 * 60 * 60 * 1000; // 30 dias — cobre o período do evento
 
 function genToken(tier, email) {
   const token = crypto.randomBytes(24).toString('hex');
@@ -180,14 +193,6 @@ function genToken(tier, email) {
   return token;
 }
 
-function validateToken(token) {
-  if (!token || token.length < 10) return null;
-  const t = TOKENS.get(token);
-  if (!t) return null;
-  if (Date.now() > t.expiresAt) { TOKENS.delete(token); return null; }
-  return t;
-}
-
 // Cleanup expired tokens every 30min
 setInterval(() => {
   const now = Date.now();
@@ -195,6 +200,9 @@ setInterval(() => {
     if (now > v.expiresAt) TOKENS.delete(k);
   }
 }, 30 * 60 * 1000);
+
+// Processa fila NFSe a cada 6h
+setInterval(() => processNFSeQueue().catch(e => console.error('[CRON NFSe]', e.message)), 6 * 60 * 60 * 1000);
 
 // ── HELPERS ──
 function readBody(req) {
@@ -248,7 +256,8 @@ async function genLicenseKey(email, tier) {
     created_at: now,
   });
   console.log(`[LICENSE] gerada: ${licenseKey.slice(0,8)}… email:${email}`);
-  queueNFSe({ email, nome: email, valor_total: 5, id_externo: licenseKey.slice(0,8), descricao: 'JR ORÁCULO - Software de análise de trading - JR Trader' });
+  const nfseValor = tier === 'vip' ? 47 : 27;
+  await queueNFSe({ email, nome: email, valor_total: nfseValor, id_externo: licenseKey.slice(0,8), descricao: 'JR ORÁCULO - Software de análise de trading - JR Trader' });
   if (email) {
     sendEmail({
       to: email,
@@ -260,14 +269,22 @@ async function genLicenseKey(email, tier) {
 }
 
 function detectTier(body) {
+  // Normaliza valor — suporte a centavos (4700) e reais (47)
+  const raw   = body.product?.price || body.amount || body.value || body.total || 0;
+  const price = Number(raw) > 200 ? Number(raw) / 100 : Number(raw);
+  const name  = (body.product?.name || body.plan_name || body.offer_name || '').toLowerCase();
+  if (name.includes('vip') || price === 47) return 'vip';
+  if (name.includes('duplo') || price === 27) return 'duplo';
+  // Fallback: busca no JSON só por nome explícito (nunca por número)
   const s = JSON.stringify(body).toLowerCase();
-  if (s.includes('vip') || s.includes('47')) return 'vip';
-  if (s.includes('duplo') || s.includes('27')) return 'duplo';
+  if (s.includes('"vip"') || s.includes("'vip'")) return 'vip';
+  if (s.includes('"duplo"') || s.includes("'duplo'")) return 'duplo';
   return 'basic';
 }
 
 function verifyHmac(payload, signature) {
-  if (!CAKTO_SECRET || !signature) return true; // skip if not configured
+  if (!CAKTO_SECRET) return true; // sem secret configurado — bypass só em dev
+  if (!signature) return false; // tem secret mas sem assinatura → rejeita
   const expected = crypto.createHmac('sha256', CAKTO_SECRET).update(payload).digest('hex');
   try { return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature)); }
   catch { return false; }
@@ -277,7 +294,6 @@ function verifyHmac(payload, signature) {
 http.createServer(async (req, res) => {
   const url = req.url.split('?')[0];
   const qs  = new URLSearchParams(req.url.includes('?') ? req.url.split('?')[1] : '');
-  const origin = req.headers.origin || '';
 
   // Security headers on all responses
   res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -327,7 +343,6 @@ http.createServer(async (req, res) => {
       if (err) { res.writeHead(404); res.end('Not found'); return; }
       // Inject tier and token into page via meta-tag replacement
       let page = raw.toString()
-        .replace('__TIER__', data.tier)
         .replaceAll('__TOKEN__', token)
         .replaceAll('__TIER__', data.tier);
 
@@ -343,6 +358,25 @@ http.createServer(async (req, res) => {
   }
 
   // ── API: get WhatsApp link (only with valid token) ──
+  // ── API: amigo-token (duplo — retorna URL do amigo) ──
+  if (url === '/api/amigo-token' && req.method === 'GET') {
+    const token = qs.get('t') || '';
+    const data = await validateTokenSB(token);
+    if (!data) return json(res, { ok: false }, 401);
+    if (data.tier !== 'duplo') return json(res, { ok: false, msg: 'Não é ingresso duplo' });
+    try {
+      // Busca coluna amigo_token direto no registro
+      const rows = await sbQ('event_tokens?token=eq.'+encodeURIComponent(token)+'&select=amigo_token');
+      const amigoToken = Array.isArray(rows) && rows[0] ? rows[0].amigo_token : null;
+      if (amigoToken) {
+        return json(res, { ok: true, url: '/obrigado?t=' + encodeURIComponent(amigoToken) });
+      }
+      return json(res, { ok: false, msg: 'Link sendo gerado — verifique seu email' });
+    } catch(e) {
+      return json(res, { ok: false, msg: 'Erro ao buscar link' });
+    }
+  }
+
   if (url === '/api/wa-link' && req.method === 'GET') {
     const token = qs.get('t') || '';
     const data  = await validateTokenSB(token);
@@ -384,39 +418,36 @@ http.createServer(async (req, res) => {
         if (product === 'oraculo') {
           const licKey = await genLicenseKey(email, tier);
           console.log(`[WEBHOOK] ORÁCULO — email:${email} key:${licKey.slice(0,8)}…`);
-          // TODO: enviar email com licKey para email do comprador
           res.writeHead(200); res.end('OK'); return;
         }
 
         // ── Produto: Evento (gera token de acesso à pg obrigado) ──
         const token  = await genTokenSB(tier, email);
 
-        let tokens = [token];
         if (tier === 'duplo') {
-          const token2 = await genTokenSB('basic', '');
-          tokens.push(token2);
+          const token2 = await genTokenSB('duplo_amigo', '');
+          await sbFetch('event_tokens?token=eq.'+encodeURIComponent(token), 'PATCH', { amigo_token: token2 });
           console.log(`[WEBHOOK] DUPLO — email:${email} token1:${token.slice(0,8)} token2:${token2.slice(0,8)}`);
-          // Envia email com link de acesso
+          await queueNFSe({ email, nome: email, valor_total: 27, id_externo: token.slice(0,8), descricao: 'Ingresso Duplo - Evento FIM DAS OPÇÕES BINÁRIAS - JR Trader' });
           if (email) {
             const amigoUrl = SITE_URL + '/obrigado?t=' + token2;
             sendEmail({
               to: email,
-              subject: '✅ Ingresso Confirmado — FIM DAS OPÇÕES BINÁRIAS · 22 Abril',
+              subject: '✅ Ingresso Confirmado — FIM DAS OPÇÕES BINÁRIAS · 29 Abril',
               html: emailEventoHtml(token, 'duplo', amigoUrl),
             });
           }
         } else {
           console.log(`[WEBHOOK] ${tier.toUpperCase()} — email:${email} token:${token.slice(0,8)}`);
-          queueNFSe({ email, nome: email, valor_total: tier==='vip'?47:27, id_externo: token.slice(0,8), descricao: 'Ingresso - Evento FIM DAS OPÇÕES BINÁRIAS - JR Trader' });
+          await queueNFSe({ email, nome: email, valor_total: tier==='vip'?47:27, id_externo: token.slice(0,8), descricao: 'Ingresso - Evento FIM DAS OPÇÕES BINÁRIAS - JR Trader' });
           if (email) {
             sendEmail({
               to: email,
-              subject: '✅ Ingresso Confirmado — FIM DAS OPÇÕES BINÁRIAS · 22 Abril',
+              subject: '✅ Ingresso Confirmado — FIM DAS OPÇÕES BINÁRIAS · 29 Abril',
               html: emailEventoHtml(token, tier, null),
             });
           }
         }
-        // TODO: Send tokens via Resend/email here if desired
         res.writeHead(200); res.end('OK');
       } else {
         res.writeHead(200); res.end('OK');
@@ -434,9 +465,28 @@ http.createServer(async (req, res) => {
     return;
   }
 
+  // ── CRON: processar fila NFSe (protegido por ADMIN_KEY) ──
+  if (url === '/cron/emit-nfse' && req.method === 'POST') {
+    const adminKey = req.headers['x-admin-key'] || qs.get('key') || '';
+    if (adminKey !== (process.env.ADMIN_KEY || 'jr_admin_2026')) {
+      res.writeHead(401); res.end('Unauthorized'); return;
+    }
+    const result = await processNFSeQueue();
+    json(res, { ok: true, ...result });
+    return;
+  }
+
   res.writeHead(404); res.end('Not found');
 
 }).listen(PORT, () => {
   console.log(`JR ORÁCULO SITE :${PORT}`);
   console.log(`Dev token: http://localhost:${PORT}/api/dev-token?tier=vip`);
+});
+
+// ── CRASH HANDLER GLOBAL ──
+process.on('uncaughtException', (err) => {
+  console.error('[CRASH] uncaughtException:', err.message, err.stack);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('[CRASH] unhandledRejection:', reason);
 });

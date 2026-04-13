@@ -173,7 +173,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <div class="info-card">
         <div class="ic-icon">📅</div>
         <div class="ic-title">Data do evento</div>
-        <div class="ic-body"><strong style="color:var(--t)">22 de Abril de 2026</strong><br>21h · Horário de Brasília<br>Evento Fechado · Link no Grupo</div>
+        <div class="ic-body"><strong style="color:var(--t)">29 de Abril de 2026</strong><br>21h · Horário de Brasília<br>Evento Fechado · Link no Grupo</div>
       </div>
       <div class="info-card">
         <div class="ic-icon">🔔</div>
@@ -207,7 +207,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <!-- DATE -->
     <div class="date-badge fu d6">
       <span>📍</span>
-      <span><strong>22 ABRIL</strong> · <strong>21H BRASÍLIA</strong> · YOUTUBE</span>
+      <span><strong>29 ABRIL</strong> · <strong>21H BRASÍLIA</strong> · YOUTUBE</span>
     </div>
 
   </div>
@@ -236,9 +236,10 @@ const _tier = '__TIER__';
 
 function setupPage(tier) {
   const cfg = {
-    vip:   { label:'INGRESSO VIP',         color:'#ffc165', msg:'Você garantiu o VIP. Entre no grupo exclusivo abaixo — você vai receber os avisos antes de todo mundo.' },
-    duplo: { label:'INGRESSO DUPLO',        color:'#00e0ff', msg:'Você e um amigo confirmados. Copie o link do amigo abaixo, entre no grupo e aparece na live.' },
-    basic: { label:'INGRESSO CONFIRMADO',   color:'#42f09e', msg:'Ingresso confirmado. Entre no grupo pelo botão abaixo para receber todos os avisos da live.' },
+    vip:         { label:'INGRESSO VIP',         color:'#ffc165', msg:'Você garantiu o VIP. Entre no grupo exclusivo abaixo — você vai receber os avisos antes de todo mundo.' },
+    duplo:       { label:'INGRESSO DUPLO',        color:'#00e0ff', msg:'Você e um amigo confirmados. Copie o link do amigo abaixo, entre no grupo e aparece na live.' },
+    duplo_amigo: { label:'INGRESSO DUPLO',        color:'#00e0ff', msg:'Ingresso confirmado pelo seu parceiro. Entre no grupo pelo botão abaixo.' },
+    basic:       { label:'INGRESSO CONFIRMADO',   color:'#42f09e', msg:'Ingresso confirmado. Entre no grupo pelo botão abaixo para receber todos os avisos da live.' },
   };
   const c = cfg[tier] || cfg.basic;
   document.getElementById('tier-name').textContent = c.label;
@@ -315,11 +316,11 @@ document.addEventListener('keydown',e=>{
   if(e.key==='F12'){e.preventDefault();return false;}
 });
 
-// ANTI-DEVTOOLS
+// ANTI-DEVTOOLS (threshold aumentado para não disparar em mobile com barras de sistema)
 let _dev=false;
 setInterval(()=>{
-  const wg=window.outerWidth-window.innerWidth>160;
-  const hg=window.outerHeight-window.innerHeight>160;
+  const wg=window.outerWidth-window.innerWidth>250;
+  const hg=window.outerHeight-window.innerHeight>250;
   if((wg||hg)&&!_dev){_dev=true;document.getElementById('devblock').style.display='flex';document.getElementById('main-page').style.visibility='hidden';}
   else if(!wg&&!hg&&_dev){_dev=false;document.getElementById('devblock').style.display='none';document.getElementById('main-page').style.visibility='visible';}
 },1000);
